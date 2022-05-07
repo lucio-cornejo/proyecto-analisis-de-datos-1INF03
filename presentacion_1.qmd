@@ -1,0 +1,90 @@
+---
+title: "Análisis de Datos"
+subtitle: "Primer avance"
+format: 
+  html:
+    self-contained: true
+    toc: true
+    toc-depth: 4
+    toc-title: "Tabla de contenido"
+---
+
+**Curso**: Análisis de Datos \
+**Profesor**: Stefany Neciosup \
+**Código del curso**:  	1INF03 \
+**Fecha de Entrega**: 	7/05/2022  \
+
+**Alumnos**: \
+Richle Gianotti, Renzo Ernesto - 20180368 \
+Cornejo Ramírez, Lucio Enrique - 20192058 \
+Vivas Alejandro, Claudia Mirela - 20141150 \
+Mejia Padilla, Andrea Adela - 20180824 \
+
+## Introducción
+
+Imaginemos que queremos iniciarnos en la música. 
+Podemos creer que tenemos buen gusto musical o no, sin embargo,
+necesitamos estar familiarizados con los datos que indican la popularidad 
+de las canciones y qué características en común poseen las canciones más exitosas.
+
+Nuestro tema a tratar será el de las características altamente asociadas a las canciones
+más populares en la aplicación de música Spotify y poder usar estos rasgos, que están 
+conectados con los estados de ánimo, para analizar el por qué de esta popularidad.
+
+Entre los puntos que queremos saber: 
+
+- ¿Qué características en común tienen las canciones más populares de Spotify?
+- ¿Cuáles son los tracks más populares en Spotify? 
+- ¿Existe una correlación entre la popularidad y alguna característica de las canciones?
+- ¿Cuánto debe durar un track según los estándares de la actualidad?
+- ¿Cuál es la correlación entre diferentes tracks que son populares?
+
+## Dataset
+
+El dataset elegido se obtuvo utilizando el servicio [API](https://spotipy.readthedocs.io/en/2.19.0/)
+de Spotify, el cual nos permite obtener la información de las canciones existentes en tal plataforma.
+
+El conjunto de datos que estamos empleando consta inicialmente de 20 columnas, las cuales representan variables como el nombre de la canción, su popularidad, duración, el artista, la fecha de lanzamiento, bailabilidad de la canción, su energía, volumen sonoro, etc.
+
+## Tema de estudio
+
+### Problema
+
+En general, sabemos qué canciones son las más populares, pero, como buen productor, 
+se debe comprender las emociones humanas y cómo influyen en el mercado musical.
+
+En tiempos de crisis, tanto los artistas como el público tienen gustos diferentes.
+En marzo del año 2020, el mundo se cerró por completo debido a la crisis de la pandemia. 
+Es natural preguntarse cuáles fueron algunas de las canciones más populares publicadas en ese entonces y qué características tienen en común.	
+
+### Objetivo
+
+Nuestro objetivo principal es descubrir cuáles son las características de las canciones
+que más influyen sobre su popularidad.
+
+### Variables
+
+Variable | Descripción | Tipo de dato
+:--- | :--- | :---
+id | Identificador de la canción | string
+name | Nombre de la canción | string
+popularity | Popularidad | int
+duration_ms | La duración del track en milisegundos | int
+explicit | Si el track cuenta con las letras proporcionadas por el servicio de Explicit | boolean
+artists | El artista del track | object artist
+id_artists | El id del artista del track | object artist
+release_date | Fecha de lanzamiento | string
+danceability | La capacidad de baile describe qué tan adecuada es una pista para bailar en función de una combinación de elementos musicales que incluyen tempo, estabilidad del ritmo, fuerza del ritmo y regularidad general. Un valor de 0,0 es menos bailable y 1,0 es el más bailable | float
+energy | La energía es una medida de 0,0 a 1,0 y representa una medida perceptiva de intensidad y actividad. Por lo general, las pistas enérgicas se sienten rápidas, fuertes y ruidosas | float
+key | Indica el centro tonal de la canción, representando a las doce principales notas musicales vía los enteros entre 0 y 11. | int
+loudness | Volumen de la pista en decibelios  | float
+mode | Indica la modalidad (mayor (valor 1) o menor (valor 0) ) de una pista, el tipo de escala de la que se deriva su contenido melódico. | int 
+speechiness | Valor entre 0 y 1, donde la cercanía a 1 está asociada a mayor presencia de palabras cantadas en la canción. | float
+acousticness | Que tanta parte con voces contiene la pista (mas cerca a 1 significa menos parte vocal) | float
+instrumentalness | Predicción sobre la presencia o ausencia de algún cantante en la canción. | float
+liveness | Detecta la presencia de una audiencia en la grabación | float
+valence | Describe la positividad emocional de una pista | float
+tempo | El tempo general estimado en pulsaciones por minuto | float
+time_signature | Especifica cuántos pulsos hay en cada compás | int 
+
+
