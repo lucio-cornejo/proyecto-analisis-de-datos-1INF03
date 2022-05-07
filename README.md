@@ -33,3 +33,7 @@
     - ¿El enfoque debe ser del tipo que trabajamos para una empresa?, como si fuese un cliente.
     - ¿Solamente planteamos un modelo, o podemos realizar diversos modelos en base a clusters de la data? 
     La idea de realizar diversos modelos (del mismo tipo pero para clusters distintos) es comparar si los resultados del mismo tipo de modelo son los mismo. 
+
+- **Producto final**
+    - `presentacion_1.html` 
+    - `codes/limpieza-de-datos.html` 
