@@ -86,5 +86,3 @@ liveness | Detecta la presencia de una audiencia en la grabación | float
 valence | Describe la positividad emocional de una pista | float
 tempo | El tempo general estimado en pulsaciones por minuto | float
 time_signature | Especifica cuántos pulsos hay en cada compás | int 
-
-
