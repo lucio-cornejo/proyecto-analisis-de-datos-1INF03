@@ -1,0 +1,54 @@
+---
+title: Dashboard
+runtime: shiny
+output:
+  flexdashboard::flex_dashboard:
+    vertical_layout: fill
+    orientation: columns
+    theme:
+      version: 3
+      bootswatch: spacelab
+---
+
+```{r}
+library(shiny)
+library(plotly)
+library(flexdashboard)
+```
+
+# htmlwidgets
+
+## Opciones de colores
+
+###
+
+```{r}
+selectInput(
+  "color_selected",  
+  label = "Escoja un color", 
+  choices = list(
+    "Rojo" = "red", "Azul" = "blue", "Verde" = "green"
+  ), 
+  selected = "red"
+)
+```
+
+## Plotly
+
+###
+
+```{r}
+renderPlotly({
+  plot_ly(z = ~volcano) %>%
+    add_surface(
+      contours = list(
+        z = list(
+          show = TRUE,
+          usecolormap = TRUE,
+          highlightcolor = input$color_selected,
+          project = list(z = TRUE)
+        )
+      )
+    )
+})
+```

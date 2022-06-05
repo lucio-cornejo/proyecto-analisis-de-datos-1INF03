@@ -1,0 +1,235 @@
+---
+title: "Primer avance"
+date: "2022-05-26"
+format:
+  html:
+    # self-contained: true
+    theme: yeti
+    toc: true
+    toc-depth: 4
+    code-tools: true
+    toc-title: "Tabla de contenido"
+    highlight-style: dracula
+execute:
+  echo: true
+---
+
+```{r}
+library(reticulate)
+use_python("C:\\Python39\\python.exe")
+```
+
+
+```{python}
+import pandas as pd
+import numpy as np
+
+pd.set_option('display.max_columns', None)
+```
+
+```{python}
+# Cargamos la base de datos
+# tracks = pd.read_csv(r'F:\2022-1\Analisis de datos\Tarea Academica\archive\tracks.csv')
+tracks = pd.read_csv("D:/proyecto-analisis-de-datos-1INF03/datos/tracks.csv")
+```
+
+```{python}
+print('La base tiene la forma', tracks.shape)
+```
+
+```{python}
+# Las primeras cinco observaciones
+tracks.head(5)
+```
+
+```{python}
+# Descripción de la base
+tracks.info()
+```
+
+## Pre-procesamiento de datos
+
+```{python}
+# Información de la base de datos
+# Omitimos duplicados 
+print(tracks.shape)
+tracks.drop_duplicates(subset = 'id', inplace = True)
+print(tracks.shape)
+```
+
+```{python}
+# Contabilizamos vacíos
+vacios = pd.DataFrame(tracks.isnull().sum()).sort_values(0, ascending=True)
+vacios.columns = ['vacios']
+vacios['vacios%'] = round(vacios['vacios'] / tracks.shape[0], 2)*100
+vacios 
+```
+
+```{python}
+import matplotlib.pyplot as plt
+import numpy as np
+
+plt.figure(figsize = (10,10))
+vac = np.arange(len(vacios['vacios%']))
+plt.barh(vac, vacios['vacios%'])
+plt.yticks(vac, vacios.index)
+plt.xlim([0, 100])
+plt.show()
+```
+
+```{python}
+# Excluímos vacíos
+print(tracks.shape) 
+tracks.dropna(inplace=True)
+print(tracks.shape)
+```
+
+## Tratamiento de Datos Atípicos y Estadísticas Descriptivas
+
+```{python}
+# Separación de variables numéricas y categóricas
+dfnum = tracks.select_dtypes(include = ['float64', 'int64'])
+dfcat = tracks.select_dtypes(exclude = ['float64', 'int64'])
+```
+
+```{python}
+dfnum.head(5)
+```
+
+```{python}
+dfnum.info()
+```
+
+-----
+
+```{python}
+dfcat.head(5)
+```
+
+```{python}
+dfcat.info()
+```
+
+```{python}
+print('Variables categóricas', dfcat.shape)
+print('Variables numéricas', dfnum.shape)
+```
+
+```{python}
+# Convertimos la variable 'release_date' a datetime64[ns]
+dfcat['release_date'] = pd.to_datetime(dfcat['release_date'], format="%Y-%m-%d")
+```
+
+### Tratamiento de datos atípicos
+
+#### Datos numéricos
+
+```{python}
+descriptivesMax_num = dfnum.describe(percentiles = list(np.arange(0, 1, 0.05)))
+descriptivesMax_num
+```
+
+```{python}
+# Variables que tienen valores atípicos superiores
+descriptivesMax_num.loc['max'] > (descriptivesMax_num.loc['75%'] + (1.5* (descriptivesMax_num.loc['75%']-descriptivesMax_num.loc['25%']) ) )
+```
+
+```{python}
+descriptivesMin = dfnum.describe(percentiles = list( np.arange(0, 1, 0.05)) )
+descriptivesMin
+```
+
+```{python}
+# Variables que tienen valores atípicos inferiores
+descriptivesMin.loc['min'] < ( descriptivesMin.loc['25%'] + (1.5* (descriptivesMax_num.loc['75%']-descriptivesMax_num.loc['25%']) ) ) 
+```
+
+```{python}
+dfnum.describe().quantile(0.5)
+```
+
+```{python}
+dfnum.columns
+```
+
+Variables categóricas (con representacion numérica): \
+explicit, key y mode. 
+
+```{python}
+# Variables con valores atípicos
+dfnum_outlier = dfnum[['popularity', 'duration_ms', 'danceability', 'energy', 'loudness', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo', 'time_signature']]
+```
+
+```{python}
+dfnum_outlier.describe()
+```
+
+```{python}
+dfnum.columns
+```
+
+```{python}
+columnas = ['popularity', 'duration_ms', 'danceability', 'energy', 'loudness', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo', 'time_signature']
+for col in columnas:
+  dfnum_outlier.boxplot(column = [col])
+  plt.title(col)
+  plt.show()
+```
+
+```{python}
+# Podemos definir una función que haga lo mismo para cualquier columna numérica
+def loc_outliers(df, columna):
+  q1 = df[columna].quantile(0.25)
+  q3 = df[columna].quantile(0.75)
+  iqr = q3 - q1
+  ul = q3 + 1.5*iqr
+  ll = q1 - 1.5*iqr
+  return (df[columna] > ul) | (df[columna] < ll) 
+```
+
+```{python}
+# Define una función que encuentre todos los outliers por exceso
+def loc_outliers_exceso(df, columna):
+  q1 = df[columna].quantile(0.25)
+  q3 = df[columna].quantile(0.75)
+  iqr = q3 - q1
+  ul = q3 + 1.5*iqr
+  return (df[columna] > ul)
+
+# Define una función que encuentre todos los outliers por defecto
+def loc_outliers_defecto(df, columna):
+  q1 = df[columna].quantile(0.25)
+  q3 = df[columna].quantile(0.75)
+  iqr = q3 - q1
+  ll = q1 - 1.5*iqr
+  return (df[columna] < ll)
+```
+
+```{python}
+# Reemplazamos todos los outliers por exceso de la columna "antiguedad" por el máximo valor No outlier
+for col in columnas:
+  dfnum_outlier.loc[loc_outliers_exceso(dfnum_outlier, col)] = dfnum_outlier.loc[loc_outliers_exceso(dfnum_outlier, col)==False, col].max()
+  dfnum_outlier.loc[loc_outliers_defecto(dfnum_outlier, col)] = dfnum_outlier.loc[loc_outliers_defecto(dfnum_outlier, col)==False, col].min()
+```
+
+```{python}
+# Volvemos a generar boxplots para verificar imputaciones
+for col in columnas:
+  dfnum_outlier.boxplot(column = [col])
+  plt.title(col)
+  plt.show()
+```
+
+```{python}
+# Graficamos el Q-Q plot de cada variable
+# ¿Qué variables parecen seguir una distribución normal/gaussiana?
+import pylab 
+import scipy.stats as stats
+
+# La función select_dtypes genera un data frame formado únicamente por
+# columnas del tipo indicado como argumento
+for col in dfnum_outlier.select_dtypes('number').columns:
+  stats.probplot(dfnum_outlier[col], dist = "norm", plot = plt)
+  plt.title(col)
+  pylab.show()
+```

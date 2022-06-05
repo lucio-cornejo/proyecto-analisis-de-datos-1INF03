@@ -1,0 +1,68 @@
+---
+title: Le dashboarde
+output:
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    theme: spacelab
+---
+
+# Page 1
+
+## Columna 1
+
+Podemos no dividir más la página, y
+empezar a escribir.
+
+```{r}
+plot(cars$speed, cars$dist)
+```
+
+# Page 2
+
+## Columna 1
+
+### Fila 1.1 {data-height=600}
+
+```{r}
+plot(cars$speed, cars$dist)
+```
+
+### Fila 1.2 {data-height=400}
+
+```{r}
+plot(cars$speed, cars$dist)
+```
+
+# Page 3 {data-orientation=rows}
+
+## Fila 1
+
+### Columna 1.1
+
+```{r}
+plot(cars$speed, cars$dist)
+```
+
+### Columna 2.1
+
+```{r}
+plot(cars$speed, cars$dist)
+```
+
+## Fila 2
+
+### Columna 1.2
+
+```{r}
+plot(cars$speed, cars$dist)
+```
+
+### Columna 2.2
+
+```{r}
+plot(cars$speed, cars$dist)
+```
+
+
+
