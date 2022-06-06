@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+  <meta charset="utf-8">
+  <meta name="generator" content="quarto-0.9.180">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="dcterms.date" content="2022-06-10">
+  <title>Informe parcial</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+
+  <script src="informe_01_files/libs/clipboard/clipboard.min.js"></script>
+  <script src="informe_01_files/libs/quarto-html/quarto.js"></script>
+  <script src="informe_01_files/libs/quarto-html/popper.min.js"></script>
+  <script src="informe_01_files/libs/quarto-html/tippy.umd.min.js"></script>
+  <script src="informe_01_files/libs/quarto-html/anchor.min.js"></script>
+  <link href="informe_01_files/libs/quarto-html/tippy.css" rel="stylesheet">
+  <link id="quarto-text-highlighting-styles" href="informe_01_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet">
+  <script src="informe_01_files/libs/bootstrap/bootstrap.min.js"></script>
+  <link href="informe_01_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+  <link href="informe_01_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc">
+<h2 id="toc-title">Tabla de contenido</h2>
+<ul>
+<li><a href="#parte-de-andrea" class="nav-link active" data-scroll-target="#parte-de-andrea">Parte de Andrea</a>
+<ul class="collapse">
+<li><a href="#introducción" class="nav-link" data-scroll-target="#introducción">INTRODUCCIÓN</a>
+<ul class="collapse">
+<li><a href="#dataset" class="nav-link" data-scroll-target="#dataset">Dataset</a></li>
+</ul></li>
+<li><a href="#capítulo-i-comprensión-del-negocio-estudio" class="nav-link" data-scroll-target="#capítulo-i-comprensión-del-negocio-estudio">CAPÍTULO I: COMPRENSIÓN DEL NEGOCIO / ESTUDIO</a>
+<ul class="collapse">
+<li><a href="#descripción-del-problema" class="nav-link" data-scroll-target="#descripción-del-problema">Descripción del problema</a></li>
+<li><a href="#objetivo-del-negocioestudio" class="nav-link" data-scroll-target="#objetivo-del-negocioestudio">Objetivo del negocio/estudio</a></li>
+<li><a href="#variable-objetivo-para-el-negocio" class="nav-link" data-scroll-target="#variable-objetivo-para-el-negocio">Variable objetivo para el negocio</a></li>
+</ul></li>
+<li><a href="#capítulo-ii-fuentes-de-información" class="nav-link" data-scroll-target="#capítulo-ii-fuentes-de-información">CAPÍTULO II: FUENTES DE INFORMACIÓN</a></li>
+<li><a href="#capítulo-iii-preprocesamiento-de-datos" class="nav-link" data-scroll-target="#capítulo-iii-preprocesamiento-de-datos">CAPÍTULO III: PREPROCESAMIENTO DE DATOS</a></li>
+<li><a href="#section" class="nav-link" data-scroll-target="#section"></a></li>
+</ul></li>
+</ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+<header id="title-block-header" class="quarto-title-block default">
+
+
+<div class="quarto-title"><h1 class="title display-7">Informe parcial</h1></div><div class="quarto-title-meta"><div><div class="quarto-title-meta-heading">Published</div><div class="quarto-title-meta-contents"><p class="date">June 10, 2022</p></div></div></div></header>
+
+<section id="parte-de-andrea" class="level1">
+<h1>Parte de Andrea</h1>
+<p>CARÁTULA DEL INFORME</p>
+<section id="introducción" class="level2">
+<h2 class="anchored" data-anchor-id="introducción">INTRODUCCIÓN</h2>
+<p>Imaginemos que queremos iniciarnos en la música. Podemos creer que tenemos buen gusto musical o no, sin embargo, necesitamos estar familiarizados con los datos que indican la popularidad de las canciones y qué características en común poseen las canciones más exitosas.</p>
+<p>Nuestro tema a tratar será el de las características fuertemente asociadas a las canciones más populares en la aplicación de música Spotify y poder usar estos rasgos, que están conectados con los estados de ánimo, para analizar el por qué de esta popularidad.</p>
+<p>Entre los puntos que queremos saber:</p>
+<ul>
+<li>¿Qué características en común tienen las canciones más populares de Spotify? ¿Cuáles son los tracks más populares en Spotify?</li>
+<li>¿Existe una correlación entre la popularidad y alguna característica de las canciones?</li>
+<li>¿Cuánto debe durar un track según los estándares de la actualidad?</li>
+<li>¿Cuál es la correlación entre diferentes tracks que son populares?</li>
+</ul>
+<section id="dataset" class="level3">
+<h3 class="anchored" data-anchor-id="dataset">Dataset</h3>
+<p>El dataset elegido se obtuvo utilizando el servicio API de Spotify, el cual nos permite obtener la información de las canciones existentes en tal plataforma. El conjunto de datos que estamos empleando consta inicialmente de 20 columnas, las cuales representan variables como el nombre de la canción, su popularidad, duración, el artista, la fecha de lanzamiento, bailabilidad de la canción, su energía, volumen sonoro, etc.</p>
+</section>
+</section>
+<section id="capítulo-i-comprensión-del-negocio-estudio" class="level2">
+<h2 class="anchored" data-anchor-id="capítulo-i-comprensión-del-negocio-estudio">CAPÍTULO I: COMPRENSIÓN DEL NEGOCIO / ESTUDIO</h2>
+<section id="descripción-del-problema" class="level3">
+<h3 class="anchored" data-anchor-id="descripción-del-problema">Descripción del problema</h3>
+<p>Sabemos qué canciones son las más populares en general, pero como buen productor, debes comprender las emociones humanas y cómo influyen en el mercado musical. En tiempos de crisis, tanto los artistas como el público tienen gustos diferentes. En marzo del año 2020, el mundo se cerró por completo debido a la crisis de la pandemia. Es natural preguntarse cuáles fueron algunas de las canciones más populares publicadas en ese entonces y qué características tienen en común.</p>
+</section>
+<section id="objetivo-del-negocioestudio" class="level3">
+<h3 class="anchored" data-anchor-id="objetivo-del-negocioestudio">Objetivo del negocio/estudio</h3>
+<p>Nuestro objetivo principal es descubrir cuáles son las características de las canciones que más influyen sobre su popularidad</p>
+</section>
+<section id="variable-objetivo-para-el-negocio" class="level3">
+<h3 class="anchored" data-anchor-id="variable-objetivo-para-el-negocio">Variable objetivo para el negocio</h3>
+<blockquote class="blockquote">
+<p>The popularity of the artist. The value will be between 0 and 100, with 100 being the most popular. The artist’s popularity is calculated from the popularity of all the artist’s tracks.</p>
+</blockquote>
+<ul>
+<li>Describir/incluir la Ficha técnica (xlsx)</li>
+</ul>
+</section>
+</section>
+<section id="capítulo-ii-fuentes-de-información" class="level2">
+<h2 class="anchored" data-anchor-id="capítulo-ii-fuentes-de-información">CAPÍTULO II: FUENTES DE INFORMACIÓN</h2>
+<p>-Origen de los datos del proyecto -Descripción del universo y muestra (incluyendo descripción en espacio y tiempo) -Descripción y entendimiento de variables (medidas de resumen y gráfico, según tipo)</p>
+</section>
+<section id="capítulo-iii-preprocesamiento-de-datos" class="level2">
+<h2 class="anchored" data-anchor-id="capítulo-iii-preprocesamiento-de-datos">CAPÍTULO III: PREPROCESAMIENTO DE DATOS</h2>
+<p>-Selección de registros y atributos -Tratamiento de datos atípicos -Tratamiento de datos vacíos -Creación y transformación de variables -Reducción de dimensiones (en caso aplique) -Descripción de variables listas para el modelamiento</p>
+</section>
+<section id="section" class="level2">
+<h2 class="anchored" data-anchor-id="section"></h2>
+
+</section>
+</section>
+</main>
+<!-- /main column -->
+<script type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    setTimeout(function() {
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+</body></html>
