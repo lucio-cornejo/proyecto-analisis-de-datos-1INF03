@@ -38,7 +38,11 @@
     - `presentacion_1.html` 
     - `codes/limpieza-de-datos.html` 
 
-## 
+## Preguntas para reunión con la profesora
+
+1. ¿Es correcto realizar imputación a la variable por predecir?
+1. ¿Sería conveniente recategorizar (en **menos** valores) 
+a la variable categórica **release_date**?
 
 ## Bibliografía:
 
