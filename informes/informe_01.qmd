@@ -1,0 +1,70 @@
+---
+title: Informe parcial
+date: 2022-06-10
+format: 
+  html:
+    toc: true
+    toc-depth: 4
+    toc-title: Tabla de contenido
+    highlight-style: dracula
+---
+
+# Parte de Andrea
+
+CARÁTULA DEL INFORME
+
+## INTRODUCCIÓN
+
+Imaginemos que queremos iniciarnos en la música. Podemos creer que tenemos buen gusto musical o no, sin embargo, necesitamos estar familiarizados con los datos que indican la popularidad de las canciones y qué características en común poseen las canciones más exitosas.
+
+Nuestro tema a tratar será el de las características fuertemente asociadas a las canciones más populares en la aplicación de música Spotify y poder usar estos rasgos, que están conectados con los estados de ánimo, para analizar el por qué de esta popularidad.
+
+Entre los puntos que queremos saber: 
+
+- ¿Qué características en común tienen las canciones más populares de Spotify?
+¿Cuáles son los tracks más populares en Spotify? 
+- ¿Existe una correlación entre la popularidad y alguna característica de las canciones?
+- ¿Cuánto debe durar un track según los estándares de la actualidad?
+- ¿Cuál es la correlación entre diferentes tracks que son populares?
+
+### Dataset 
+
+El dataset elegido se obtuvo utilizando el servicio API de Spotify, el cual nos permite obtener la información de las canciones existentes en tal plataforma.
+El conjunto de datos que estamos empleando consta inicialmente de 20 columnas, las cuales representan variables como el nombre de la canción, su popularidad, duración, el artista, la fecha de lanzamiento, bailabilidad de la canción, su energía, volumen sonoro, etc.
+
+## CAPÍTULO I: COMPRENSIÓN DEL NEGOCIO / ESTUDIO
+
+### Descripción del problema
+
+Sabemos qué canciones son las más populares en general, pero como buen productor, debes comprender las emociones humanas y cómo influyen en el mercado musical.
+En tiempos de crisis, tanto los artistas como el público tienen gustos diferentes. En marzo del año 2020, el mundo se cerró por completo debido a la crisis de la pandemia. Es natural preguntarse cuáles fueron algunas de las canciones más populares publicadas en ese entonces y qué características  tienen en común.
+
+### Objetivo del negocio/estudio
+
+Nuestro objetivo principal es descubrir cuáles son las características de las canciones que más influyen sobre su popularidad 
+
+### Variable objetivo para el negocio
+
+> The popularity of the artist. The value will be between 0 and 100, 
+> with 100 being the most popular. The artist's popularity is 
+> calculated from the popularity of all the artist's tracks.
+
+- Describir/incluir la Ficha técnica (xlsx)
+
+
+## CAPÍTULO II: FUENTES DE INFORMACIÓN
+
+-Origen de los datos del proyecto
+-Descripción del universo y muestra (incluyendo descripción en espacio y tiempo)
+-Descripción y entendimiento de variables (medidas de resumen y gráfico, según tipo)
+
+## CAPÍTULO III: PREPROCESAMIENTO DE DATOS
+
+-Selección de registros y atributos
+-Tratamiento de datos atípicos
+-Tratamiento de datos vacíos
+-Creación y transformación de variables
+-Reducción de dimensiones (en caso aplique)
+-Descripción de variables listas para el modelamiento
+
+## 
