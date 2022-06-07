@@ -42,29 +42,29 @@
 
 ### Preguntas para reunión con la profesora
 
-1. ¿Es correcto realizar imputación a la variable por predecir?
+1. ¿Es correcto realizar imputación a la variable por predecir? \
   Ans: No se imputa; generaría data fictica.
        Excluir la variable dependiente.
 
-1. ¿Sería conveniente recategorizar (en **menos** valores) 
+1. ¿Sería conveniente recategorizar (en **menos** valores) \
 a la variable categórica **release_date**?
   Ans: Sí, check comments en notebook.
 
-1. ¿Sugiere que cambemos de dataset?
+1. ¿Sugiere que cambemos de dataset? \
   Ans: No, pero explorar más las variables, sus combinaciones, etc.
 
-1. Sobre `Descripción del universo y muestra (incluyendo descripción en espacio y tiempo)` 
+1. Sobre `Descripción del universo y muestra (incluyendo descripción en espacio y tiempo)` \
   Ans:
       Universo: All songs in spotify which can be loaded via its API.
       Muestra: Lo recolectado en un rango temporal particular (find it).
       Util mencionar que la data es de Kaggle, pero que fue recolectada via Spotify's API.
 
-1. Sobre `-Selección de registros y atributos`
+1. Sobre `-Selección de registros y atributos` \
   Ans:
     registro: fila, atributo: columna
     No hemos filtrado filas a priori.
 
-1. ¿Deberíamos generar modelos respecto a particiones de release_date?
+1. ¿Deberíamos generar modelos respecto a particiones de release_date? \
   Ans: Basta hacer un modelo general, al menos para este proyecto.
        En caso se analice por casos (temporales), podríamos aplicar
        un for loop para obtener los modelos en cada rango temporal.
