@@ -341,3 +341,4 @@ for col in dfnum_outlier.select_dtypes('number').columns:
   pylab.show()
 ```
 
+

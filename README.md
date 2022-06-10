@@ -72,6 +72,25 @@ a la variable categórica **release_date**?
        (como estamos haciendo en el caso general) para cada rango temporal,
        sea para fijar los cortes para datos atípicos, etc.
 
+## Recomendaciones de sensei
+
+- En caso que el modelo no llege a predecir tan bien la popularidad,
+nos recomienda discretizar la variable numérica popularidad, en 5 
+categorías, y hacer un modelo de clasificación. \
+Pues, predecir variables numéricas suele ser más complicado
+que predecir variables categóricas.
+
+## Reu post meeting with Stefany sensei
+
+### Preguntas
+
+- ¿Es necesario estandarizar o normalizar cada una de 
+las variables numéricas? ¿Debe haber algún criterio
+para realizar tales transformaciones?
+
+### Exploración respecto a longitud del nombre de la canción
+
+
 
 ## Bibliografía:
 
