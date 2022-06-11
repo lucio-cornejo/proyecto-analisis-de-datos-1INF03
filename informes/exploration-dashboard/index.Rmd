@@ -62,3 +62,61 @@ options(DT.options = list(scrollY = "100vh"))
 1. Popularidad por año
 1. Fijar año. Popularidad respecto a los trimestres
 
+
+
+<!--  
+
+# OPCIONAL: (look for some pattern para name)
+## incluir metricas sobre name antes de descartar
+## ej: 
+###  char length en name vs popularity
+###  efecto de song word lenght en otras variables
+###  conteo de name
+
+-->
+
+<!-- 
+
+# Potential via diversas recategorizaciones
+
+## Años
+# Tratarla como a name, sobre la recategorización
+# para establecer periodos de canciones
+
+## Mes
+# See how popularity changes with month released
+
+## Semestre
+
+# No ingresaría release_date al modelo, sino
+# sus recategorizaciones (año, mes, semestre)
+# 
+# Podría haber dependencia entre mes y semestre,
+# pero año con semestre puede ingresar al modelo.
+
+# Elimnar release_date al final
+
+-->
+
+
+<!-- 
+# release_date
+## Proporciones por año (falta rotar ticks en eje X)
+## dfcat["release_date"].groupby(dfcat["release_date"].dt.year).count().plot(kind="bar", rot = 0)
+-->
+
+
+<!-- 
+  # Para el paso de transformación:
+  # Para time signature, ir probando varias reparticiones
+  # ej: 
+  ## para var. ordinal, las reparticiones deben respetar la ordinalidad
+  ##  (<4) vs  ()>=4)
+  ## 4 vs 3 vs (no 3 y no 4)
+
+
+  # Para la variable key
+  # Podríamos recategorizar a 4 categorías,
+  # de tres en tres via el circle of fifths.
+  # Probar ambos casos, no recat, sí recat.
+-->
