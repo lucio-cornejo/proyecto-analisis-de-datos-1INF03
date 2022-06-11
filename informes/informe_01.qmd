@@ -9,20 +9,31 @@ format:
     highlight-style: dracula
 ---
 
-# Parte de Andrea
+# CARÁTULA
 
-CARÁTULA DEL INFORME
+* **Curso:**              Análisis de Datos
+* **Profesor:**           Stefany Neciosup
+* **Código del curso:**  	1INF03
+* **Fecha de Entrega:** 	11/06/2022 
+
+* **Integrantes:**
+  + Richle Gianotti, Renzo Ernesto - 20180368
+  + Cornejo Ramírez, Lucio Enrique - 20192058
+  + Vivas Alejandro, Claudia Mirela - 20141150
+  + Mejia Padilla, Andrea Adela - 20180824
 
 ## INTRODUCCIÓN
 
-Imaginemos que queremos iniciarnos en la música. Podemos creer que tenemos buen gusto musical o no, sin embargo, necesitamos estar familiarizados con los datos que indican la popularidad de las canciones y qué características en común poseen las canciones más exitosas.
+Para entender la dinámica de la industria musical, antes de nada, es necesario saber que no se trata de una sola, sino de varias, diferentes, estrechamente relacionadas entre sí, pero que parten de lógicas y estructuras distintas. La industria musical en su conjunto vive de la creación y la explotación de la propiedad intelectual musical. Compositores y letristas crean canciones, letras y arreglos que se interpretan en directo sobre el escenario, se graban y distribuyen a los consumidores. Esta estructura básica ha dado lugar a tres industrias musicales centrales: la discográfica, centrada en la grabación de música y su distribución a los consumidores; la de las licencias musicales, que sobre todo concede licencias a empresas para la explotación de composiciones y arreglos, y la música en vivo, centrada en producir y promocionar espectáculos en directo, como conciertos, giras, etcétera.
 
-Nuestro tema a tratar será el de las características fuertemente asociadas a las canciones más populares en la aplicación de música Spotify y poder usar estos rasgos, que están conectados con los estados de ánimo, para analizar el por qué de esta popularidad.
+En la actualidad se vienen realizando muchos estudios aplicando el campo de Data Analytics para poder obtener resultados en muchas industrias, y la musical
+no es ajena a esta moda. Es por esto que decidimos desarrollar el presente trabajo para así descubrir las características fuertemente asociadas a las canciones más populares en la aplicación de música Spotify y poder usar estos rasgos, que están conectados con los estados de ánimo, fechas de lanzamiento, nombre de las canciones, entre otros; para analizar el por qué de esta popularidad y poder simular que una empresa de la industria musical quiera emplear un modelo analítico
+que le permita saber el índice de popularidad de una canción antes de que esta sea soltada al mercado.
 
 Entre los puntos que queremos saber: 
 
+- ¿Cuáles son los tracks más populares en Spotify? 
 - ¿Qué características en común tienen las canciones más populares de Spotify?
-¿Cuáles son los tracks más populares en Spotify? 
 - ¿Existe una correlación entre la popularidad y alguna característica de las canciones?
 - ¿Cuánto debe durar un track según los estándares de la actualidad?
 - ¿Cuál es la correlación entre diferentes tracks que son populares?
@@ -36,35 +47,33 @@ El conjunto de datos que estamos empleando consta inicialmente de 20 columnas, l
 
 ### Descripción del problema
 
-Sabemos qué canciones son las más populares en general, pero como buen productor, debes comprender las emociones humanas y cómo influyen en el mercado musical.
-En tiempos de crisis, tanto los artistas como el público tienen gustos diferentes. En marzo del año 2020, el mundo se cerró por completo debido a la crisis de la pandemia. Es natural preguntarse cuáles fueron algunas de las canciones más populares publicadas en ese entonces y qué características  tienen en común.
+En la actualidad se sabe qué canciones son las más populares en general observando la cantidad de reproducciones que tienen cada canción, sin embargo la industria de la música es un negocio y como tal una empresa discográfica siempre busca que su canción sea popular para que esta genere ingresos a la empresa. Si pudiéramos saber que características hacen popular a una canción entonces se podrían usar a favor para generar canciones que sean del agrado del público oyente y como consecuencia pueda otorgar un mayor beneficio económico.
 
 ### Objetivo del negocio/estudio
 
-Nuestro objetivo principal es descubrir cuáles son las características de las canciones que más influyen sobre su popularidad 
+Nuestro objetivo principal es el de indagar, descubrir y utilizar las características que definen la popularidad de las canciones presentes en nuestro dataset. 
 
 ### Variable objetivo para el negocio
 
-> The popularity of the artist. The value will be between 0 and 100, 
-> with 100 being the most popular. The artist's popularity is 
-> calculated from the popularity of all the artist's tracks.
-
-- Describir/incluir la Ficha técnica (xlsx)
-
+* Las variables que consideramos podrían ser más relevantes para el negocio son: 
+  + popularity (Popularidad)
+  + duration_ms (La duración del track en milisegundos)
+  + danceability (La capacidad de baile del track)
 
 ## CAPÍTULO II: FUENTES DE INFORMACIÓN
 
--Origen de los datos del proyecto
--Descripción del universo y muestra (incluyendo descripción en espacio y tiempo)
--Descripción y entendimiento de variables (medidas de resumen y gráfico, según tipo)
++ Origen de los datos del proyecto
++ Descripción del universo y muestra (incluyendo descripción en espacio y tiempo)
++ Descripción y entendimiento de variables (medidas de resumen y gráfico, según tipo)
 
 ## CAPÍTULO III: PREPROCESAMIENTO DE DATOS
 
--Selección de registros y atributos
--Tratamiento de datos atípicos
--Tratamiento de datos vacíos
--Creación y transformación de variables
--Reducción de dimensiones (en caso aplique)
--Descripción de variables listas para el modelamiento
+* El tratamiento de este capítulo se desarrollo en el notebook del proyecto con la siguiente estructura: 
+  + Selección de registros y atributos
+  + Tratamiento de datos atípicos
+  + Tratamiento de datos vacíos
+  + Creación y transformación de variables
+  + Reducción de dimensiones (en caso aplique)
+  + Descripción de variables listas para el modelamiento
 
 ## 
