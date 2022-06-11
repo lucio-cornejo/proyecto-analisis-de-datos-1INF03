@@ -1,0 +1,64 @@
+---
+title: Exploración de data Spotify
+# runtime: shiny
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    theme:
+      version: 3
+      bootswatch: cosmo
+---
+
+```{r, setup, include = FALSE}
+library(DT)
+library(sass)
+library(dplyr)
+library(shiny)
+library(plotly)
+library(flexdashboard)
+library(shinydashboard)
+
+knitr::opts_chunk$set(echo = FALSE)
+
+# Fix DT bug
+options(DT.options = list(scrollY = "100vh"))
+```
+
+
+```{r, cargar-data}
+# dfnum <- read.csv("../../datos/nombre.csv")
+# dfcat <- read.csv("../../datos/nombre.csv")
+```
+
+
+
+```{r}
+# tracks %>%
+#   select(popularity) %>%
+#   ggplot(aes(x = popularity)) +
+#   geom_histogram() 
+```
+
+# Año vs popularidad
+
+##
+###
+
+```{r}
+# selectInput(
+#   inputId = "select_year",
+#   label = "Año", 
+#   choices =      ,
+#   selected = 
+# )
+
+```
+
+##
+###
+
+
+1. Popularidad por año
+1. Fijar año. Popularidad respecto a los trimestres
+
