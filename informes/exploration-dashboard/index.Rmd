@@ -1,6 +1,6 @@
 ---
-title: Exploración de data Spotify
-# runtime: shiny
+title: "Capítulo II: Fuentes de información"
+runtime: shiny
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
@@ -11,13 +11,10 @@ output:
 ---
 
 ```{r, setup, include = FALSE}
-library(DT)
-library(sass)
-library(dplyr)
+library(tidyverse)
 library(shiny)
 library(plotly)
 library(flexdashboard)
-library(shinydashboard)
 
 knitr::opts_chunk$set(echo = FALSE)
 
@@ -25,98 +22,433 @@ knitr::opts_chunk$set(echo = FALSE)
 options(DT.options = list(scrollY = "100vh"))
 ```
 
+```{r, cargar-bases-de-datos}
+#| cache: true
+#| cache.lazy: false
 
-```{r, cargar-data}
-# dfnum <- read.csv("../../datos/nombre.csv")
-# dfcat <- read.csv("../../datos/nombre.csv")
+# Cargar data como está justo antes de ser imputada
+# dfnum <- read.csv("../../datos/dfnum.csv", sep = ",")
+# dfcat <- read.csv("../../datos/dfcat.csv", sep = ",")
+
+# En caso no tenga el archivo df.csv:
+# df <- data.frame(dfnum, dfcat) 
+
+# Sino, cargar la combinación de ambos data frame previos,
+# donde se añade la columna asociada a la década de lanzamiento
+df <- read.csv("df.csv", sep = ",")
+```
+
+```{r, discretizar-anios-en-decadas}
+#| eval: false
+
+# Solo evaluar este bloque de código si se cargan
+# dfnum y dfcat, obtenidos del Jupyter Notebook, 
+# en vez de haber cargado df.csv directamente
+df <- df %>%
+  mutate(decade = sapply(
+    release_year,
+    function(anio) {
+      anio <- as.character(anio)
+      anio <- stringr::str_split(anio, "") %>% unlist()
+      anio <- anio[-4]
+      # Cambiar último digito por cero para obtener década
+      decada <- as.integer(paste0(anio[1], anio[2], anio[3], "0"))
+      return(decada)
+    }
+  ))
+
+# Guardar data frame completo
+# write.csv(df, "df.csv", row.names = FALSE, sep = ",")
 ```
 
 
+# Introducción
 
-```{r}
-# tracks %>%
-#   select(popularity) %>%
-#   ggplot(aes(x = popularity)) +
-#   geom_histogram() 
-```
+## 
+### Origen de los datos del proyecto
 
-# Año vs popularidad
+El dataset que empleamos en nuestro trabajo lo descargamos de 
+[este](https://www.kaggle.com/datasets/yamaerenay/spotify-dataset-19212020-600k-tracks?resource=download)
+sitio web ... precisamente, el archivo **tracks.csv**.
+
+Como se describe en el sitio web del link previo, el dataset **tracks.csv** 
+se obtuvo vía el API oficial de **Spotify**. Tal API permite descargar, 
+para cualquier canción en Spotify, características sobre aquella canción, 
+tales como su duración en milisegundos, volumen, qué tan bailable es, etc.
+
+Así, cada fila en **tracks.csv** representa a una canción diferente en Spotify,
+y, las columnas del dataset representan variables asociadas a cada canción.
 
 ##
-###
+### Descripción del universo y muestra
 
-```{r}
-# selectInput(
-#   inputId = "select_year",
-#   label = "Año", 
-#   choices =      ,
-#   selected = 
-# )
+En nuestro caso, el **universo** consistiría el el conjunto de canciones de Spotify
+disponibles en el instante de tiempo en que se descargó el dataset, vía
+la API oficial de Spotify.
 
-```
+En la [página](https://www.kaggle.com/datasets/yamaerenay/spotify-dataset-19212020-600k-tracks?resource=download) de donde descargamos la data, se menciona que las canciones
+extraídas fueron publicadas entre los años 1921 y 2020. 
+
+Sin embargo, tras analizar la data descargada, notamos que hay canciones cuyo año
+de lanzamiento figura entre 1900 y 2021. Incluso, una canción del dataset figura
+que fue creada en el año 1900, pese a que, tras una búsqueda web, hallamos que la
+banda que creó tal canción aún sigue activa.
+
+Por ello, es posible que, eventualmente, se requiera que nosotros mismos empleemos
+el API oficial de Spotify para obtener la data de las canciones cuyo identificador
+ya poseemos, gracias al dataset descargado.
+Esto último con el fin de crear un nuevo dataset, ahora sin errores, con el cual 
+trabajaríamos como base datos de este proyecto.
+
+También podríamos descartar a las filas donde encontremos errores como el mencionado
+previamente respecto a la fecha de publicación de la canción. 
+Sin embargo, por ahora, seguiremos usando el dataset descargado.
+
+Entonces, el **universo** lo consideramos como el conjunto de canciones disponibles
+en Spotify, **actualmente**.
+
+En ese sentido, la **muestra** consiste del conjunto de canciones de Spotify 
+de las cuales tenemos información en las filas del dataset descargado.
+Por ahora, es una muestra arbitraria (no se sabe como se realizó el muestreo),
+pero, más adelante, nosotros mismos realizaremos el muestreo, vía el API oficial de Spotify.
 
 ##
+### Descripción y entendimiento de las variables
+
+Esta sección del capítulo dos la hemos desarrollado en el **Jupyter notebook** 
+presentado para este informe, así que no incluiremos aquella descripción en este archivo.
+
+En la siguiente sección de este dashboard, presentaremos gráficas descriptivas del dataset,
+tanto para la data preprocesada (justo antes de realizar las imputaciones), como para la data donde
+ya hemos realizado imputaciones.
+
+Los gráficos a continuación nos sirven para comprender cómo se relacionan
+las variables del dataset con la variable que nos interesa predecir, 
+la **popularidad** de las canciones. También podremos observar si ciertos patrones
+que se espera sucedan (debido al avance de la tecnología) están presentes o no
+en la data descargada.
+
+Asimismo, los siguientes gráficos **interactivos** podrán ser una guía para comparar
+si las distribuciones analizadas cambian luego de realizar la imputación.
+
+# Popularidad respecto a década de lanzamiento {data-navmenu="Gráficos descriptivos para dataset preprocesado"}
+
+## {data-width=300}
+### Década de lanzamiento de las canciones
+
+```{r, static-release-decade-vs-popularity}
+selectInput(
+  inputId = "select_decade",
+  label = "Seleccione una década", 
+  choices = sort(unique(df$decade)),
+  selected = "1950"
+)
+```
+
+<strong style="text-decoration: underline;">
+  Nota
+</strong>
+
+Parece que la data asociada a la década 1900 está errada,
+como sucede para la banda _Los Pincheira del Sur_. 
+Recuerde que en la descripción de la data en el sitio web
+de donde se descargó, se describe que las 
+canciones del dataset fueron publicadas entre el año
+1921 y 2020.
+
+<strong style="text-decoration: underline;">
+  Predicción 
+</strong>
+
+El avance de la tecnología a lo largo del tiempo permite que
+sea más sencillo compartir música y que esta llegue a cada vez
+un mayor grupo de personas. Esto es evidente en estos tiempos,
+puesto que existe varios casos de artistas independientes que logran
+alcanzar enorme popularidad (mundial inclusive), gracias a plataformas
+como Spotify, que facilitan en gran medida la distribución de su música
+hacia el resto del mundo.
+
+Por ello, sospechamos que, a medida que consideramos 
+**décadas cada vez más recietes** 
+(por ejemplo, 1960, 1970, 1980, .., y así en adelante)
+, exista una **mayor cantidad de canciones** que alcanzen
+**mayores niveles de popularidad**.
+
+<strong style="text-decoration: underline;">
+  Patrón observado
+</strong>
+
+El patrón descrito en la parte de **predicción**, significa, 
+gráficamente, que, a medida que consideramos décadas más recientes,
+la distribución de la popularidad debería presentar una región
+con **forma de campana** que se desplaza más y más hacia la derecha 
+del eje X; es decir, con el avance del tiempo 
+(y por ende avance de tecnología para compatir información), más y
+más canciones tienen la posibilidad de hacerse **más** populares,
+por el hecho que es más sencillo distribuirlas globalmente.
+
+Si en el **input** disponible arriba en esta página web
+usted avanza de década en década, empezando desde la **década 1950**, 
+observará en los gráficos de la derecha el patrón descrito.
+
+## {data-width=700}
+### Densidad e histograma de frecuencia relativa
+
+```{r, shiny-release-year-vs-popularity}
+#| eval: true
+
+renderPlot({
+  df %>%
+    filter(decade == input$select_decade) %>%
+    # filter(decade == 2000) %>%
+    select(popularity) %>%
+    ggplot(aes(x = popularity)) +
+    # ggtitle(paste("Popularidad de canciones de la década de", "2000")) +
+    ggtitle(paste("Popularidad de canciones de la década de", input$select_decade)) +
+    xlab("Popularidad") +
+    ylab("Frecuencia relativa / Densidad") +
+    # ylim(c(0,1)) +
+    geom_histogram(aes(y = ..density..), color = "black", fill = "transparent") +
+    geom_density(aes(y = ..density..), color = "blue", fill = "skyblue", alpha = 0.5) 
+})
+```
+
+# Popularidad respecto a década y longitud del nombre de la canción {data-navmenu="Gráficos descriptivos para dataset preprocesado"}
+
+## {data-width=300}
 ###
 
+```{r, static-name-length-and-decade-vs-popularity}
+selectInput(
+  inputId = "select_decade1",
+  label = "Seleccione una década", 
+  choices = sort(unique(df$decade)),
+  selected = "1950"
+)
+```
 
-1. Popularidad por año
-1. Fijar año. Popularidad respecto a los trimestres
+<strong style="text-decoration: underline;">
+  Nota
+</strong>
 
+El **rango** de la cantidad de palabras en los nombres de las canciones del dataset es:
+`r range(df["words_name"], na.rm = TRUE)` 
 
+```{r, static}
+#| cache: true
 
-<!--  
+word_name_counts <- table(df["words_name"])
+```
 
-# OPCIONAL: (look for some pattern para name)
-## incluir metricas sobre name antes de descartar
-## ej: 
-###  char length en name vs popularity
-###  efecto de song word lenght en otras variables
-###  conteo de name
+Cantidad de canciones registradas con nombre de longitud:
 
--->
+Entre 1 y 5: &nbsp;&nbsp; `r sum(word_name_counts["1":"5"], na.rm = TRUE)` 
 
-<!-- 
+Entre 6 y 10: &nbsp;&nbsp; `r sum(word_name_counts["6":"10"], na.rm = TRUE)` 
 
-# Potential via diversas recategorizaciones
+Entre 11 y 15: &nbsp;&nbsp; `r sum(word_name_counts["11":"15"], na.rm = TRUE)` 
 
-## Años
-# Tratarla como a name, sobre la recategorización
-# para establecer periodos de canciones
+Entre 16 y 75: &nbsp;&nbsp; `r sum(word_name_counts["16":"75"], na.rm = TRUE)` 
 
-## Mes
-# See how popularity changes with month released
+En base a tales valores, vamos a discretizar la variable asociada a la longitud
+del nombre de cada canción, en tales 4 rangos/categorías. 
 
-## Semestre
+```{r, static-recategorizar-word-name}
+# Consideramos entonces 4 categorías y comparamos las distribuciones
+df <- df %>%
+  mutate(name_length_category = 
+    case_when(
+      words_name %in% 1:5 ~ "1_5",
+      words_name %in% 6:10 ~ "6_10",
+      words_name %in% 11:15 ~ "11_15",
+      words_name %in% 16:75 ~ "16_75"
+    )
+  )
+```
 
-# No ingresaría release_date al modelo, sino
-# sus recategorizaciones (año, mes, semestre)
-# 
-# Podría haber dependencia entre mes y semestre,
-# pero año con semestre puede ingresar al modelo.
+## {data-width=700}
+###
 
-# Elimnar release_date al final
+```{r, shiny-popularity-decade-and-name-length}
+#| eval: true
 
--->
+renderPlotly({
+  temp_df <- df %>%
+    filter(decade == input$select_decade1) %>%
+    # filter(decade == 2000) %>%
+    select(popularity, name_length_category)
+  
+  popularity_name_length_1_5 <- temp_df %>%
+    filter(name_length_category == "1_5") %>%
+    select(popularity) %>%
+    pull() %>%
+    density()
 
+  popularity_name_length_6_10 <- temp_df %>%
+    filter(name_length_category == "6_10") %>%
+    select(popularity) %>%
+    pull() %>%
+    density()
 
-<!-- 
-# release_date
-## Proporciones por año (falta rotar ticks en eje X)
-## dfcat["release_date"].groupby(dfcat["release_date"].dt.year).count().plot(kind="bar", rot = 0)
--->
+  popularity_name_length_11_15 <- temp_df %>%
+    filter(name_length_category == "11_15") %>%
+    select(popularity) %>%
+    pull() %>%
+    density()
 
+  popularity_name_length_16_75 <- temp_df %>%
+    filter(name_length_category == "16_75") %>%
+    select(popularity) %>%
+    pull() %>%
+    density()
 
-<!-- 
-  # Para el paso de transformación:
-  # Para time signature, ir probando varias reparticiones
-  # ej: 
-  ## para var. ordinal, las reparticiones deben respetar la ordinalidad
-  ##  (<4) vs  ()>=4)
-  ## 4 vs 3 vs (no 3 y no 4)
+  imagen <- plot_ly(
+    x = ~popularity_name_length_1_5$x, y = ~popularity_name_length_1_5$y, 
+    name = "1_5", alpha = 0.5,
+    type = "scatter", mode = "lines", colors = 1
+  ) %>%
+  layout(
+    legend = list(
+      title = list(text = "<em>Rango de caracteres<br>en nombre de la canción<br></em>")
+    ),
+    xaxis = list(title = "Popularidad", range = c(0, 100)), 
+    yaxis = list(title = "Densidad")
+  )
 
+  imagen <- imagen %>% add_trace(
+    x = ~popularity_name_length_6_10$x, y = ~popularity_name_length_6_10$y, 
+    name = "6_10", colors = 2
+  )
+  imagen <- imagen %>% add_trace(
+    x = ~popularity_name_length_11_15$x, y = ~popularity_name_length_11_15$y, 
+    name = "11_15", colors = 3
+  )
+  imagen <- imagen %>% add_trace(
+    x = ~popularity_name_length_16_75$x, y = ~popularity_name_length_16_75$y, 
+    name = "16_75", colors = 4
+  )
 
-  # Para la variable key
-  # Podríamos recategorizar a 4 categorías,
-  # de tres en tres via el circle of fifths.
-  # Probar ambos casos, no recat, sí recat.
--->
+  imagen %>%
+    config(displayModeBar = FALSE) 
+})
+```
+
+# Popularidad respecto a década y tonalidad de la canción {data-navmenu="Gráficos descriptivos para dataset preprocesado"}
+
+## {data-width=300}
+###
+
+```{r, static-mode-and-release-season-vs-popularity}
+selectInput(
+  inputId = "select_decade2",
+  label = "Seleccione una década", 
+  choices = sort(unique(df$decade)),
+  selected = "1950"
+)
+```
+
+<strong style="text-decoration: underline;">
+  Nota
+</strong>
+
+Se sabe que el clima llega a influenciar las emociones de las personas, así que consideramos
+las canciones en base a qué trimestre del año fueron publicadas, para aproximar su
+estación (verano (1), otoño (2), invierno (3), primavera (4)). 
+
+Esto con el fin de explorar si las canciones de tonalidad menor (entiéndase, musical e
+informalmente, _más tristes_) realmente se vuelven más populares en otoño
+o invierno, comparado a otras estaciones del año.
+
+Recuerde que la tonalidad (mayor o menor) de la canción está registrada en la variable 
+**mode**, con valores 1 y 0, respectivamente.
+
+## {data-width=700}
+### Densidad de la popularidad, respecto a estación del año y tonalidad de la canción
+
+```{r, shiny-popularity-decade-mode}
+#| eval: true
+
+renderPlotly({
+  # Filtramos los datos con la década de lanzamiento elegido
+  temp_df <- df %>%
+    filter(decade == input$select_decade2) %>%
+    # filter(decade == 2000) %>%
+    select(popularity, release_trim, mode)
+
+  # Separamos la data respecto a estación
+  temp_df_verano <- filter(temp_df, release_trim == 1)
+  temp_df_otonio <- filter(temp_df, release_trim == 2)
+  temp_df_invierno <- filter(temp_df, release_trim == 3)
+  temp_df_primavera <- filter(temp_df, release_trim == 4)
+
+  # Separamos la data respecto a tonalidad
+  temp_df_verano_mayor <- filter(temp_df_verano, mode == 1)
+  temp_df_verano_menor <- filter(temp_df_verano, mode == 0)
+  temp_df_otonio_mayor <- filter(temp_df_otonio, mode == 1)
+  temp_df_otonio_menor <- filter(temp_df_otonio, mode == 0)
+  temp_df_invierno_mayor <- filter(temp_df_invierno, mode == 1)
+  temp_df_invierno_menor <- filter(temp_df_invierno, mode == 0)
+  temp_df_primavera_mayor <- filter(temp_df_primavera, mode == 1)
+  temp_df_primavera_menor <- filter(temp_df_primavera, mode == 0)
+
+  # Hallamos las funciones de densidad respectivas
+  temp_df_verano_mayor <- density(temp_df_verano_mayor$popularity)
+  temp_df_verano_menor <- density(temp_df_verano_menor$popularity)
+  temp_df_otonio_mayor <- density(temp_df_otonio_mayor$popularity)
+  temp_df_otonio_menor <- density(temp_df_otonio_menor$popularity)
+  temp_df_invierno_mayor <- density(temp_df_invierno_mayor$popularity)
+  temp_df_invierno_menor <- density(temp_df_invierno_menor$popularity)
+  temp_df_primavera_mayor <- density(temp_df_primavera_mayor$popularity)
+  temp_df_primavera_menor <- density(temp_df_primavera_menor$popularity)
+
+  # Graficamos las ocho distribuciones en una misma imagen
+  ## Verano
+  imagen <- plot_ly(
+    x = ~temp_df_verano_mayor$x, y = ~temp_df_verano_mayor$y, 
+    name = "Verano_Mayor", alpha = 0.5,
+    type = "scatter", mode = "lines", colors = 1
+  ) %>%
+  layout(
+    legend = list(
+      title = list(text = "<em>Estación_Tonalidad<br></em>")
+    ),
+    xaxis = list(title = "Popularidad"), 
+    yaxis = list(title = "Densidad")
+  )
+  imagen <- imagen %>% add_trace(
+    x = ~temp_df_verano_menor$x, y = ~temp_df_verano_menor$y, 
+    name = "Verano_Menor", colors = 2
+  )
+  ## Otoño
+  imagen <- imagen %>% add_trace(
+    x = ~temp_df_otonio_mayor$x, y = ~temp_df_otonio_mayor$y, 
+    name = "Otoño_Mayor", colors = 3
+  )
+  imagen <- imagen %>% add_trace(
+    x = ~temp_df_otonio_menor$x, y = ~temp_df_otonio_menor$y, 
+    name = "Otoño_Menor", colors = 4
+  )
+  ## Invierno
+  imagen <- imagen %>% add_trace(
+    x = ~temp_df_invierno_mayor$x, y = ~temp_df_invierno_mayor$y, 
+    name = "Invierno_Mayor", colors = 5
+  )
+  imagen <- imagen %>% add_trace(
+    x = ~temp_df_invierno_menor$x, y = ~temp_df_invierno_menor$y, 
+    name = "Invierno_Menor", colors = 6
+  )
+  ## Primavera
+  imagen <- imagen %>% add_trace(
+    x = ~temp_df_primavera_mayor$x, y = ~temp_df_primavera_mayor$y, 
+    name = "Primavera_Mayor", colors = 7
+  )
+  imagen <- imagen %>% add_trace(
+    x = ~temp_df_primavera_menor$x, y = ~temp_df_primavera_menor$y, 
+    name = "Primavera_Mayor", colors = 8
+  )
+
+  imagen %>%
+    config(displayModeBar = FALSE) 
+})
+```
+
