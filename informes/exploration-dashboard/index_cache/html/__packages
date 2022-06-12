@@ -1,0 +1,15 @@
+shiny
+DT
+sass
+dplyr
+ggplot2
+plotly
+flexdashboard
+shinydashboard
+tidyverse
+tibble
+tidyr
+readr
+purrr
+stringr
+forcats
