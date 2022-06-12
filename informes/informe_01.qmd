@@ -2,6 +2,12 @@
 title: Informe parcial
 date: 2022-06-10
 format: 
+  # pdf:
+  #   toc: true
+  #   toc-depth: 4
+  #   keep-tex: true
+  #   number-section: true
+  #   highlight-style: dracula
   html:
     toc: true
     toc-depth: 4
@@ -9,7 +15,7 @@ format:
     highlight-style: dracula
 ---
 
-# CARÁTULA
+## CARÁTULA
 
 * **Curso:**              Análisis de Datos
 * **Profesor:**           Stefany Neciosup
@@ -62,9 +68,69 @@ Nuestro objetivo principal es el de indagar, descubrir y utilizar las caracterí
 
 ## CAPÍTULO II: FUENTES DE INFORMACIÓN
 
-+ Origen de los datos del proyecto
-+ Descripción del universo y muestra (incluyendo descripción en espacio y tiempo)
-+ Descripción y entendimiento de variables (medidas de resumen y gráfico, según tipo)
+### Origen de los datos del proyecto
+
+El dataset que empleamos en nuestro trabajo lo descargamos de 
+[este](https://www.kaggle.com/datasets/yamaerenay/spotify-dataset-19212020-600k-tracks?resource=download)
+sitio web ... precisamente, el archivo **tracks.csv**.
+
+Como se describe en el sitio web del link previo, el dataset **tracks.csv** 
+se obtuvo vía el API oficial de **Spotify**. Tal API permite descargar, 
+para cualquier canción en Spotify, características sobre aquella canción, 
+tales como su duración en milisegundos, volumen, qué tan bailable es, etc.
+
+Así, cada fila en **tracks.csv** representa a una canción diferente en Spotify,
+y, las columnas del dataset representan variables asociadas a cada canción.
+
+### Descripción del universo y muestra 
+
+En nuestro caso, el **universo** consistiría el el conjunto de canciones de Spotify
+disponibles en el instante de tiempo en que se descargó el dataset, vía
+la API oficial de Spotify.
+
+En la [página](https://www.kaggle.com/datasets/yamaerenay/spotify-dataset-19212020-600k-tracks?resource=download) de donde descargamos la data, se menciona que las canciones
+extraídas fueron publicadas entre los años 1921 y 2020. 
+
+Sin embargo, tras analizar la data descargada, notamos que hay canciones cuyo año
+de lanzamiento figura entre 1900 y 2021. Incluso, una canción del dataset figura
+que fue creada en el año 1900, pese a que, tras una búsqueda web, hallamos que la
+banda que creó tal canción aún sigue activa.
+
+Por ello, es posible que, eventualmente, se requiera que nosotros mismos empleemos
+el API oficial de Spotify para obtener la data de las canciones cuyo identificador
+ya poseemos, gracias al dataset descargado.
+Esto último con el fin de crear un nuevo dataset, ahora sin errores, con el cual 
+trabajaríamos como base datos de este proyecto.
+
+También podríamos descartar a las filas donde encontremos errores como el mencionado
+previamente respecto a la fecha de publicación de la canción. 
+Sin embargo, por ahora, seguiremos usando el dataset descargado.
+
+Entonces, el **universo** lo consideramos como el conjunto de canciones disponibles
+en Spotify, **actualmente**.
+
+En ese sentido, la **muestra** consiste del conjunto de canciones de Spotify 
+de las cuales tenemos información en las filas del dataset descargado.
+Por ahora, es una muestra arbitraria (no se sabe como se realizó el muestreo),
+pero, más adelante, nosotros mismos realizaremos el muestreo, vía el API oficial de Spotify.
+
+### Descripción y entendimiento de variables 
+
+Esta sección del capítulo dos la hemos desarrollado en el **Jupyter notebook** 
+presentado para este informe, así que no incluiremos aquella descripción en este archivo.
+
+En la siguiente sección de este dashboard, presentaremos gráficas descriptivas del dataset,
+tanto para la data preprocesada (justo antes de realizar las imputaciones), como para la data donde
+ya hemos realizado imputaciones.
+
+Los gráficos a continuación nos sirven para comprender cómo se relacionan
+las variables del dataset con la variable que nos interesa predecir, 
+la **popularidad** de las canciones. También podremos observar si ciertos patrones
+que se espera sucedan (debido al avance de la tecnología) están presentes o no
+en la data descargada.
+
+Asimismo, los siguientes gráficos **interactivos** podrán ser una guía para comparar
+si las distribuciones analizadas cambian luego de realizar la imputación.
 
 ## CAPÍTULO III: PREPROCESAMIENTO DE DATOS
 
@@ -124,7 +190,7 @@ De manera similar al caso de la variable Duration_ms, aunque en medida mucho men
 **Acousticness**
 
 Una medida de confianza desde 0.0 hasta 1.0 sobre si la pieza es acústica. 1.0 representa alta confianza en que la pieza es acústica (>=0 | <= 1).
- Se observa que los datos se concentran en su mayoría alrededor de ambos valores extremos. La distribución de los valores para esta variable es en tal sentido bimodal. Los valores atípicos representan un 8.76% del total de valores de la muestra para esta variable.
+Se observa que los datos se concentran en su mayoría alrededor de ambos valores extremos. La distribución de los valores para esta variable es en tal sentido bimodal. Los valores atípicos representan un 8.76% del total de valores de la muestra para esta variable.
 
 
 ### Tratamiento de datos vacíos
