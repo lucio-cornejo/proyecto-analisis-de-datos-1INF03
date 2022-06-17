@@ -5,9 +5,9 @@ account: lucio-cornejo
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 6472104
-bundleId: 5999815
+bundleId: 6018374
 url: https://lucio-cornejo.shinyapps.io/chapter-II-dashboard-INF03/
-when: 1655010417.96346
-lastSyncTime: 1655010417.96346
+when: 1655495168.84222
+lastSyncTime: 1655495168.84222
 asMultiple: FALSE
 asStatic: FALSE

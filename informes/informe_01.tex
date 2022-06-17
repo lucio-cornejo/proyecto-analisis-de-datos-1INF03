@@ -125,7 +125,7 @@
 \tableofcontents
 }
 \hypertarget{caruxe1tula}{%
-\section{CARÁTULA}\label{caruxe1tula}}
+\subsection{CARÁTULA}\label{caruxe1tula}}
 
 \begin{itemize}
 \item
@@ -260,17 +260,74 @@ negocio}\label{variable-objetivo-para-el-negocio}}
 \subsection{CAPÍTULO II: FUENTES DE
 INFORMACIÓN}\label{capuxedtulo-ii-fuentes-de-informaciuxf3n}}
 
-\begin{itemize}
-\tightlist
-\item
-  Origen de los datos del proyecto
-\item
-  Descripción del universo y muestra (incluyendo descripción en espacio
-  y tiempo)
-\item
-  Descripción y entendimiento de variables (medidas de resumen y
-  gráfico, según tipo)
-\end{itemize}
+\hypertarget{origen-de-los-datos-del-proyecto}{%
+\subsubsection{Origen de los datos del
+proyecto}\label{origen-de-los-datos-del-proyecto}}
+
+El dataset que empleamos en nuestro trabajo lo descargamos de
+\href{https://www.kaggle.com/datasets/yamaerenay/spotify-dataset-19212020-600k-tracks?resource=download}{este}
+sitio web \ldots{} precisamente, el archivo \textbf{tracks.csv}.
+
+Como se describe en el sitio web del link previo, el dataset
+\textbf{tracks.csv} se obtuvo vía el API oficial de \textbf{Spotify}.
+Tal API permite descargar, para cualquier canción en Spotify,
+características sobre aquella canción, tales como su duración en
+milisegundos, volumen, qué tan bailable es, etc.
+
+Así, cada fila en \textbf{tracks.csv} representa a una canción diferente
+en Spotify, y, las columnas del dataset representan variables asociadas
+a cada canción.
+
+\hypertarget{descripciuxf3n-del-universo-y-muestra}{%
+\subsubsection{Descripción del universo y
+muestra}\label{descripciuxf3n-del-universo-y-muestra}}
+
+En nuestro caso, el \textbf{universo} consistiría el el conjunto de
+canciones de Spotify disponibles en el instante de tiempo en que se
+descargó el dataset, vía la API oficial de Spotify.
+
+En la
+\href{https://www.kaggle.com/datasets/yamaerenay/spotify-dataset-19212020-600k-tracks?resource=download}{página}
+de donde descargamos la data, se menciona que las canciones extraídas
+fueron publicadas entre los años 1921 y 2020.
+
+Sin embargo, tras analizar la data descargada, notamos que hay canciones
+cuyo año de lanzamiento figura entre 1900 y 2021. Incluso, una canción
+del dataset figura que fue creada en el año 1900, pese a que, tras una
+búsqueda web, hallamos que la banda que creó tal canción aún sigue
+activa.
+
+Por ello, es posible que, eventualmente, se requiera que nosotros mismos
+empleemos el API oficial de Spotify para obtener la data de las
+canciones cuyo identificador ya poseemos, gracias al dataset descargado.
+Esto último con el fin de crear un nuevo dataset, ahora sin errores, con
+el cual trabajaríamos como base datos de este proyecto.
+
+También podríamos descartar a las filas donde encontremos errores como
+el mencionado previamente respecto a la fecha de publicación de la
+canción. Sin embargo, por ahora, seguiremos usando el dataset
+descargado.
+
+Entonces, el \textbf{universo} lo consideramos como el conjunto de
+canciones disponibles en Spotify, \textbf{actualmente}.
+
+En ese sentido, la \textbf{muestra} consiste del conjunto de canciones
+de Spotify de las cuales tenemos información en las filas del dataset
+descargado. Por ahora, es una muestra arbitraria (no se sabe como se
+realizó el muestreo), pero, más adelante, nosotros mismos realizaremos
+el muestreo, vía el API oficial de Spotify.
+
+\hypertarget{descripciuxf3n-y-entendimiento-de-variables}{%
+\subsubsection{Descripción y entendimiento de
+variables}\label{descripciuxf3n-y-entendimiento-de-variables}}
+
+Esta sección del capítulo dos la hemos desarrollado en el
+\textbf{Jupyter notebook} presentado para este informe, así que no
+incluiremos aquella descripción en este archivo.
+
+El resto de este capítulo lo hemos incluido en un dashboard interactivo,
+al cual puede acceder vía este
+\href{https://lucio-cornejo.shinyapps.io/chapter-II-dashboard-INF03/}{link}.
 
 \hypertarget{capuxedtulo-iii-preprocesamiento-de-datos}{%
 \subsection{CAPÍTULO III: PREPROCESAMIENTO DE

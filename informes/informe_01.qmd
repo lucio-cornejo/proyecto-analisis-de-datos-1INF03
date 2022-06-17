@@ -2,17 +2,17 @@
 title: Informe parcial
 date: 2022-06-10
 format: 
-  # pdf:
-  #   toc: true
-  #   toc-depth: 4
-  #   keep-tex: true
-  #   number-section: true
-  #   highlight-style: dracula
-  html:
+  pdf:
     toc: true
     toc-depth: 4
-    toc-title: Tabla de contenido
+    keep-tex: true
+    number-section: true
     highlight-style: dracula
+  # html:
+  #   toc: true
+  #   toc-depth: 4
+  #   toc-title: Tabla de contenido
+  #   highlight-style: dracula
 ---
 
 ## CARÁTULA
@@ -119,18 +119,8 @@ pero, más adelante, nosotros mismos realizaremos el muestreo, vía el API ofici
 Esta sección del capítulo dos la hemos desarrollado en el **Jupyter notebook** 
 presentado para este informe, así que no incluiremos aquella descripción en este archivo.
 
-En la siguiente sección de este dashboard, presentaremos gráficas descriptivas del dataset,
-tanto para la data preprocesada (justo antes de realizar las imputaciones), como para la data donde
-ya hemos realizado imputaciones.
-
-Los gráficos a continuación nos sirven para comprender cómo se relacionan
-las variables del dataset con la variable que nos interesa predecir, 
-la **popularidad** de las canciones. También podremos observar si ciertos patrones
-que se espera sucedan (debido al avance de la tecnología) están presentes o no
-en la data descargada.
-
-Asimismo, los siguientes gráficos **interactivos** podrán ser una guía para comparar
-si las distribuciones analizadas cambian luego de realizar la imputación.
+El resto de este capítulo lo hemos incluido en un dashboard interactivo,
+al cual puede acceder vía este [link](https://lucio-cornejo.shinyapps.io/chapter-II-dashboard-INF03/).
 
 ## CAPÍTULO III: PREPROCESAMIENTO DE DATOS
 
