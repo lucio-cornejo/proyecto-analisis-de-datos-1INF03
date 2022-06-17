@@ -1,3 +1,12 @@
+# Informe parcial
+
+Los archivos que presentamos para este avance (11 de junio) son:
+
+- [Jupyter notebook](https://github.com/lucio-cornejo/proyecto-analisis-de-datos-1INF03/blob/main/codes/limpieza_de_datos.ipynb)
+- [Informe en pdf](https://github.com/lucio-cornejo/proyecto-analisis-de-datos-1INF03/blob/main/informes/informe_01.pdf)
+- [Dashboard para el capitulo II](https://lucio-cornejo.shinyapps.io/chapter-II-dashboard-INF03/#)
+
+
 # Plan de trabajo
 
 [Google Drive](https://drive.google.com/drive/folders/17FhWbmf-yrM_O8_6QcMLvTLurjviZqyu)
