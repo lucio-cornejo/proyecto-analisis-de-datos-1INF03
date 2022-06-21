@@ -89,21 +89,54 @@ categorías, y hacer un modelo de clasificación. \
 Pues, predecir variables numéricas suele ser más complicado
 que predecir variables categóricas.
 
-## Reu post meeting with Stefany sensei
-
-### Preguntas
-
-- ¿Es necesario estandarizar o normalizar cada una de 
-las variables numéricas? ¿Debe haber algún criterio
-para realizar tales transformaciones?
-
-### Exploración respecto a longitud del nombre de la canción
-
-
-
 ## Bibliografía:
 
 - https://ieeexplore.ieee.org/document/8999039
 - https://towardsdatascience.com/song-popularity-predictor-1ef69735e380
 - https://www.cdes.org.in/wp-content/uploads/2022/01/Predicting-Music-Popularity.pdf
 
+### Reunion 2 con profesora
+
+- Sobre el patrón respecto a popularidad en base a release_decade:
+  **concentración** de canciones (_crestas_) se desplaza hacia valores mayores de popularidad,
+  a medida que aumenta el tiempo, de década en década; pero la altura de la cresta disminuye.
+
+- Agrupar solo en 1 a 5, y >5, para rango de chars para dashboard section.
+  Probar con >4, para que ambas categorías correspondan a no todo el dataset, percentage wise.
+  Podríamos usar ambas categorías en los modelos de clasificación a emplear.
+
+- Imputación: Aplicar knn imputer con todas las var. numéricas.
+
+- No imputar por la mediana, pues la distribución cambia demasiada,
+due to cresta creation.
+
+- Podemos considerar vacíos a valores que representan error en la recolección de data.
+
+- redo whisker as max or min is fine, pero reajustar para casos particulares,
+ahora a mano, para respetar la tendencia de la variable. 
+(loudness, por ejemplo, left whisker deberías estar further left, y right whisker
+es mejor considerarlo como x = 0).
+
+- Emplear Kolmogorov-Smirnov test para testear que dos distribuciones siguen una
+misma distribución, pues se puede considerar la data pre y post imputación
+como de distintas muestras.
+
+- Sobre la data descargada de Kaggle:
+    - Podemos asumir está bien la data, para este proyecto, pero idealmente
+    deberíamos rescrap la data, pues podemos hacerlo nosotros mismos.
+    **Queda a nuestro criterio.**
+    - Respecto al muestreo:
+        - Podríamos fijar rangos temporales, por ejemplo, todas las canciones
+        de los 90, y considerar esas canciones como la muestra.
+        - Sino, respecto al género.
+        - Válido hacer conglomerados respecto a rangos temporales.
+
+- Para siguiente lab:
+    - mostrar lo que falta del proyecto final
+    - el siguiente lab se presenta el modelo empleado y cómo se ha estado
+    progresando en el proyecto. No informe ni ppt necesario, sino notebooks nomas.
+
+#### Respecto a lo nuevo en la siguiente entrega
+
+- Mostrar confusion matrix as heatmap, as in 
+<https://medium.com/@dtuk81/confusion-matrix-visualization-fc31e3f30fea> .
