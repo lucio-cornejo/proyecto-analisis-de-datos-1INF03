@@ -13,3 +13,5 @@ readr
 purrr
 stringr
 forcats
+spotifyr
+httr
