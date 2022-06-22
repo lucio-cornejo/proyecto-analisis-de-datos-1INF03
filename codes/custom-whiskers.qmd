@@ -1,0 +1,121 @@
+---
+title: Custom whiskers
+format: html
+server: shiny
+execute:
+  echo: false
+  message: false
+  warning: false
+---
+
+```{r}
+#| label: r-setup
+
+library(dplyr)
+library(shiny)
+library(plotly)
+```
+
+```{r}
+#| label: load-data
+#| cache: true
+#| cache.lazy: false
+
+df <- read.csv("../datos/dfnum_pre_imp.csv", sep = ",")
+# Drop variable to be predicted
+df <- subset(df, select = -popularity)
+```
+
+```{r}
+vline <- function(x = 0, color = "green") {
+  list(
+    type = "line",
+    y0 = 0,
+    y1 = 1,
+    yref = "paper",
+    x0 = x,
+    x1 = x,
+    line = list(color = color, dash = "dot")
+  )
+}
+```
+
+```{r}
+selectInput(
+  "numeric_variable", label = h3("Select a numeric variable"), 
+  choices = colnames(df), selected = "duration_ms"
+)
+
+numericInput("coef_iqr", label = h3("Coefficient"), value = 1.5)
+
+numericInput("lower_whisker", label = h3("Lower whisker"), value = 0)
+numericInput("upper_whisker", label = h3("Upper Whisker"), value = 0)
+
+plotlyOutput("graph")
+```
+
+```{r}
+#| context: server
+
+output$graph <- renderPlotly({
+  variable <- input$numeric_variable
+  # variable <- "duration_ms"
+  coeficiente <- input$coef_iqr
+
+  # Custom whiskers
+  whisker_sup_teorico <- quantile(df[,variable], 0.75) + coeficiente * IQR(df[,variable])
+  whisker_inf_teorico <- quantile(df[,variable], 0.75) - coeficiente * IQR(df[,variable])
+  if (max(df[,variable]) < whisker_sup_teorico) { whisker_sup_teorico = max(df[,variable]) }
+  if (min(df[,variable]) > whisker_inf_teorico) { whisker_inf_teorico = min(df[,variable]) }
+
+  # Input whiskers
+  input_whisker_inf <- input$lower_whisker
+  input_whisker_sup <- input$upper_whisker
+
+  # Percentage to be imputed
+  densidad_acumulada <- ecdf(df[,variable])
+  imp_perc_custom <- densidad_acumulada(whisker_inf_teorico) +
+    (1 - densidad_acumulada(whisker_sup_teorico))
+  imp_perc_input <- densidad_acumulada(input_whisker_inf) +
+    (1 - densidad_acumulada(input_whisker_sup))
+
+  # Density of chosen variable
+  var_density <- df %>%
+    pull(variable) %>%
+    density()
+
+  plot_ly(
+    # Densidad de variable previo a imputación
+    x = ~var_density$x, y = ~var_density$y, 
+    alpha = 0.5, fill = 'tozeroy',
+    type = "scatter", mode = "lines"
+  ) %>%
+    layout(
+      plot_bgcolor = "rgba(200,0,100,0.1)",
+      title = paste0(
+        "Custom whiskers: ",
+        round(100 * imp_perc_custom, 2), "%",
+        "    ",
+        "Input whiskers: ",
+        round(100 * imp_perc_input, 2), "%"
+      ),
+      shapes = list(
+        vline(mean(df[, variable]), "red"),
+        vline(median(df[, variable]), "green"),
+        vline(quantile(df[, variable], 0.25), "black"),
+        vline(quantile(df[, variable], 0.75), "black"),
+        # Custom wshikers
+        vline(whisker_sup_teorico, "brown"),
+        vline(whisker_inf_teorico, "brown"),
+        # Input whiskers
+        vline(input_whisker_inf, "yellow"),
+        vline(input_whisker_sup, "yellow")
+      ),
+      # xaxis = list(title = input$numeric_variable), 
+      xaxis = list(title = variable), 
+      yaxis = list(title = "Densidad")
+    ) %>% 
+    config(displayModeBar = FALSE) 
+})
+```
+
