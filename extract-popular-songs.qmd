@@ -1,4 +1,8 @@
 ```{r}
+library(tidyverse)
+```
+
+```{r}
 # :::::::::::::::::::::::::::::::::::::
 # Get first artist id in column artists
 # :::::::::::::::::::::::::::::::::::::
