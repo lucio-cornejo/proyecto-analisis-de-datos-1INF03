@@ -1,43 +1,57 @@
 ```{r}
+#| label: setup
+
+library(spotifyr)
 library(tidyverse)
+
+# ::::::::::::
+# Activate API
+# ::::::::::::
+id <- # tu id
+secret <- # tu secret_id
+Sys.setenv(SPOTIFY_CLIENT_ID = id)
+Sys.setenv(SPOTIFY_CLIENT_SECRET = secret)
+access_token <- get_spotify_access_token()
 ```
 
 ```{r}
+minima_popularidad <- 85
+
+filtro_popularidad <- df %>%
+  filter(popularity > 85) %>%
+  select(
+    popularity,
+    id, name, artists, id_artists
+  ) %>%
+  group_by(artists) %>%
+  filter(popularity == max(popularity)) %>%
+  arrange(desc(popularity))  %>%
+  as.data.frame()
+
+View(filtro_popularidad)
+```
+
+```{r}
+row <- 1
+
 # :::::::::::::::::::::::::::::::::::::
 # Get first artist id in column artists
 # :::::::::::::::::::::::::::::::::::::
-
-# Example for row 37 in df
-id_artists <- df %>%
-  select(id_artists) %>%
-  head(37) %>%
-  tail(1) %>%
-  pull(id_artists)
-
+id_artists <- filtro_popularidad[row, "id_artists"]
 id_artists
 
-id_artist <- id_artists %>%
+id_artist <- id_artists %>% 
   str_split(pattern = "'") %>%
   unlist() %>%
   head(2) %>%
   tail(1) 
 
 id_artist
-```
 
-
-```{r}
 # :::::::::::::::::::::::::::::::::::::::
 # Get first artist name in column artists
 # :::::::::::::::::::::::::::::::::::::::
-
-# Example for row 37 in df
-name_artists <- df %>%
-  select(artists) %>%
-  head(37) %>%
-  tail(1) %>%
-  pull(artists) 
-  
+name_artists <- filtro_popularidad[row, "artists"]
 name_artists
 
 name_artist <- name_artists %>%
@@ -51,7 +65,9 @@ name_artist
 
 ## Example for Doja Cat's top tracks in Spotify
 
-```{r}
+```{.r}
+#| label: caso-particular
+
 id_artists <- "['5cj0lLjcoR7YOSnhnX0Po5']"
 id_artist <- "5cj0lLjcoR7YOSnhnX0Po5"
 
@@ -61,11 +77,11 @@ name_artist <- "Doja Cat"
 
 ```{r}
 #| label: API-call-1
-top_doja_cat <- get_artist_top_tracks(id_artist)
+top_tracks_info <- get_artist_top_tracks(id_artist)
 ```
 
 ```{r}
-View(top_doja_cat)
+View(top_tracks_info)
 ```
 
 ```{r}
@@ -77,9 +93,9 @@ View(top_doja_cat)
 # column (df does), but "album.release_date".
 # That may be a problem if df contains songs
 # which are not included in any album.
-temp <- c(colnames(top_doja_cat), "release_date")
+temp <- c(colnames(top_tracks_info), "release_date")
 
-missing_top_doja_cat <- top_doja_cat %>%
+missing_top_tracks_info <- top_tracks_info %>%
   rename(release_date = album.release_date) %>%
   select(Filter(
     function(col) {
@@ -94,7 +110,7 @@ missing_top_doja_cat <- top_doja_cat %>%
   ) %>%
   as.data.frame()
 
-View(missing_top_doja_cat)
+View(missing_top_tracks_info)
 ```
 
 
@@ -102,16 +118,16 @@ View(missing_top_doja_cat)
 # :::::::::::::::::::::::::::::
 # Obtain id of tracks extracted
 # :::::::::::::::::::::::::::::
-doja_cat_top_tracks_ids <- top_doja_cat %>%
+top_tracks_ids <- top_tracks_info %>%
   pull(uri) %>%
   str_sub(start = 15, end = -1L) 
 
-doja_cat_top_tracks_ids
+top_tracks_ids
 ```
 
 ```{r}
 #| label: API-call-2
-features <- get_track_audio_features(doja_cat_top_tracks_ids)
+features <- get_track_audio_features(top_tracks_ids)
 ```
 
 ```{r}
@@ -137,7 +153,7 @@ View(tracks_to_append)
 # :::::::::::::::::::::::::::::::
 data_to_join <- left_join(
   tracks_to_append,
-  missing_top_doja_cat,
+  missing_top_tracks_info,
   by = "id"
 ) %>%
   # Reorder columns as to match df's columns
