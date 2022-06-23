@@ -15,10 +15,10 @@ access_token <- get_spotify_access_token()
 ```
 
 ```{r}
-minima_popularidad <- 85
+minima_popularidad <- 40
 
 filtro_popularidad <- df %>%
-  filter(popularity > 85) %>%
+  filter(popularity > minima_popularidad) %>%
   select(
     popularity,
     id, name, artists, id_artists
@@ -28,7 +28,7 @@ filtro_popularidad <- df %>%
   arrange(desc(popularity))  %>%
   as.data.frame()
 
-View(filtro_popularidad)
+nrow(filtro_popularidad)
 ```
 
 ```{r}
@@ -63,10 +63,9 @@ name_artist <- name_artists %>%
 name_artist
 ```
 
-## Example for Doja Cat's top tracks in Spotify
 
 ```{.r}
-#| label: caso-particular
+#| label: caso-Doja-Cat
 
 id_artists <- "['5cj0lLjcoR7YOSnhnX0Po5']"
 id_artist <- "5cj0lLjcoR7YOSnhnX0Po5"
@@ -80,7 +79,7 @@ name_artist <- "Doja Cat"
 top_tracks_info <- get_artist_top_tracks(id_artist)
 ```
 
-```{r}
+```{.r}
 View(top_tracks_info)
 ```
 
@@ -108,6 +107,7 @@ missing_top_tracks_info <- top_tracks_info %>%
     artists = name_artists, 
     id_artists = id_artists
   ) %>%
+  arrange(desc(popularity)) %>%
   as.data.frame()
 
 View(missing_top_tracks_info)
@@ -121,8 +121,6 @@ View(missing_top_tracks_info)
 top_tracks_ids <- top_tracks_info %>%
   pull(uri) %>%
   str_sub(start = 15, end = -1L) 
-
-top_tracks_ids
 ```
 
 ```{r}
@@ -142,8 +140,6 @@ tracks_to_append <- features %>%
     , colnames(features)
   )) %>%
   as.data.frame()
-
-View(tracks_to_append)
 ```
 
 ```{r}
@@ -158,7 +154,22 @@ data_to_join <- left_join(
 ) %>%
   # Reorder columns as to match df's columns
   select(colnames(df)) %>%
+  arrange(desc(popularity)) %>%
   as.data.frame()
 
 View(data_to_join)
 ```
+
+
+## Comentario final
+
+Si ejecuta los códigos para los valores 1 y 10 de row,
+obtendrá que la canción "STAY (with Justin Bieber)" se agregaría
+de manera duplicada al data frame tracks.csv, pese a que el 
+identificador del name no se repite, pero resulta que en la columna
+artist obtiene valores distintos.
+
+Por ello, tras añadir a tracks.csv la data scrapeada,
+realizar un drop duplicate by id, quedándonos con la última
+repetición (asumiendo sea la que añadimos), pues posee
+valores actualizados, en particular, de la popularidad.
