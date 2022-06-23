@@ -1,0 +1,144 @@
+```{r}
+# :::::::::::::::::::::::::::::::::::::
+# Get first artist id in column artists
+# :::::::::::::::::::::::::::::::::::::
+
+# Example for row 37 in df
+id_artists <- df %>%
+  select(id_artists) %>%
+  head(37) %>%
+  tail(1) %>%
+  pull(id_artists)
+
+id_artists
+
+id_artist <- id_artists %>%
+  str_split(pattern = "'") %>%
+  unlist() %>%
+  head(2) %>%
+  tail(1) 
+
+id_artist
+```
+
+
+```{r}
+# :::::::::::::::::::::::::::::::::::::::
+# Get first artist name in column artists
+# :::::::::::::::::::::::::::::::::::::::
+
+# Example for row 37 in df
+name_artists <- df %>%
+  select(artists) %>%
+  head(37) %>%
+  tail(1) %>%
+  pull(artists) 
+  
+name_artists
+
+name_artist <- name_artists %>%
+  str_split(pattern = "'") %>%
+  unlist() %>%
+  head(2) %>%
+  tail(1) 
+
+name_artist
+```
+
+## Example for Doja Cat's top tracks in Spotify
+
+```{r}
+id_artists <- "['5cj0lLjcoR7YOSnhnX0Po5']"
+id_artist <- "5cj0lLjcoR7YOSnhnX0Po5"
+
+name_artists <- "['Doja Cat']"
+name_artist <- "Doja Cat"
+```
+
+```{r}
+#| label: API-call-1
+top_doja_cat <- get_artist_top_tracks(id_artist)
+```
+
+```{r}
+View(top_doja_cat)
+```
+
+```{r}
+# ::::::::::::::::::::::::::::::::::
+# Only extract columns already in df
+# ::::::::::::::::::::::::::::::::::
+
+# Extracted data has no "release_date" 
+# column (df does), but "album.release_date".
+# That may be a problem if df contains songs
+# which are not included in any album.
+temp <- c(colnames(top_doja_cat), "release_date")
+
+missing_top_doja_cat <- top_doja_cat %>%
+  rename(release_date = album.release_date) %>%
+  select(Filter(
+    function(col) {
+      col %in% colnames(df)
+    }
+    , temp
+  )) %>%
+  select(-c(artists, duration_ms)) %>%
+  mutate(
+    artists = name_artists, 
+    id_artists = id_artists
+  ) %>%
+  as.data.frame()
+
+View(missing_top_doja_cat)
+```
+
+
+```{r}
+# :::::::::::::::::::::::::::::
+# Obtain id of tracks extracted
+# :::::::::::::::::::::::::::::
+doja_cat_top_tracks_ids <- top_doja_cat %>%
+  pull(uri) %>%
+  str_sub(start = 15, end = -1L) 
+
+doja_cat_top_tracks_ids
+```
+
+```{r}
+#| label: API-call-2
+features <- get_track_audio_features(doja_cat_top_tracks_ids)
+```
+
+```{r}
+# :::::::::::::::::::::::::::::::::::::
+# Only extract features to append in df
+# :::::::::::::::::::::::::::::::::::::
+tracks_to_append <- features %>%
+  select(Filter(
+    function(col) {
+      col %in% colnames(df)
+    }
+    , colnames(features)
+  )) %>%
+  as.data.frame()
+
+View(tracks_to_append)
+```
+
+```{r}
+# :::::::::::::::::::::::::::::::
+# Obtain data frame which then 
+# will be directly joined with df
+# :::::::::::::::::::::::::::::::
+data_to_join <- left_join(
+  tracks_to_append,
+  missing_top_doja_cat,
+  by = "id"
+) %>%
+  # Reorder columns as to match df's columns
+  select(colnames(df)) %>%
+  as.data.frame()
+
+View(data_to_join)
+```
