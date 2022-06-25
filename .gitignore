@@ -1,4 +1,5 @@
 /datos/
 /informes/exploration-dashboard/df.csv
 /informes/exploration-dashboard/dfnum_imputada.csv
+/informes/exploration-dashboard/df_pre_imp.csv
 spotify-api.Rmd
