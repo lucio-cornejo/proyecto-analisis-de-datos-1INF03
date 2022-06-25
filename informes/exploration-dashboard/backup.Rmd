@@ -1,0 +1,152 @@
+---
+title: "Capítulo II: Fuentes de información"
+runtime: shiny
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    theme:
+      version: 3
+      bootswatch: cosmo
+---
+
+```{r, setup, include = FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(plotly)
+library(shiny)
+
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r, cargar-bases-de-datos}
+#| cache: true
+#| cache.lazy: false
+
+# Cargar data como está justo antes de ser imputada
+# dfnum <- read.csv("../../datos/dfnum.csv", sep = ",")
+# dfcat <- read.csv("../../datos/dfcat.csv", sep = ",")
+
+# En caso no tenga el archivo df.csv:
+# df <- cbind(dfnum, dfcat) 
+
+# Sino, cargar la combinación de ambos data frame previos,
+# donde se añade la columna asociada a la década de lanzamiento
+df <- read.csv("df_pre_imp.csv", sep = ",")
+```
+
+```{r, discretizar-anios-en-decadas}
+#| eval: false
+
+# Solo evaluar este bloque de código si se cargan
+# dfnum y dfcat, obtenidos del Jupyter Notebook, 
+# en vez de haber cargado df.csv directamente
+df <- df %>%
+  mutate(decade = sapply(
+    release_year,
+    function(anio) {
+      anio <- as.character(anio)
+      anio <- stringr::str_split(anio, "") %>% unlist()
+      anio <- anio[-4]
+      # Cambiar último digito por cero para obtener década
+      decada <- as.integer(paste0(anio[1], anio[2], anio[3], "0"))
+      return(decada)
+    }
+  ))
+
+# Guardar data frame completo
+# write.csv(df, "df.csv", row.names = FALSE, sep = ",")
+```
+
+# Test de imputaciones
+
+```{r, mezclar-data-imputada}
+dfnum_pre_imput <- as.data.frame(select(df, popularity:tempo))
+dfnum_post_imput <- read.csv("dfnum_imputada.csv", sep = ",")
+
+# Añadir indicador sobre imputación para mezclar data
+dfnum_mezcla <- rbind(
+  dfnum_pre_imput %>%
+    mutate(etapa_imputacion = "pre") %>%
+    as.data.frame(),
+  dfnum_post_imput %>%
+    mutate(etapa_imputacion = "post") %>%
+    as.data.frame()
+)
+
+# Convertimos la categoría creada en factor,
+# para que funcione apropiadamente al agrupar
+dfnum_mezcla[, "etapa_imputacion"] <- 
+  factor(dfnum_mezcla[, "etapa_imputacion"])
+```
+
+## {data-width=300}
+
+###
+
+```{r, static-select-numeric-variable}
+selectInput(
+  inputId = "numeric_variable",
+  label = "Seleccione una variable numérica", 
+  choices = colnames(dfnum_mezcla)[!colnames(dfnum_mezcla) %in% c("popularity", "etapa_imputacion")],
+  selected = "speechiness"
+)
+```
+
+## {data-width=700}
+
+### Densidad de variable escogida, pre y post imputación 
+
+```{r, shiny-compare-data-pre-and-post-imputation}
+#| eval: true
+
+observeEvent(input$numeric_variable, {
+  output$pre_post_imputation_test <- renderPlotly({
+    # Get chosen variable's pre imputation distribution
+    temp_dfnum_pre <- dfnum_mezcla %>%
+      filter(etapa_imputacion == "pre") %>%
+      select(input$numeric_variable) %>%
+      pull() %>%
+      density()
+    # Get chosen variable's post imputation distribution
+    temp_dfnum_post<- dfnum_mezcla %>%
+      filter(etapa_imputacion == "post") %>%
+      select(input$numeric_variable) %>%
+      pull() %>%
+      density()
+  
+    plot_ly(
+      # Densidad de variable previo a imputación
+      x = ~temp_dfnum_pre$x, y = ~temp_dfnum_pre$y, 
+      name = "Pre", alpha = 0.5, fill = 'tozeroy',
+      type = "scatter", mode = "lines", colors = 1
+    ) %>%
+      layout(
+        legend = list(
+          title = list(text = "<em>Etapa de imputación<br></em>")
+        ),
+        xaxis = list(title = input$numeric_variable), 
+        yaxis = list(title = "Densidad")
+      ) %>% 
+      # Densidad de variable tras imputación
+      add_trace(
+        x = ~temp_dfnum_post$x, y = ~temp_dfnum_post$y, 
+        name = "Post", fill = 'tozeroy', colors = 2
+      ) 
+  })
+})
+```
+
+```{r, imputation-test-graph}
+plotlyOutput("pre_post_imputation_test")
+```
+
+```{r, new-data-frame-post-imputation}
+#| eval: false
+
+# df_post_imput <- data.frame(
+#   dfnum_post_imput,
+#   as.data.frame(select(df, -(popularity:tempo)))
+# )
+```
+

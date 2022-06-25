@@ -11,10 +11,10 @@ output:
 ---
 
 ```{r, setup, include = FALSE}
-library(tidyverse)
-library(shiny)
-library(plotly)
 library(flexdashboard)
+library(tidyverse)
+library(plotly)
+library(shiny)
 
 knitr::opts_chunk$set(echo = FALSE)
 
@@ -31,11 +31,11 @@ options(DT.options = list(scrollY = "100vh"))
 # dfcat <- read.csv("../../datos/dfcat.csv", sep = ",")
 
 # En caso no tenga el archivo df.csv:
-# df <- data.frame(dfnum, dfcat) 
+# df <- cbind(dfnum, dfcat) 
 
 # Sino, cargar la combinación de ambos data frame previos,
 # donde se añade la columna asociada a la década de lanzamiento
-df <- read.csv("df.csv", sep = ",")
+df <- read.csv("df_pre_imp.csv", sep = ",")
 ```
 
 ```{r, discretizar-anios-en-decadas}
@@ -195,7 +195,7 @@ observará en los gráficos de la derecha el patrón descrito.
 ### Densidad e histograma de frecuencia relativa
 
 ```{r, shiny-release-year-vs-popularity}
-#| eval: true
+#| eval: false
 
 renderPlot({
   df %>%
@@ -232,7 +232,7 @@ selectInput(
 </strong>
 
 El **rango** de la cantidad de palabras en los nombres de las canciones del dataset es:
-`r range(df["words_name"], na.rm = TRUE)` 
+<!-- `r range(df["words_name"], na.rm = TRUE)`  -->
 
 ```{r, static}
 #| cache: true
@@ -270,7 +270,7 @@ df <- df %>%
 ###
 
 ```{r, shiny-popularity-decade-and-name-length}
-#| eval: true
+#| eval: false
 
 renderPlotly({
   temp_df <- df %>%
@@ -328,8 +328,9 @@ renderPlotly({
     name = "16_75", colors = 4
   )
 
-  imagen %>%
-    config(displayModeBar = FALSE) 
+  imagen 
+  # %>%
+  #   config(displayModeBar = FALSE) 
 })
 ```
 
@@ -366,7 +367,7 @@ Recuerde que la tonalidad (mayor o menor) de la canción está registrada en la 
 ### Densidad de la popularidad, respecto a estación del año y tonalidad de la canción
 
 ```{r, shiny-popularity-decade-mode}
-#| eval: true
+#| eval: false
 
 renderPlotly({
   # Filtramos los datos con la década de lanzamiento elegido
@@ -447,8 +448,9 @@ renderPlotly({
     name = "Primavera_Mayor", colors = 8
   )
 
-  imagen %>%
-    config(displayModeBar = FALSE) 
+  imagen
+  #  %>%
+  #   config(displayModeBar = FALSE) 
 })
 ```
 
@@ -526,8 +528,9 @@ observeEvent(input$numeric_variable, {
       add_trace(
         x = ~temp_dfnum_post$x, y = ~temp_dfnum_post$y, 
         name = "Post", fill = 'tozeroy', colors = 2
-      ) %>%
-      config(displayModeBar = FALSE) 
+      ) 
+      # %>%
+      # config(displayModeBar = FALSE) 
   })
 })
 ```
@@ -539,9 +542,9 @@ plotlyOutput("pre_post_imputation_test")
 ```{r, new-data-frame-post-imputation}
 #| eval: false
 
-df_post_imput <- data.frame(
-  dfnum_post_imput,
-  as.data.frame(select(df, -(popularity:tempo)))
-)
+# df_post_imput <- data.frame(
+#   dfnum_post_imput,
+#   as.data.frame(select(df, -(popularity:tempo)))
+# )
 ```
 
