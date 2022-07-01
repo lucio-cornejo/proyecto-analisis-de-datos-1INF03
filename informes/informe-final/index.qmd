@@ -1,0 +1,36 @@
+---
+title: Informe final
+date: 2022-06-30
+format: 
+  # pdf:
+  #   toc: true
+  #   toc-depth: 4
+  #   keep-tex: true
+  #   number-section: true
+  #   highlight-style: dracula
+  html:
+    toc: true
+    toc-depth: 4
+    toc-title: Tabla de contenido
+    highlight-style: dracula
+---
+
+```{r}
+#| include: false
+
+library(reticulate)
+use_python("C:/Python39/python.exe")
+```
+
+```{r}
+#| child: "../../codes/paso-02.qmd"
+```
+
+```{r}
+#| child: "../../codes/paso-03.qmd"
+```
+
+```{r}
+#| child: "../../codes/paso-04.qmd"
+```
+
