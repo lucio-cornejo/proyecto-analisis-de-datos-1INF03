@@ -217,6 +217,23 @@ Esta variable contiene información sobre el compás, este variable toma valores
 
 ### Descripción de variables listas para el modelamiento
 
-### Análisis de correlación
+## CAPÍTULO IV: DESARROLLO DEL MODELO 
+
+### Análisis de correlación entre variables
 
 Se observa que los colores que adoptan las casillas de la matriz de correlación son rosados, lo cual indica que las variables tienen un coeficiente de correlación que se encuentra entre 0.2 y 0.4, es decir el nivel de correlación entre variables numéricas predictoras no es muy alta.
+
+### Partición en datos de train-test (o train-test-val) 
+
+
+### Balanceo de datos (en caso aplique)
+
+### Selección de parámetros (en caso aplique) 
+
+### Selección del mejor modelo (Evaluación de modelos en diferentes escenarios, comparación de las métricas de ajuste de los modelos al realizar predicciones con datos del test y/o validación) 
+
+### Descripción de la estructura del modelo seleccionado (tipo de modelo y parámetros elegidos) 
+
+## CAPÍTULO V: CONCLUSIONES 
+
+## CAPÍTULO VI: RECOMENDACIONES 
