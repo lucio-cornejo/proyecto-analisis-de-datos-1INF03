@@ -1,0 +1,846 @@
+## Paso 3: Entendimiento de los datos
+
+```{python}
+#| eval: false
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sns
+
+# Cargamos datos tras paso 2
+tracks = pd.read_csv(r'E:\Documentos\Github\proyecto-analisis-de-datos-1INF03\datos\tracks.csv')
+# tracks = pd.read_csv(r'F:\2022-1\Analisis de datos\Tarea Academica\archive\tracks.csv')
+# tracks = pd.read_csv("../datos/tracks.csv")
+```
+
+```{python}
+#| eval: false
+
+print('La base tiene', tracks.shape[0], 'filas y', tracks.shape[1], 'columnas')
+```
+
+```{python}
+#| eval: false
+
+print('Las columnas se la base se llaman:', tracks.columns.to_list())
+```
+
+```{python}
+#| eval: false
+
+tracks.dtypes
+print('Se tiene los siguientes tipos de datos por columna: \n',tracks.dtypes)
+```
+
+```{python}
+#| eval: false
+
+# Descripción de los datos
+tracks.info()
+
+type(tracks.columns)
+```
+
+```{python}
+#| eval: false
+
+# Convertimos la variable 'release_date', de object a datetime64[ns]
+tracks['release_date'] = pd.to_datetime(tracks['release_date'], format = "%Y-%m-%d")
+```
+
+Eliminaremos la columna de 'artists' ya que no presenta información relevante para el modelo debido a que se cuenta con la columna id_artists  que guardaría la información de los artistas por lo que se estaría duplicando esta información 
+
+```{python}
+#| eval: false
+
+print(tracks.shape)
+tracks.drop(["artists"], axis = 1, inplace = True)
+print(tracks.shape)
+```
+
+### Datos duplicados
+
+```{python}
+#| eval: false
+
+# Como cada fila de este dataset corresponde a una canción diferente,
+# omitimos los duplicados vía el identificador de cada canción
+print(tracks.shape)
+tracks.drop_duplicates(subset = 'id', inplace = True)
+print(tracks.shape)
+```
+
+Se observa que los datos no tienen filas con valores duplicados, es decir, no existen registros repetidos.
+
+### Datos vacíos
+
+```{python}
+#| eval: false
+
+# Contabilizamos vacíos
+vacios = pd.DataFrame(tracks.isnull().sum()).sort_values(0, ascending=True)
+vacios.columns = ['vacios']
+vacios['vacios%'] = round(vacios['vacios']/tracks.shape[0], 2)*100
+vacios
+```
+
+Encontramos que solo la columna "name" almacena valores vacios, en particular, 71.
+
+Como se comentó en el paso dos, es posible que la columna "name" se trate de un identificador.
+Asimismo, la información de la columna "id" identifica a las canciones, así que, como
+la variable "id" **no presenta valores vacíos**, no es necesario remover las filas
+asociadas a valores vacíos de la columna "name".
+
+Más bien, basta descartar a la columna "name", pues su información podemo obtenerla
+vía la variable "id".
+
+### Medidas de resumen para variables numericas
+
+```{python}
+#| eval: false
+
+# Separación de variables en numéricas y categóricas
+dfnum = tracks.select_dtypes(include = ['float64', 'int64'])
+dfcat = tracks.select_dtypes(exclude = ['float64', 'int64'])
+```
+
+```{python}
+#| eval: false
+
+print('Variables categóricas', dfcat.shape)
+print('Variables numéricas', dfnum.shape)
+```
+
+```{python}
+#| eval: false
+
+# Estadisticos desciptivas para las variables numéricas
+dfnum.describe()
+```
+
+```{python}
+#| eval: false
+
+# Distribuciones de los datos numéricos
+columnas_numericas = dfnum.columns.tolist()
+sns.set(style = "darkgrid")
+for col in columnas_numericas:
+  sns.distplot(dfnum[col])
+  plt.title(col)
+  plt.show()
+```
+
+Note entonces que las variables **explicit**, **key**, **mode** y **time_signature** no parecen ser variables numéricas.
+
+En base a la descripción de tales variabes, como se observa en la tabla presentada en el paso 2,
+convertiremos aquellas tres variables a strings, por tratarse de valores categóricos.
+
+En particular, la variable **explicit** es un boolean. 
+
+Por ello, volvemos a separar en dos grupos a las variables del dataset en original.
+
+Asimismo, en base a la presencia de colas de gran longitud (respecto al rango de las variables), 
+conviene trabajar más bien con el logaritmo de las variables numéricas **duration_ms, speechiness, instrumentalness**.
+
+```{python}
+#| eval: false
+
+# Antes de tomar logaritmo, revisemos que es
+# matematicamente correcto emplear tal función
+
+print((tracks.duration_ms < 0).sum())
+print((tracks.speechiness < 0).sum())
+print((tracks.instrumentalness < 0).sum())
+
+print((tracks.duration_ms == 0).sum())
+print((tracks.speechiness == 0).sum())
+print((tracks.instrumentalness == 0).sum())
+```
+
+Sabemos que las variables **speechiness** e **instrumentalness**
+están en el rango [0; 1], valiendo 0 para algunas observaciones. 
+
+Entonces, añadiremos 0.001 a los valores en tales columnas, para poder emplear logaritmo.
+
+```{python}
+#| eval: false
+
+for col in ["duration_ms", "speechiness", "instrumentalness"]:
+  tracks[col] = tracks[col] + 0.001
+  tracks[col] = np.log10(tracks[col])
+```
+
+```{python}
+#| eval: false
+
+# Variable explicit
+print(tracks[["explicit"]].value_counts())
+# Como tal variable vale 0 o 1, y, según su definición
+# es de tipo boolean, no es necesario convertirla a boolean.
+# La convertirmos a string para separar la data en variables
+# númericas y categóricas.
+
+# Variables string
+tracks[["key", "mode", "time_signature", "explicit"]] = tracks[["key", "mode", "time_signature", "explicit"]].astype('string')
+
+# División de variables numéricas y categóricas
+dfnum = tracks.select_dtypes(include = ['float64', 'int64'])
+dfcat = tracks.select_dtypes(exclude = ['float64', 'int64'])
+
+# Nuevas dimensiones
+print('Variables categóricas', dfcat.shape)
+print('Variables numéricas', dfnum.shape)
+
+# Guardar data frames previo a imputación
+dfnum.to_csv("../datos/dfnum_pre_imp.csv", index = False, sep = ",")
+dfcat.to_csv("../datos/dfcat.csv", index = False, sep = ",")
+```
+
+### Medidas de resumen para variables categóricas
+
+```{python}
+#| eval: false
+
+# Comparamos las variables, posiblemente idénticas en 
+# información, "id" y "name"
+for columna in dfcat.columns[0:2]:
+  print(dfcat[columna].value_counts())
+```
+
+Notamos entonces que la variable **name** presenta repeticiones en algunas de sus categorías.
+
+En base a lo explicado , optaremos por descartar, más adelante, la columna **name**, 
+
+porque realizaremos algunas transformaciones para este dato, con fin exploratorio de la data.
+
+```{python}
+#| eval: false
+
+dfcat.dtypes
+```
+
+Como las variables **id** e **id_artists** son Identificadores,
+no vale la pena describir sus estadísticos. 
+
+Consideremos entonces solo a las variables categóricas
+**release_date**, **key**, **mode** y **time_signature**.
+
+```{python}
+#| eval: false
+
+for columna in ["explicit", "key", "mode", "time_signature"]:
+  (100 * dfcat[columna].value_counts() / len(dfcat[columna])).plot(
+    kind = "bar",
+    title = f"Porcentajes respecto a {columna}", 
+    rot = 0
+  )
+  plt.show()
+```
+
+### **Tratamiento de Datos Atípicos y Estadísticas Descriptivas**
+
+```{python}
+#| eval: false
+
+# Graficamos los boxplots de las variables numéricas
+columnas = dfnum.columns.to_list()
+
+for columna in columnas:
+  dfnum.boxplot(column = columna)
+  plt.title(columna)
+  plt.show()
+```
+
+Respecto a la manera estándar pata calcular valores atípicos, se observa que casi todas las
+filas numéricas presentarían outliers. Sin embargo, aquel criterio estándar es de utilidad
+cuando la variable analizada posee una distribución aproximadamente gaussiana.
+
+Por ello, generemos **Q-Q plots** para darnos una idea de qué tan gaussianas
+son las distribuciones de nuestras variables numéricas.
+
+```{python}
+#| eval: false
+
+import pylab 
+import scipy.stats as stats
+
+# La funcion select_dtypes genera un data frame formado únicamente por
+# columnas del tipo indicado como argumento
+for col in dfnum.select_dtypes('number').columns:
+  stats.probplot(dfnum[col], dist = "norm", plot = plt)
+  plt.title(col)
+  pylab.show()
+```
+
+Se observa que las variables no siguen una distribución gaussiana.
+
+Por ello, en este contexto, el tratamiento de outliers debería ser revisando variable por variable.
+
+#### Datos numéricos
+
+El tratamiento de los whiskers para las variables numéricos lo realizamos de manera interactiva, vía la aplicación creada por el documento **custom-whiskers.qmd** presente en esta misma carpeta.
+
+A continuación, graficaremos los resultados obtenidos vía tal aplicación, habiendo analizado caso por caso las variables en **dfnum**, con el fin de determinar
+whiskers apropiados que nos permitan identificar valores atipicos.
+
+Tales valores atípicos los definimos de manera que realmente se alejen de la mediana o media de la variable analizada, y que el porcentaje de valores
+atípicos obtenido no supere el 10% del total de datos, debido a que sino más adelante imputaríamos
+un porcentaje significativo de la data de cada variable numérica, creando así mucha información
+ficticia para los modelos predictivos a emplearse.
+
+variable | whisker inferior | whisker superior | % por imputar
+:---: | :---: | :---: | :---:
+duration_ms | 4.7 | 5.9 | 1.13
+danceability | 0.04 | 0.99 | 0.06
+energy | 0 | 1 | 0.01
+loudness | -30 | 0 | 0.44
+speechiness | -1.65 | -0.185 | 3.93
+acousticness | 0 | 1 | 0.01
+instrumentalness | -3.15 | -0.05 | 4.1
+liveness | 0 | 0.7 | 3.89
+valence | 0 | 1 | 0.06
+tempo | 50 | 210 | 0.26
+
+Aclaramos que el **porcentaje por imputar** presente en la tabla previa es en realidad una aproximación (muy buena, pero no exacta) del verdadero porcentaje por imputar. 
+
+Por ejemplo, como los valores de **energy** están, por definición, entre 0 y 1, en realidad en tal caso no se realizará imputación.
+
+Sin embargo, hemos tenido esa situación en cuenta para los códigos siguientes a emplear.
+
+```{python}
+#| eval: false
+
+# variable: [whisker_inferior, whisker_superior, %_a_imputar]
+custom_whiskers = {
+  "duration_ms": [4.7, 5.9, 1.13],
+  "danceability": [0.04, 0.99, 0.06],
+  "energy": [0, 1, 0.01],
+  "loudness": [-30, 0, 0.44],
+  "speechiness": [-1.65, -0.185, 3.93],
+  "acousticness": [0, 1, 0.01],
+  "instrumentalness": [-3.15, -0.05, 4.1],
+  "liveness": [0, 0.7, 3.89],
+  "valence": [0, 1, 0.06],
+  "tempo": [50, 210, 0.26],
+}
+```
+
+```{python}
+#| eval: false
+
+# Gráfico de las distribuciones, con los 
+# whiskers (en amarillos) obtenidos
+def grafica_custom_whiskers(columna):
+  sns.distplot(dfnum[columna])
+  # Rectas verticales para la media y mediana
+  plt.axvline(dfnum[columna].mean(), color = "red", linestyle = "--")
+  plt.axvline(dfnum[columna].median(), color = "green", linestyle = "--")
+  
+  # Cuartiles usuales
+  plt.axvline(dfnum[columna].quantile(0.25), color = "black", linestyle = "--")
+  plt.axvline(dfnum[columna].quantile(0.75), color = "black", linestyle = "--") 
+  
+  # Whiskers escogidos
+  whisker_superior = custom_whiskers[columna][0]
+  whisker_inferior = custom_whiskers[columna][1]
+  porcentaje_por_imputar = custom_whiskers[columna][2]
+  
+  plt.axvline(whisker_superior, color = "yellow", linestyle = "--") 
+  plt.axvline(whisker_inferior, color = "yellow", linestyle = "--") 
+  plt.title(f"Proporción aproximada por imputar: {porcentaje_por_imputar}%")
+  plt.show()
+```
+
+```{python}
+#| eval: false
+
+for columna in list(custom_whiskers.keys()):
+  grafica_custom_whiskers(columna)
+```
+
+```{python}
+#| eval: false
+
+# Obtener índices de los valores atípicos
+def indices_outliers(columna):
+  outliersInf = (dfnum[columna] < custom_whiskers[columna][0])
+  outliersInf = outliersInf[outliersInf == True].index.to_list()
+
+  outliersSup = (dfnum[columna] > custom_whiskers[columna][1])   
+  outliersSup = outliersSup[outliersSup == True].index.to_list()
+  
+  return (outliersSup + outliersInf)
+```
+
+```{python}
+#| eval: false
+
+# Obtener los índices de los outliers en dfnum
+dfnum_sin_outliers = dfnum.copy()
+for columna in list(custom_whiskers.keys()):
+  dfnum_sin_outliers.loc[indices_outliers(columna), columna] = np.nan
+```
+
+```{python}
+#| eval: false
+
+# Revisamos la conversión de datos atípicos a vacíos (pd.NA),
+# y hallamos la proporción de vacíos en la data
+vacios = pd.DataFrame(dfnum_sin_outliers.isnull().sum()).sort_values(0, ascending=True)
+vacios.columns = ['vacios']
+vacios['vacios%'] = round(vacios['vacios'] / dfnum.shape[0], 2) * 100
+vacios 
+```
+
+### Imputación
+
+```{python}
+#| eval: false
+
+dfnum_sin_outliers.head(10)
+```
+
+```{python}
+#| eval: false
+
+from sklearn.impute import KNNImputer
+```
+
+```{python}
+#| eval: false
+
+imputer = KNNImputer(n_neighbors = 5, weights = "uniform", metric = "nan_euclidean")
+```
+
+Como tenemos un dataset bastante grande la imputación de datos va a irse trabajando columna a columna para que pueda ser procesado sin tomar tanto tiempo
+
+#### Imputar valores para la columna valence
+
+```{python}
+#| eval: false
+
+imputer.fit(dfnum_sin_outliers[["popularity","energy","acousticness","valence","danceability"]])
+```
+
+```{python}
+#| eval: false
+
+dfnum_sin_outliers[["popularity","energy","acousticness","valence","danceability"]] = imputer.transform(dfnum_sin_outliers[["popularity","energy","acousticness","valence","danceability"]])
+```
+
+#### Imputar valores para la columna tempo
+
+```{python}
+#| eval: false
+
+imputer.fit(dfnum_sin_outliers[["popularity","energy","acousticness","valence","danceability","tempo"]])
+```
+
+```{python}
+#| eval: false
+
+dfnum_sin_outliers[["popularity","energy","acousticness","valence","danceability","tempo"]]=imputer.transform(dfnum_sin_outliers[["popularity","energy","acousticness","valence","danceability","tempo"]])
+```
+
+```{python}
+#| eval: false
+
+from numba import jit, cuda    
+# function optimized to run on gpu  
+jit(target ="cuda")
+```
+
+#### Imputar valores para la columna loudness
+
+```{python}
+#| eval: false
+
+imputer.fit(dfnum_sin_outliers[["popularity","energy","acousticness","valence","danceability","tempo","loudness"]])
+```
+
+```{python}
+#| eval: false
+
+dfnum_sin_outliers[["popularity","energy","acousticness","valence","danceability","tempo","loudness"]]=imputer.transform(dfnum_sin_outliers[["popularity","energy","acousticness","valence","danceability","tempo","loudness"]])
+```
+
+#### Imputar valores para la columna duration_ms	
+
+```{python}
+#| eval: false
+
+imputer.fit(dfnum_sin_outliers[["popularity","energy","acousticness","valence","danceability","tempo","loudness","duration_ms"]])
+```
+
+```{python}
+#| eval: false
+
+dfnum_sin_outliers[["popularity","energy","acousticness","valence","danceability","tempo","loudness","duration_ms"]]=imputer.transform(dfnum_sin_outliers[["popularity","energy","acousticness","valence","danceability","tempo","loudness","duration_ms"]])
+```
+
+#### Imputar valores para la columna liveness	
+
+```{python}
+#| eval: false
+
+imputer.fit(dfnum_sin_outliers[["popularity","energy","acousticness","valence","danceability","tempo","loudness","duration_ms","liveness"]])
+```
+
+```{python}
+#| eval: false
+
+dfnum_sin_outliers[["popularity","energy","acousticness","valence","danceability","tempo","loudness","duration_ms","liveness"]]=imputer.transform(dfnum_sin_outliers[["popularity","energy","acousticness","valence","danceability","tempo","loudness","duration_ms","liveness"]])
+```
+
+#### Imputar valores para la columna speechiness	
+
+```{python}
+#| eval: false
+
+imputer.fit(dfnum_sin_outliers[["popularity","energy","acousticness","valence","danceability","tempo","loudness","duration_ms","liveness","speechiness"]])
+```
+
+```{python}
+#| eval: false
+
+dfnum_sin_outliers[["popularity","energy","acousticness","valence","danceability","tempo","loudness","duration_ms","liveness","speechiness"]]=imputer.transform(dfnum_sin_outliers[["popularity","energy","acousticness","valence","danceability","tempo","loudness","duration_ms","liveness","speechiness"]])
+```
+
+#### Imputar valores para la columna instrumentalness	
+
+```{python}
+#| eval: false
+
+#Para esta ultima columna ya se podría usar todas las otras columnas para calcular el valor de los outliers porque ya no tienen vacios
+imputer.fit(dfnum_sin_outliers)
+```
+
+```{python}
+#| eval: false
+
+dfnum_sin_outliers = imputer.transform(dfnum_sin_outliers)
+```
+
+#### Validar la imputación
+
+```{python}
+#| eval: false
+
+dfnum_sin_outliers = pd.DataFrame(dfnum_sin_outliers)
+```
+
+```{python}
+#| eval: false
+
+dfnum_sin_outliers.columns = columnas
+```
+
+```{python}
+#| eval: false
+
+dfnum_sin_outliers.head(10)
+```
+
+```{python}
+#| eval: false
+
+# Revisamos la conversión de vacios por medio del metodo de imputacion KNN
+#No deberian haber vacios en el dataset
+vacios = pd.DataFrame(dfnum_sin_outliers.isnull().sum()).sort_values(0, ascending=True)
+vacios.columns = ['vacios']
+vacios['vacios%'] = round(vacios['vacios'] / dfnum.shape[0], 2) * 100
+vacios 
+```
+
+```{python}
+#| eval: false
+
+# Cargamos los datos sin imputar outliers en otra variable 
+# para comprobar mediante el test Kolmogorov-Smirnov que tiene la misma distribución que la data imputada 
+# y así confirmar que es un buen método de imputación
+dfnum_sin_outliers_test = dfnum.copy()
+for columna in list(custom_whiskers.keys()):
+  dfnum_sin_outliers_test.loc[indices_outliers(columna), columna] = np.nan
+```
+
+```{python}
+#| eval: false
+
+# Guardamos los datos sin outliers
+dfnum_sin_outliers.to_csv('dfnum_sin_outliers.csv', index = False, sep=',')
+```
+
+También se puede acceder a la data imputada vía el siguiente 
+[link](https://drive.google.com/drive/folders/17FhWbmf-yrM_O8_6QcMLvTLurjviZqyu),
+archivo **dfnum_sin_outliers.csv** .
+
+```{python}
+#| eval: false
+
+# Convertimos a numpy para poder usar el test 
+dfnum_sin_outliers_test = dfnum_sin_outliers_test.to_numpy()
+dfnum_sin_outliers = dfnum_sin_outliers.to_numpy()
+```
+
+```{python}
+#| eval: false
+
+# El test solo admite arreglos de una dimensión
+dfnum_sin_outliers_test = dfnum_sin_outliers_test.flatten()
+print(dfnum_sin_outliers_test.shape)
+
+dfnum_sin_outliers = dfnum_sin_outliers.flatten()
+print(dfnum_sin_outliers.shape)
+```
+
+```{python}
+#| eval: false
+
+from scipy.stats import ks_2samp
+
+ks_2samp(dfnum_sin_outliers, dfnum_sin_outliers_test)
+
+# Obtenemos 
+# KstestResult(statistic=0.012532169129040982, pvalue=0.0)
+```
+
+Según el resultado del test, las distribuciones no son idénticas (columna por columna), pero analizaremos las gráficas para comprobar si las distribuciones son parecidas.
+
+```{python}
+#| eval: false
+
+# Regresamos a dataframe para hacer gráficas y comparar
+# data sin imputar
+dfnum_sin_outliers_test = np.resize(dfnum_sin_outliers_test,(586672,11))
+dfnum_sin_outliers_test = pd.DataFrame(dfnum_sin_outliers_test)
+dfnum_sin_outliers_test.columns = columnas
+```
+
+```{python}
+#| eval: false
+
+# Data despues de imputar
+dfnum_sin_outliers = np.resize(dfnum_sin_outliers,(586672,11))
+dfnum_sin_outliers = pd.DataFrame(dfnum_sin_outliers)
+dfnum_sin_outliers.columns = columnas
+```
+
+```{python}
+#| eval: false
+
+# Gráfica color azul: Datos sin imputar
+# Gráfica color naranja: Datos imputados
+sns.set(style = "darkgrid")
+for col in columnas:
+  sns.distplot(dfnum_sin_outliers_test[col])
+  sns.distplot(dfnum_sin_outliers[col])
+  plt.title(col)
+  plt.show()
+```
+
+```{python}
+#| eval: false
+
+dfnum_sin_outliers.describe()
+```
+
+```{python}
+#| eval: false
+
+dfnum_sin_outliers_test.describe()
+```
+
+En el análisis estadístico gráfico y descriptivo, se observa que las distribuciones de las variables imputadas y sin imputar son casi iguales. Por ello, pese al resultado obtenido con el test de Kolmogorov-Smirnov, concluimos que la imputación ha sido exitosa.
+
+### Transformación de variables
+
+#### name
+
+Incluir métricas sobre name para tener nuevas variables.
+Contaremos el número de caracteres de la variable name,
+sin contar los espacios.
+
+```{python}
+#| eval: false
+
+# Creamos una nueva columna donde se guardaran los nombres
+dfcat["name_sin_espacios"] = dfcat["name"].str.replace(' ','')
+```
+
+```{python}
+#| eval: false
+
+# Ahora tomamos la longitud de la cadena, pero de la columna 
+# que ya no tiene espacios, y creamos la nueva variable
+dfcat["Name_Length"] = dfcat["name_sin_espacios"].str.len() 
+
+# Creamos una nueva variable para tener control de la cantidad
+# de palabras que tiene el nombre 
+dfcat["words_name"] = dfcat["name"].str.split().str.len()
+```
+
+```{python}
+#| eval: false
+
+# Eliminamos la variable auxiliar que creamos
+dfcat.drop(["name_sin_espacios"], axis = 1, inplace = True)
+```
+
+```{python}
+#| eval: false
+
+dfcat.head()
+```
+
+```{python}
+#| eval: false
+
+# Como mencionamos en un paso previo, la columna name por sí sola no
+# proporciona información relevante, pero no podía ser eliminada
+# porque se usaría en este paso.
+
+# Ahora que ya fue usada, podemos eliminarla
+dfcat.drop(["name"], axis = 1, inplace = True)
+```
+
+#### release_date
+
+```{python}
+#| eval: false
+
+# Creamos nuevas columnas que asumirán el valor del año,
+#  mes y día de la fecha de lanzamiento
+dfcat['release_year'] = pd.DatetimeIndex(dfcat['release_date']).year
+dfcat['release_month'] = pd.DatetimeIndex(dfcat['release_date']).month
+dfcat['release_day'] = pd.DatetimeIndex(dfcat['release_date']).day
+```
+
+```{python}
+#| eval: false
+
+# Creamos una columna que divida a los meses de lanzamiento
+# en base a trimestres 
+release_trim = []
+size = len(dfcat['release_date'])
+
+for i in range(size):
+  if(dfcat['release_date'][i].month > 0 and dfcat['release_date'][i].month < 4):
+    release_trim.append(1)
+  if(dfcat['release_date'][i].month > 3 and dfcat['release_date'][i].month < 7):
+    release_trim.append(2)
+  if(dfcat['release_date'][i].month > 6 and dfcat['release_date'][i].month < 10):
+    release_trim.append(3)
+  if(dfcat['release_date'][i].month > 9 and dfcat['release_date'][i].month < 13):
+    release_trim.append(4)
+```
+
+```{python}
+#| eval: false
+
+dfcat['release_trim'] = release_trim
+dfcat.head()
+```
+
+```{python}
+#| eval: false
+
+# Finalmente, eliminamos la columna release_date
+del dfcat['release_date']
+```
+
+#### time_signature
+
+```{python}
+#| eval: false
+
+# Crearemos una lista que reemplazará los valores de time signature, 
+# si valen de 0 a 3 entonces asignaremos 0; en caso contrario,
+# se asignará el valor 1
+list_time = []
+for i in range(size):
+  if(int(dfcat['time_signature'][i])>=0 and int(dfcat['time_signature'][i])<4):
+    list_time.append('0')
+  if(int(dfcat['time_signature'][i])>=4):
+    list_time.append('1')
+```
+
+```{python}
+#| eval: false
+
+del dfcat['time_signature']
+dfcat['time_signature'] = list_time
+dfcat.head()
+```
+
+### Popularity
+
+```{python}
+#| eval: false
+
+list_pop = []
+size_num = len(dfnum['popularity'])
+for i in range(size_num):
+    if(dfnum['popularity'][i] < 40):
+        list_pop.append(0)
+    if(dfnum['popularity'][i] >= 40):
+        list_pop.append(1)
+
+dfcat['list_pop'] = list_pop
+```
+
+### Key
+
+La variable key representa el centro tonal de la canción, habiéndose así 12 opciones para casi
+todas las canciones que existen actualmente: 0, 1, ..., 10, 11 .
+
+Como el **círculo de quintas** es un concepto musical empleado en casi todas las canciones existentes,
+agruparemos en 4 categorías, a los valores de key, agrupándolos de 7 en 7, ya que esto representa
+centros tonales lo más cercanos posibles en el círculo de quintas.
+
+Como el valor 0 de **key** representa al centro tonal C (Do), el caso más popular entre todas las canciones
+del planeta, agruparemos a los valores de **key** vía las siguientes categorías:
+
+[5, 0, 7]  => 0
+
+[8, 3, 10] => 1
+
+[11, 6, 1] => 2
+
+[2, 9, 4]  => 3
+
+```{python}
+#| eval: false
+
+list_key = []
+for i in range(size):
+    if(int(dfcat['key'][i]) in [5, 0, 7]):
+        list_key.append(0)
+    if(int(dfcat['key'][i]) in [8, 3, 10]):
+        list_key.append(1)
+    if(int(dfcat['key'][i]) in [11, 6, 1]):
+        list_key.append(2)
+    if(int(dfcat['key'][i]) in [2, 9, 4]):
+        list_key.append(3)
+
+dfcat['list_key'] = list_key
+```
+
+```{python}
+#| eval: false
+
+# Guardar data categórica tras las transformaciones
+dfcat.to_csv("../datos/dfcat_post_trans.csv", index = False, sep = ",")
+```
+
+#### Analisis de correlación
+
+```{python}
+#| eval: false
+
+sns.heatmap(dfnum.corr())
+```
+
+
+Para la creación del modelo nos basamos en este [link](https://www.cienciadedatos.net/documentos/py07_arboles_decision_python.html) .
+

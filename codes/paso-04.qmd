@@ -1,0 +1,449 @@
+# Paso 4: Data mining
+
+```{python}
+#| eval: false
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sns
+```
+
+```{python}
+#| eval: false
+
+dfcat = pd.read_csv(r'F:\2022-1\Analisis de datos\Tarea Academica\dfcat_post_trans.csv')
+dfnum = pd.read_csv(r'F:\2022-1\Analisis de datos\Tarea Academica\dfnum_sin_outliers.csv')
+```
+
+```{python}
+#| eval: false
+
+dfunion = pd.concat([dfnum,dfcat], axis = 1)
+```
+
+```{python}
+#| eval: false
+
+# Eliminamos columnas sin informacion relevante o que no podremos usar dentro de los modelos de clasificacion
+dfunion.drop(columns = ["popularity","key", "id", "id_artists", "release_year"], inplace = True)
+dfunion.head()
+```
+
+## Separar en variable dependiente y variable independiente
+
+```{python}
+#| eval: false
+
+y = dfunion["list_pop"]
+x = dfunion[['duration_ms', 'danceability', 'energy', 'loudness', 'speechiness',
+       'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo',
+       'explicit', 'mode', 'time_signature', 'Name_Length', 'words_name',
+       'release_month', 'release_day', 'release_trim','list_key']]
+```
+
+## Sample splitting
+
+```{python}
+#| eval: false
+
+# dividimos en conjunto de train, test y validation
+from sklearn.model_selection import train_test_split
+
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.25, random_state=100, stratify=y)
+
+x_train, x_val, y_train, y_val = train_test_split(x_train, y_train, test_size=0.25, random_state=200, stratify=y_train)
+```
+
+## Balanceo de Datos
+
+```{python}
+#| eval: false
+
+pd.DataFrame(y_train).value_counts(normalize=True)*100
+```
+
+```{python}
+#| eval: false
+
+pd.DataFrame(y_train).value_counts()
+```
+
+Nuestra variable no está tan desbalanceada
+
+```{python}
+#| eval: false
+
+nas = pd.DataFrame(x_train.isnull().sum()).sort_values(0,ascending=False)
+nas.columns = ['nas']
+nas['nas%'] = round(nas['nas']/x_train.shape[0], 2)
+nas 
+```
+
+No tenemos valores nulos, asi que podemos generar datos balanceados
+
+```{python}
+#| eval: false
+
+from imblearn.over_sampling import SMOTE
+from imblearn.combine import SMOTETomek
+from collections import Counter 
+
+os_us = SMOTETomek(random_state=2022, sampling_strategy='all' ) #
+
+x_train_smote, y_train_smote = os_us.fit_resample(x_train, y_train)
+
+#x_train_all_smote, y_train_all_smote = os_us.fit_resample(x_train, y_train)
+```
+
+```{python}
+#| eval: false
+
+oversample = RandomOverSampler(sampling_strategy='minority')
+```
+
+```{python}
+#| eval: false
+
+print(y_train.value_counts(normalize=True)*100) #antes del balanceo
+print(y_train.value_counts(normalize=True)*100) 
+
+print(y_train_smote.value_counts(normalize=True)*100) #luego de aplicar la tecnica smote
+print(y_train_smote.value_counts(normalize=True)*100)
+```
+
+## Árbol de clasificación CART
+
+### Generamos arboles de decision con datos balanceados y sin balancear
+
+Elegimos el modelo
+
+```{python}
+#| eval: false
+
+from sklearn.tree import DecisionTreeClassifier
+
+# Creacion del modelo 
+modelo1 = DecisionTreeClassifier(criterion="gini", random_state=2022)
+modelo1b = DecisionTreeClassifier(criterion="gini", random_state=2022)
+# Indicador gini ayuda a medir la calidad de la división de los datos
+```
+
+Entrenamos el modelo 
+
+```{python}
+#| eval: false
+
+# Entrenamiento del modelo 
+modelo1.fit(x_train, y_train)
+```
+
+```{python}
+#| eval: false
+
+# Entrenamiento del modelo 
+modelo1b.fit(x_train_smote, y_train_smote)
+```
+
+Realizamos predicciones con datos de test
+
+```{python}
+#| eval: false
+
+# Realizamos predicciones con datos de test
+y_predict_modelo1 = modelo1.predict(x_test)
+y_predict_modelo1
+```
+
+```{python}
+#| eval: false
+
+# Realizamos predicciones con datos de test
+y_predict_modelo1b = modelo1b.predict(x_test)
+y_predict_modelo1b
+```
+
+```{python}
+#| eval: false
+
+# Se calcula el accuracy
+from sklearn.metrics import accuracy_score,classification_report,confusion_matrix
+accuracy_score(y_test, y_predict_modelo1) 
+```
+
+```{python}
+#| eval: false
+
+# Se calcula el accuracy
+from sklearn.metrics import accuracy_score,classification_report,confusion_matrix
+accuracy_score(y_test, y_predict_modelo1b) 
+```
+
+```{python}
+#| eval: false
+
+from sklearn.model_selection import cross_val_score
+
+scores_res = cross_val_score(modelo1, x_train_smote, y_train_smote, cv=10)
+print("Accuracy de los 10 folds:", scores_res)
+print("Accuracy Mean: {:.3f} (std: {:.3f})".format(scores_res.mean(), scores_res.std()) )
+```
+
+```{python}
+#| eval: false
+
+from sklearn.model_selection import cross_val_score
+
+scores_res = cross_val_score(modelo1b, x_train, y_train, cv=10)
+print("Accuracy de los 10 folds:", scores_res)
+print("Accuracy Mean: {:.3f} (std: {:.3f})".format(scores_res.mean(), scores_res.std()) )
+```
+
+Matriz de confusion
+
+```{python}
+#| eval: false
+
+# Confusion matrix modelo1
+print(pd.crosstab(y_test, y_predict_modelo1))
+```
+
+```{python}
+#| eval: false
+
+# Confusion matrix modelo1b
+print(pd.crosstab(y_test, y_predict_modelo1b))
+```
+
+```{python}
+#| eval: false
+
+# Se genera el arbol de clasificacion - modelo1
+target = list(y_test.unique())
+feature_names = list(x_train.columns)
+```
+
+```{python}
+#| eval: false
+
+# Se genera el arbol de clasificacion - modelo1b
+target = list(y_test.unique())
+feature_names = list(x_train_smote.columns)
+```
+
+Falta graficar arbol
+
+```{python}
+#| eval: false
+
+from sklearn import tree
+from sklearn.tree import graphviz
+graphviz.Source(tree.export_graphviz(modelo, 
+                                     feature_names = feature_names, 
+                                     class_names = target, 
+                                     filled=True, rounded=True))  
+```
+
+Guardamos el modelo
+
+```{python}
+#| eval: false
+
+import pickle 
+pickle.dump(modelo1, open('modelo1', 'wb')) 
+```
+
+```{python}
+#| eval: false
+
+import pickle 
+pickle.dump(modelo1b, open('modelo1b', 'wb')) 
+```
+
+Realizamos predicciones en el modelo 1 
+
+```{python}
+#| eval: false
+
+import_modelo1 = pickle.load(open('modelo1', 'rb'))
+result = import_modelo1.predict(x_test)
+pd.DataFrame(result).value_counts() 
+```
+
+```{python}
+#| eval: false
+
+import_modelo1b = pickle.load(open('modelo1b', 'rb'))
+result = import_modelo1b.predict(x_test)
+pd.DataFrame(result).value_counts() 
+```
+
+## Regresión logísitica
+
+```{python}
+#| eval: false
+
+#Escalamiento de las variables
+from sklearn.preprocessing import MinMaxScaler
+scaler = MinMaxScaler()
+
+x_train = scaler.fit_transform(x_train)
+x_test = scaler.transform(x_test)
+```
+
+```{python}
+#| eval: false
+
+from sklearn.model_selection import GridSearchCV
+from sklearn.linear_model import LogisticRegression
+
+#Se establecen las variables que el GridSearch va buscar
+parameters = {
+        "max_iter": [50, 100],
+        "random_state": [0]
+    }
+
+#Definimos el modelo
+model2 = LogisticRegression()
+
+#Se prepara el Stratified Cross-Validation
+grid_search = GridSearchCV(model2, param_grid=parameters, cv=5, n_jobs=-1, scoring="accuracy")
+```
+
+```{python}
+#| eval: false
+
+#Se entrena el modelo
+grid_search.fit(x_train, y_train)
+```
+
+```{python}
+#| eval: false
+
+model2 = grid_search.best_estimator_
+
+model2
+```
+
+```{python}
+#| eval: false
+
+best_params = grid_search.best_params_
+
+best_params
+```
+
+Evaluamos
+
+```{python}
+#| eval: false
+
+#Revisamos el accuracy en el conjunto de prueba
+model2.score(x_test, y_test)
+```
+
+```{python}
+#| eval: false
+
+# Realizamos predicciones con datos de test
+y_predict_modelo2 = model2.predict(x_test)
+y_predict_modelo2
+```
+
+```{python}
+#| eval: false
+
+# Confusion matrix modelo1
+print(pd.crosstab(y_test, y_predict_modelo2))
+```
+
+## Análisis de los modelos
+
+```{python}
+#| eval: false
+
+def indicadores(TP, FP, TN, FN):
+    Sensibility = TP/(TP+FN)
+    print( 'Sensibilidad es:',Sensibility)
+    Specificity = TN/(TN+FP)
+    print('Especificidad es:', Specificity)
+    Precision = TP/(TP+FP)
+    print('Precision es:', Precision)
+    Recall = TP/(TP+FN)
+    print('Recall es:', Recall)
+    F1 = 2*(Precision*Recall)/(Precision+Recall)
+    print('F1 es:', F1)
+    return Sensibility, Specificity, Precision, Recall, F1
+```
+
+### Modelo de regresión logística
+
+```{python}
+#| eval: false
+
+modelo_logit = indicadores(17421, 10087, 97156, 21987)
+```
+
+```{python}
+#| eval: false
+
+modelo_logit
+# Sensibility, Specificity, Precision, Recall, F1 
+```
+
+```{python}
+#| eval: false
+
+#Revisamos el accuracy en el conjunto de prueba
+model2.score(x_test, y_test)
+```
+
+### Modelo de árbol de clasificación CART sin balanceo de datos
+
+```{python}
+#| eval: false
+
+# Confusion matrix modelo1
+print(pd.crosstab(y_test, y_predict_modelo1))
+```
+
+```{python}
+#| eval: false
+
+# indicadores(TP, FP, TN, FN)
+modelo_arbol_cart_nobal = indicadores(20437, 20077, 87166, 18971)
+```
+
+```{python}
+#| eval: false
+
+# Se calcula el accuracy
+from sklearn.metrics import accuracy_score,classification_report,confusion_matrix
+accuracy_score(y_test, y_predict_modelo1) 
+```
+
+### Modelo de árbol de clasificación CART con balanceo de datos
+
+```{python}
+#| eval: false
+
+# Confusion matrix modelo1
+print(pd.crosstab(y_test, y_predict_modelo1b))
+```
+
+```{python}
+#| eval: false
+
+# indicadores(TP, FP, TN, FN)
+modelo_arbol_card_balanc = indicadores(21980, 23701, 83542, 17428)
+```
+
+```{python}
+#| eval: false
+
+# Se calcula el accuracy
+from sklearn.metrics import accuracy_score,classification_report,confusion_matrix
+accuracy_score(y_test, y_predict_modelo1b) 
+```
+
+

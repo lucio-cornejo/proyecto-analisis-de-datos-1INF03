@@ -1,0 +1,56 @@
+## Integrantes
+
+* Andrea Mejia
+* Renzo Richle
+* Lucio Cornejo
+* Claudia Vivas
+
+1. [Paso 2](#paso-2)
+    - [Adquisición de Datos](#adquisicion-de-datos)
+2. [Paso 3](#paso-3)
+    - [Entendimiento de los datos](#entendimiento-de-los-datos)
+    - [Duplicados](#duplicados)
+    - [Vacios](#vacios)
+    - [Medidas de resumen para variables numéricas](#medidas-de-resumen-para-variables-numericas)
+    - [Medidas de resumen para variables categóricas](#medidas-de-resumen-para-variables-categoricas)
+    - [Tratamiento de datos atípicos](#tratamiento-de-datos-atipicos)
+        - [Outliers por exceso](#outliers-por-exceso)
+        - [Outliers por defecto](#outliers-por-defecto)
+        - [Separar la base en atipicos y no atipicos](#separar-la-base-en-atipicos-y-no-atipicos)
+    
+
+```{python}
+#| eval: false
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sns
+```
+
+```{python}
+#| eval: false
+
+# Cargamos la base de datos
+# tracks = pd.read_csv(r'E:\Documentos\Github\proyecto-analisis-de-datos-1INF03\datos\tracks.csv')
+tracks = pd.read_csv(r'F:\2022-1\Analisis de datos\Tarea Academica\archive\tracks.csv')
+# tracks = pd.read_csv("../datos/tracks.csv")
+```
+
+```{python}
+#| eval: false
+
+tracks.head()
+```
+
+Notamos que algunas de las columnas nos generan la misma información, pese a su presentación diferente.
+
+Por ejemplo, la variable **id_artists** es un identificador único por artista, así que 
+nos proporciona casi completamente la misma información que la variable **artists** (nombre del artista).
+
+Análogamente sucede para las variables **id** (identificador de la canción) y **name** (nombre de la canción).
+
+Sin embargo, debido a la posibilidad de que existan canciones con el mismo nombre,
+o artistas con el mismo nombre _musical_, no descartaremos, por ahora, a las columnas **id** e **id_artists**,
+en caso resulten necesarias más adelante en el análisis.
+
