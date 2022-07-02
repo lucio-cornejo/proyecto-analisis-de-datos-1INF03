@@ -225,8 +225,14 @@ Se observa que los colores que adoptan las casillas de la matriz de correlación
 
 ### Partición en datos de train-test (o train-test-val) 
 
+Nuestro dataset, que cuenta con 586672 registros, será dividido en grupos aleatorios más pequeños para que estos puedan ser utilizados posteriormente por los conjuntos de entrenamiento(train), testeo(test) y validación(val). 
+Para esta partición de datos utilizamos el algoritmo de train_test_split e indicamos que la partición se haga por la cuarta parte de la cantidad de registros original. 
 
 ### Balanceo de datos (en caso aplique)
+
+Para el balanceo de datos, decidimos utilizar el agoritmo SMOTE el cual en este caso es un algoritmo para oversampling que busca puntos vecinos cercanos y agrega puntos “en linea recta” entre ellos. 
+Al hacer un conteo de las canciones que eran consideradas populares(1) y la que no eran consideras "populares(0)", obtuvimos que el 73% de las canciones en los registros eran "no populares" lo cual podría influenciar en los resultados que muestren nuestros modelos analíticos.
+Antes de realizar el balanceo verificamos también si los registros contaban con vacíos, al no ser el caso se procedió a crear dos nuevos conjuntos de datos "x_train_smote" y "y_train_smote" que serían utilizados posteriormente para probar modelos con estos conjuntos que tienen los datos balanceados.
 
 ### Selección de parámetros (en caso aplique) 
 
