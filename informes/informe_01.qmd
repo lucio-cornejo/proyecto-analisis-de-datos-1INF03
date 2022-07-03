@@ -151,6 +151,19 @@ se observó que ninguna de aquellas variables seguía una distribución
 gaussiana. Por ello, en vez considerar los whiskers superior e inferior usuales, creamos una aplicación web con el fin de definir,
 de manera interactiva, tales whiskers superior e inferior, bajo la condición que los datos atípicos que producirían tales nuevos whiskers representen menos del 10% de la variable; así hicimos, variable por variable (numérica).
 
+Después de este paso realizamos graficos de densidad, con esto notamos que se hubiera perdido información importante en caso se hubiera usado los whisker usuales debido a que estos cortaban en lugares que no representaba valores atípicos reales para la distribución que se tiene de las variables.
+
+El siguiente paso es realizar la imputación de variables, para esto primero se intentó imputar la mediana a los valores atípicos pero al analizar las variables descubrimos que la distribución había cambiado; por lo tanto, quedó descartado este método. Luego, se eligió imputar mediante el algoritmo de KNNimputer el cual se considera un método robusto para imputar valores faltantes debido a que usa inforación de los k-vecinos más cercanos para hallar el dato faltante.
+
+Como primer paso para usar este método se tuvo que reemplazar todos los valores atípicos con vacios, posteriormente se eligieron los parámetros de la función KNNimputer, estos fueron:
+  -n_neighbors: 5, representa al número de muestras vecinas a utilizar para la imputación
+  -weights: "uniform", todos los pesos de cada vecino se ponderan por igual
+  -metric: nan_euclidean, se utilizó la distancia euclidiana 
+
+Se intentó usar el algoritmo para todas las columnas numéricas a la vez, pero este demoraba demasiado en terminar la ejecución debido a la cantidad de datos, por eso, decidimos hacerlo agregando solo una columna con datos por imputar a la vez. Cuando finalizó todo este proceso comprobamos que nuestra data no contenía vacios, indicador de que funcionó correctamente el algoritmo.
+
+Para considerar que esta imputación fue la adecuada usamos dos métodos. Primero el test Kolmogorov-Smirnov que sirve para comparar la distribución de dos conjuntos de datos, comparamos entonces el conjunto de datos antes y después de imputar, pero el resultado no fue le esperado porque obtuvimos que las distribuciones no eran iguales. En ese momento nos planteamos cambiar nuevamente el método para imputar, pero, antes de esto realizamos gráficos de densidad superpuestos para ambas distribuciones y nos dimos cuenta que las distribuciones no tenían un gran cambio; por lo tanto aceptamos este método como adecuado y utilizamos la data imputada que obtuvimos en los siguientes pasos.
+
 ### Tratamiento de datos vacíos
 
 Solamente en la variable **names** existen valores vacíos, 71, en particular. Sin embargo, como se comentó previamente, tal columna
