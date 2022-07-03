@@ -130,11 +130,11 @@ del nombre está entre 3 y 10 caracteres.
 
 ## CAPÍTULO III: PREPROCESAMIENTO DE DATOS
 
-En ese capitulo se detalla el proceso de preprocesamiento de los datos. Por otro lado, la variable popularity es la variable dependiente del estudio por lo cual esta variable no debe pasar por ningún tratamiento de outliers y/o vacíos.
+En ese capitulo se detalla el proceso de preprocesamiento de los datos. Donde, la variable popularity es la variable dependiente del estudio por lo cual esta variable no debe pasar por ningún tratamiento de outliers y/o vacíos.
 
 ### Selección de registros y atributos
 
-Excluimos la variables “artist”, pues esta no aporta información para la predicción de popularidad de canciones.  
+Excluimos la variables “artist”, pues esta no aporta información para la predicción de popularidad de canciones. No excluimos registros.
 
 ### Transformación previa a la imputación
 
@@ -150,16 +150,16 @@ se observó que ninguna de aquellas variables seguía una distribución
 gaussiana. Por ello, en vez considerar los whiskers superior e inferior usuales, creamos una aplicación web con el fin de definir,
 de manera interactiva, tales whiskers superior e inferior, bajo la condición que los datos atípicos que producirían tales nuevos whiskers representen menos del 10% de la variable; así hicimos, variable por variable (numérica).
 
-Después de este paso realizamos graficos de densidad, con esto notamos que se hubiera perdido información importante en caso se hubiera usado los whisker usuales debido a que estos cortaban en lugares que no representaba valores atípicos reales para la distribución que se tiene de las variables.
+Después de este paso, realizamos graficos de densidad para conocer las distribuciones e identificar los valores ouliers. Los graficos nos ayudaron a observar que, se hubiera perdido información importante en caso se hubiera usado los whisker usuales ─que se generan asumiendo una distribución normal─ debido a que estos cortaban en lugares que no representaban valores atípicos reales para las distribuciones que tienen las variables.
 
-El siguiente paso es realizar la imputación de variables, para esto primero se intentó imputar la mediana a los valores atípicos pero al analizar las variables descubrimos que la distribución había cambiado; por lo tanto, quedó descartado este método. Luego, se eligió imputar mediante el algoritmo de KNNimputer el cual se considera un método robusto para imputar valores faltantes debido a que usa inforación de los k-vecinos más cercanos para hallar el dato faltante.
+El siguiente paso es realizar la imputación de variables, para esto, primero se intentó imputar la mediana a los valores atípicos, pero al analizar las variables descubrimos que, las distribuciones de las variables imputadas cambiaban notablemente; por lo tanto, este método inicial quedó descartado. Luego, se eligió imputar mediante el algoritmo de KNNimputer el cual se considera un método robusto para imputar valores faltantes debido a que usa inforación de los k-vecinos más cercanos para hallar el dato faltante.
 
 Como primer paso para usar este método se tuvo que reemplazar todos los valores atípicos con vacios, posteriormente se eligieron los parámetros de la función KNNimputer, estos fueron:
   -n_neighbors: 5, representa al número de muestras vecinas a utilizar para la imputación
   -weights: "uniform", todos los pesos de cada vecino se ponderan por igual
   -metric: nan_euclidean, se utilizó la distancia euclidiana 
 
-Se intentó usar el algoritmo para todas las columnas numéricas a la vez, pero este demoraba demasiado en terminar la ejecución debido a la cantidad de datos, por eso, decidimos hacerlo agregando solo una columna con datos por imputar a la vez. Cuando finalizó todo este proceso comprobamos que nuestra data no contenía vacios, indicador de que funcionó correctamente el algoritmo.
+Se intentó usar el algoritmo para todas las columnas numéricas a la vez, pero este tomaba mucho tiempo en su ejecución debido a la cantidad de datos, por eso, decidimos imputar las valores atípicos agregando solo una columna con datos por imputar a la vez. Cuando finalizó todo este proceso comprobamos que nuestra data no contenía vacios, indicador de que funcionó correctamente el algoritmo.
 
 Para considerar que esta imputación fue la adecuada usamos dos métodos. Primero el test Kolmogorov-Smirnov que sirve para comparar la distribución de dos conjuntos de datos, comparamos entonces el conjunto de datos antes y después de imputar, pero el resultado no fue le esperado porque obtuvimos que las distribuciones no eran iguales. En ese momento nos planteamos cambiar nuevamente el método para imputar, pero, antes de esto realizamos gráficos de densidad superpuestos para ambas distribuciones y nos dimos cuenta que las distribuciones no tenían un gran cambio; por lo tanto aceptamos este método como adecuado y utilizamos la data imputada que obtuvimos en los siguientes pasos.
 
@@ -171,7 +171,7 @@ la misma información que la columna **names** y que no presenta vacíos.
 
 ### Creación y transformación de variables
 
-Inicialmente la base de datos con la que contábamos tenía una reducida cantidad de columnas, de las cuales algunas no aportaban con información relevante para el objetivo del negocio. En ese sentido, transformamos las variables name, time_signature y realice_data. De las cuales obtenemos información que podrán servir para la predicción. 
+Debido a que inicialmente la base de datos con la que contábamos tenía una reducida cantidad de columnas, de las cuales algunas no aportaban con información relevante para el objetivo del negocio. En ese sentido, transformamos las variables name, time_signature y realice_data. De las cuales obtenemos información que podrán servir para la predicción. 
 
 #### Name
 
