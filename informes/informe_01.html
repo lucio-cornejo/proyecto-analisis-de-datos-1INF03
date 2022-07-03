@@ -5282,8 +5282,8 @@ l;l.fn.dataTableSettings=u.settings;l.fn.dataTableExt=u.ext;l.fn.DataTable=funct
 <div class="sourceCode" id="cb2"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabla de descripción básica de las variables numéricas</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(py<span class="sc">$</span>temp_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="htmlwidget-d2e0b1012b27afcca33a" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d2e0b1012b27afcca33a">{"x":{"filter":"none","vertical":false,"data":[["count","mean","std","min","25%","50%","75%","max"],[586672,27.5700527722475,18.370642366209,0,13,27,41,100],[586672,5.32280698355454,0.183275404770882,3.52426639863971,5.24326878635855,5.33222227088196,5.42138508108894,6.74983042834497],[586672,0.563593818010745,0.166102654293322,0,0.453,0.577,0.686,0.991],[586672,0.542035991911664,0.251922940900002,0,0.343,0.549,0.748,1],[586672,-10.2060668090517,5.08932790166316,-60,-12.891,-9.243,-6.482,5.376],[586672,-1.21343004641569,0.367156684679978,-3,-1.45593195564972,-1.34390179798717,-1.11182050608168,-0.0123337350737254],[586672,0.44986272444746,0.348836700093673,0,0.0969,0.422,0.785,0.996],[586672,-2.34241848622654,1.04710186219699,-3,-3,-2.98948803726279,-1.97674754036629,0.0004340774793185],[586672,0.213935016874847,0.184325598134415,0,0.0983,0.139,0.278,1],[586672,0.552292473080529,0.257670937011182,0,0.346,0.564,0.769,1],[586672,118.464856626872,29.7641077013351,0,95.6,117.384,136.321,246.381]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>popularity<\/th>\n      <th>duration_ms<\/th>\n      <th>danceability<\/th>\n      <th>energy<\/th>\n      <th>loudness<\/th>\n      <th>speechiness<\/th>\n      <th>acousticness<\/th>\n      <th>instrumentalness<\/th>\n      <th>liveness<\/th>\n      <th>valence<\/th>\n      <th>tempo<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10,11]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-84a9ec58ddf30eb3dc9c" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-84a9ec58ddf30eb3dc9c">{"x":{"filter":"none","vertical":false,"data":[["count","mean","std","min","25%","50%","75%","max"],[586672,27.5700527722475,18.370642366209,0,13,27,41,100],[586672,5.32280698355454,0.183275404770882,3.52426639863971,5.24326878635855,5.33222227088196,5.42138508108894,6.74983042834497],[586672,0.563593818010745,0.166102654293322,0,0.453,0.577,0.686,0.991],[586672,0.542035991911664,0.251922940900002,0,0.343,0.549,0.748,1],[586672,-10.2060668090517,5.08932790166316,-60,-12.891,-9.243,-6.482,5.376],[586672,-1.21343004641569,0.367156684679978,-3,-1.45593195564972,-1.34390179798717,-1.11182050608168,-0.0123337350737254],[586672,0.44986272444746,0.348836700093673,0,0.0969,0.422,0.785,0.996],[586672,-2.34241848622654,1.04710186219699,-3,-3,-2.98948803726279,-1.97674754036629,0.0004340774793185],[586672,0.213935016874847,0.184325598134415,0,0.0983,0.139,0.278,1],[586672,0.552292473080529,0.257670937011182,0,0.346,0.564,0.769,1],[586672,118.464856626872,29.7641077013351,0,95.6,117.384,136.321,246.381]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>popularity<\/th>\n      <th>duration_ms<\/th>\n      <th>danceability<\/th>\n      <th>energy<\/th>\n      <th>loudness<\/th>\n      <th>speechiness<\/th>\n      <th>acousticness<\/th>\n      <th>instrumentalness<\/th>\n      <th>liveness<\/th>\n      <th>valence<\/th>\n      <th>tempo<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10,11]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div class="cell">
@@ -5915,14 +5915,18 @@ l;l.fn.dataTableSettings=u.settings;l.fn.dataTableExt=u.ext;l.fn.DataTable=funct
     function () {
       let imgModelos = [...document.querySelectorAll(".cell-output-display img")];
     
+      // Remove blank space after categorical variables graphics
+      imgModelos[14].style.display = "none";
+
+      // Fix dimension of modelling tables
       let modelos = imgModelos[15];
-      modelos.style.height = "75vh";
       modelos.style.width = "99vw";
+      modelos.style.height = "75vh";
       modelos.style.maxWidth = "100vw";
     
       let mejorModelo = imgModelos[16];
-      mejorModelo.style.height = "150vh";
       mejorModelo.style.width = "60vw";
+      mejorModelo.style.height = "150vh";
       mejorModelo.style.maxWidth = "100vw";
     }
   )

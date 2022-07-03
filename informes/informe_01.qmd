@@ -37,7 +37,6 @@ format:
 
 ```{r, load-python}
 #| include: false
-
 library(reticulate)
 # Path de python executable a emplearse
 use_python("C:/Python39/python.exe")
@@ -45,7 +44,6 @@ use_python("C:/Python39/python.exe")
 
 ```{python}
 #| echo: false
-
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
@@ -531,7 +529,8 @@ El modelo escogido es entrenado con el algoritmo de regresión logística con el
 
 ## CAPÍTULO V: CONCLUSIONES 
 
-En conclusión, el modelo de regresión logítica es el modelo que presenta un mejor resultado en el indicador de **sensibilidad**, pues clasifica bien a las canciones populares en el 75% de casos, donde se observa que la bailabilidad y **loudness** es la variable que impacta positivamente sobre la popularidad de una canción. No obstante, hay algunas variables que no tienen el signo esperado, como la variable cantidad de palabras, pues se esperaría que el cuanto menos palabras tenga, la canción sea más popular. Definitivamente, el análisis individial de las variables en el modelo de regresión debe ser supervisado por un experto del negocio.
+En conclusión, el modelo de regresión logítica es el modelo que presenta un mejor resultado en el indicador de **sensibilidad**, pues clasifica bien a las canciones populares en el 75% de casos, donde se observa que la bailabilidad y **loudness** es la variable que impacta positivamente sobre la popularidad de una canción. No obstante, hay algunas variables que no tienen el signo esperado, como la variable cantidad de palabras, pues se esperaría que el cuanto menos palabras tenga, la 
+canción sea más popular. Definitivamente, el análisis individial de las variables en el modelo de regresión debe ser supervisado por un experto del negocio.
 
 ## CAPÍTULO VI: RECOMENDACIONES 
 
@@ -549,6 +548,10 @@ de una data mejor balanceada respecto a canciones populares y no populares.
     function () {
       let imgModelos = [...document.querySelectorAll(".cell-output-display img")];
     
+      // Remove blank space after categorical variables graphics
+      imgModelos[14].style.display = "none";
+
+      // Fix dimension of modelling tables
       let modelos = imgModelos[15];
       modelos.style.width = "99vw";
       modelos.style.height = "75vh";
