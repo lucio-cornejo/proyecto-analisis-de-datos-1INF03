@@ -407,9 +407,9 @@ Nuestro dataset, fue dividido en grupos aleatorios más pequeños para que estos
 
 ### Balanceo de datos (en caso aplique)
 
-Para el balanceo de datos, decidimos utilizar el agoritmo SMOTE el cual en este caso es un algoritmo para oversampling que busca puntos vecinos cercanos y agrega puntos “en linea recta” entre ellos. 
-Al hacer un conteo de las canciones que eran consideradas populares(1) y la que no eran consideras "populares(0)", obtuvimos que el 73% de las canciones en los registros eran "no populares" lo cual podría influenciar en los resultados que muestren nuestros modelos analíticos.
-Antes de realizar el balanceo verificamos también si los registros contaban con vacíos, al no ser el caso se procedió a crear dos nuevos conjuntos de datos "x_train_smote" y "y_train_smote" que serían utilizados posteriormente para probar modelos con estos conjuntos que tienen los datos balanceados.
+Popularidad es la variable dependiente de nuestro interes, la cual, luego de una transformación de variable, adquirió solo dos valores: 0 y 1. 0 en caso la canción no sea popular, y 1 en caso contrario. Observamos que el 73% de los valores son 0 ─no populares─ y el 27% de los valores son 1 ─populares─, lo cual podría influenciar en los resultados que muestren nuestros modelos analíticos. En este escenario, concluimos que era necesario realizar balanceo de datos.
+
+Para el balanceo de datos, decidimos usar dos tipos de balanceo: undersampling y oversampling. Por un lado en la estrategia undersampling, usamos el algoritmo **RandomUnderSampler** para eliminar los registros de canciones que no son populares, quedandonos con una cantidad de registros igual a la cantidad de registros que son populares. Por otro lado, en la estrategia oversampling, usamos el algoritmo **Smote** para agregar registros de canciones que son populares, quedandonos con una cantidad de registros igual a la cantidad de registros que no son populares. Antes de realizar el balanceo verificamos también si los registros contaban con vacíos, al no ser el caso se procedió a crear dos nuevos conjuntos de datos "x_train_smote" y "y_train_smote" para el caso del balanceo de datos usando el algoritmo **Smote**, y se creó los conjuntos de datos "x_resampled" y "y_resampled" para el caso del balanceo de datos usando el algoritmo **RandomUnderSampler**, estos nuevos conjuntos balanceados fueron utilizados posteriormente para probar modelos. 
 
 ### Selección de parámetros (en caso aplique) 
 
