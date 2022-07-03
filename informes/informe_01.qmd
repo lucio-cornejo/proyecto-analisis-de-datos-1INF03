@@ -371,6 +371,30 @@ Es decir, canciones con un valor de popularidad menor a 40 se asignaron a 0
 
 ### Descripción de variables listas para el modelamiento
 
+Variables utilizadas en el análisis estadístico: 
+
+variable | clasificación | detalle
+:---: | :---: | :---: | 
+duration_ms	| numérica | - 
+explicit	| numérica | -
+release_trim	| categórica | Trimestre del año en que fue lanzada la canción.
+release_day	| categórica | Día del año en que fue lanzada la canción.
+release_month	| categórica | Mes del año en que fue lanzada la canción. 
+words_name	| categórica | Número de palabras que tiene el nombre de la canción.
+Name_Length	| categórica | Cantidad de carácteres que tiene el nombre de la canción. 
+time_signature	| categórica | 0 si hay de 0 a 3 pulsos en cada compás y 1 cuando existe más de 3 pulsos.
+mode	| categórica | Indica la modalidad (1) o menor (0) de una pista.
+tempo	| numérica | -
+danceability	| numérica | - 
+valence	| numérica | -
+liveness	| numérica | - 
+instrumentalness	| numérica | - 
+acousticness	| numérica | -
+speechiness	| numérica | -   
+loudness	|  numérica | -
+energy | numérica | -
+list_key	| categórica | List key agrupa los centros tonales de las canciones, donde 0 representa el centro tonal C(Do), 1 representa Re, 2 representa Mi y finalmente 3 representa Fa.
+
 Con las variables listas para modelar hacemos un análisis descriptivo de las variables numéricas.
 
 variable | count | mean | std | min | 0.25 | 0.5 | 0.75 | max
