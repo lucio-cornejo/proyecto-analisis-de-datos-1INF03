@@ -371,6 +371,21 @@ Es decir, canciones con un valor de popularidad menor a 40 se asignaron a 0
 
 ### Descripción de variables listas para el modelamiento
 
+variable | count | mean | std | min | 0.25 | 0.5 | 0.75 | max
+:---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---:
+popularity | 586672 | 27.570053 | 18.370642 | 0 | 13 | 27 | 41 | 100
+duration_ms | 580069 | 5.323873 | 0.165679 | 4.700011 | 5.245019 | 5.332467 | 5.420505 | 5.899967
+danceability | 586343 | 0.563908 | 0.165612 | 0.0532 | 0.453 | 0.577 | 0.686 | 0.988
+energy | 586672 | 0.542036 | 0.251923 | 0 | 0.343 | 0.549 | 0.748 | 1
+loudness | 584103 | -10.114038 | 4.855248 | -29.999 | -12.838 | -9.22 | -6.474 | -0.004
+speechiness | 563644 | -1.259542 | 0.284709 | -1.645892 | -1.459671 | -1.354578 | -1.154282 | -0.185087
+acousticness | 586672 | 0.449863 | 0.348837 | 0 | 0.0969 | 0.422 | 0.785 | 0.996
+instrumentalness | 562639 | -2.441072 | 0.951667 | -3 | -3 | -2.993235 | -2.295849 | -0.050122
+liveness | 563897 | 0.188345 | 0.134634 | 0 | 0.0969 | 0.134 | 0.253 | 0.7
+valence | 586672 | 0.552292 | 0.257671 | 0 | 0.346 | 0.564 | 0.769 | 1
+tempo | 585134 | 118.585417 | 29.438423 | 50.002 | 95.757 | 117.4715 | 136.33 | 210
+
+
 ## CAPÍTULO IV: DESARROLLO DEL MODELO 
 Escogemos la gama de modelos de clasificación para cumplir con el objetivo del proyecto. En el presente trabajo trabajamos con tres modelos teóricos: 
 
