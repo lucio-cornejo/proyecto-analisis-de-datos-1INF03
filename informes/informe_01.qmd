@@ -293,6 +293,29 @@ En ese capitulo se detalla el proceso de preprocesamiento de los datos. Donde, l
 ### Selección de registros y atributos
 
 Excluimos la variables “artist”, pues esta no aporta información para la predicción de popularidad de canciones. No excluimos registros.
+### Descripción de las variables categóricas
+Hacemos una descripción grafica del comportamiento de las variables categóricas las cuales son: 
+**release_date**, **key**, **mode** y **time_signature**.
+
+
+```{python}
+#| echo: false
+#| warning: false
+#| message: false
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+dfcat = pd.read_csv("E:\Documentos\Github\proyecto-analisis-de-datos-1INF03\datos\dfcat.csv")
+
+for columna in ["explicit", "key", "mode", "time_signature"]:
+  (100 * dfcat[columna].value_counts() / len(dfcat[columna])).plot(
+    kind = "bar",
+    title = f"Porcentajes respecto a {columna}", 
+    rot = 0
+  )
+  plt.show()
+```
 
 ### Transformación previa a la imputación
 
