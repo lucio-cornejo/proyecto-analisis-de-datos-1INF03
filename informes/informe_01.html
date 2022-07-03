@@ -3,8 +3,8 @@
   <meta charset="utf-8">
   <meta name="generator" content="quarto-0.9.180">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <meta name="dcterms.date" content="2022-06-10">
-  <title>Informe parcial</title>
+  <meta name="dcterms.date" content="2022-07-02">
+  <title>Informe final</title>
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -12,6 +12,69 @@
     div.column{display: inline-block; vertical-align: top; width: 50%;}
     div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
     ul.task-list{list-style: none;}
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      {   }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+    code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+    code span.at { color: #7d9029; } /* Attribute */
+    code span.bn { color: #40a070; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #4070a0; } /* Char */
+    code span.cn { color: #880000; } /* Constant */
+    code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+    code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+    code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+    code span.dt { color: #902000; } /* DataType */
+    code span.dv { color: #40a070; } /* DecVal */
+    code span.er { color: #ff0000; font-weight: bold; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #40a070; } /* Float */
+    code span.fu { color: #06287e; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+    code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+    code span.op { color: #666666; } /* Operator */
+    code span.ot { color: #007020; } /* Other */
+    code span.pp { color: #bc7a00; } /* Preprocessor */
+    code span.sc { color: #4070a0; } /* SpecialChar */
+    code span.ss { color: #bb6688; } /* SpecialString */
+    code span.st { color: #4070a0; } /* String */
+    code span.va { color: #19177c; } /* Variable */
+    code span.vs { color: #4070a0; } /* VerbatimString */
+    code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
   </style>
 
   <script src="informe_01_files/libs/clipboard/clipboard.min.js"></script>
@@ -24,6 +87,15 @@
   <script src="informe_01_files/libs/bootstrap/bootstrap.min.js"></script>
   <link href="informe_01_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
   <link href="informe_01_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+  <script src="informe_01_files\libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+  <link href="informe_01_files\libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+  <script src="informe_01_files\libs/datatables-binding-0.20/datatables.js"></script>
+  <script src="informe_01_files\libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+  <link href="informe_01_files\libs/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+  <link href="informe_01_files\libs/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet">
+  <script src="informe_01_files\libs/dt-core-1.11.3/js/jquery.dataTables.min.js"></script>
+  <link href="informe_01_files\libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+  <script src="informe_01_files\libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -35,10 +107,7 @@
 <h2 id="toc-title">Tabla de contenido</h2>
 <ul>
 <li><a href="#carátula" class="nav-link active" data-scroll-target="#carátula">CARÁTULA</a></li>
-<li><a href="#introducción" class="nav-link" data-scroll-target="#introducción">INTRODUCCIÓN</a>
-<ul class="collapse">
-<li><a href="#dataset" class="nav-link" data-scroll-target="#dataset">Dataset</a></li>
-</ul></li>
+<li><a href="#introducción" class="nav-link" data-scroll-target="#introducción">INTRODUCCIÓN</a></li>
 <li><a href="#capítulo-i-comprensión-del-negocio-estudio" class="nav-link" data-scroll-target="#capítulo-i-comprensión-del-negocio-estudio">CAPÍTULO I: COMPRENSIÓN DEL NEGOCIO / ESTUDIO</a>
 <ul class="collapse">
 <li><a href="#descripción-del-problema" class="nav-link" data-scroll-target="#descripción-del-problema">Descripción del problema</a></li>
@@ -48,18 +117,47 @@
 <li><a href="#capítulo-ii-fuentes-de-información" class="nav-link" data-scroll-target="#capítulo-ii-fuentes-de-información">CAPÍTULO II: FUENTES DE INFORMACIÓN</a>
 <ul class="collapse">
 <li><a href="#origen-de-los-datos-del-proyecto" class="nav-link" data-scroll-target="#origen-de-los-datos-del-proyecto">Origen de los datos del proyecto</a></li>
-<li><a href="#descripción-del-universo-y-muestra" class="nav-link" data-scroll-target="#descripción-del-universo-y-muestra">Descripción del universo y muestra</a></li>
+<li><a href="#descripción-del-universo-y-muestra" class="nav-link" data-scroll-target="#descripción-del-universo-y-muestra">Descripción del universo y muestra</a>
+<ul class="collapse">
+<li><a href="#loudness" class="nav-link" data-scroll-target="#loudness">Loudness</a></li>
+<li><a href="#instrumentalness" class="nav-link" data-scroll-target="#instrumentalness">Instrumentalness</a></li>
+<li><a href="#liveness" class="nav-link" data-scroll-target="#liveness">Liveness</a></li>
+<li><a href="#valence" class="nav-link" data-scroll-target="#valence">Valence</a></li>
+<li><a href="#tempo" class="nav-link" data-scroll-target="#tempo">Tempo</a></li>
+<li><a href="#duration_ms" class="nav-link" data-scroll-target="#duration_ms">Duration_ms</a></li>
+<li><a href="#danceability" class="nav-link" data-scroll-target="#danceability">Danceability</a></li>
+<li><a href="#energy" class="nav-link" data-scroll-target="#energy">Energy</a></li>
+<li><a href="#speechiness" class="nav-link" data-scroll-target="#speechiness">Speechiness</a></li>
+<li><a href="#acousticness" class="nav-link" data-scroll-target="#acousticness">Acousticness</a></li>
+</ul></li>
 <li><a href="#descripción-y-entendimiento-de-variables" class="nav-link" data-scroll-target="#descripción-y-entendimiento-de-variables">Descripción y entendimiento de variables</a></li>
 </ul></li>
 <li><a href="#capítulo-iii-preprocesamiento-de-datos" class="nav-link" data-scroll-target="#capítulo-iii-preprocesamiento-de-datos">CAPÍTULO III: PREPROCESAMIENTO DE DATOS</a>
 <ul class="collapse">
 <li><a href="#selección-de-registros-y-atributos" class="nav-link" data-scroll-target="#selección-de-registros-y-atributos">Selección de registros y atributos</a></li>
+<li><a href="#transformación-previa-a-la-imputación" class="nav-link" data-scroll-target="#transformación-previa-a-la-imputación">Transformación previa a la imputación</a></li>
 <li><a href="#tratamiento-de-datos-atípicos" class="nav-link" data-scroll-target="#tratamiento-de-datos-atípicos">Tratamiento de datos atípicos</a></li>
 <li><a href="#tratamiento-de-datos-vacíos" class="nav-link" data-scroll-target="#tratamiento-de-datos-vacíos">Tratamiento de datos vacíos</a></li>
-<li><a href="#creación-y-transformación-de-variables" class="nav-link" data-scroll-target="#creación-y-transformación-de-variables">Creación y transformación de variables</a></li>
-<li><a href="#descripción-de-variables-listas-para-el-modelamiento" class="nav-link" data-scroll-target="#descripción-de-variables-listas-para-el-modelamiento">Descripción de variables listas para el modelamiento</a></li>
-<li><a href="#análisis-de-correlación" class="nav-link" data-scroll-target="#análisis-de-correlación">Análisis de correlación</a></li>
+<li><a href="#creación-y-transformación-de-variables" class="nav-link" data-scroll-target="#creación-y-transformación-de-variables">Creación y transformación de variables</a>
+<ul class="collapse">
+<li><a href="#name" class="nav-link" data-scroll-target="#name">Name</a></li>
+<li><a href="#realease-date" class="nav-link" data-scroll-target="#realease-date">Realease date</a></li>
+<li><a href="#time_signature" class="nav-link" data-scroll-target="#time_signature">time_signature</a></li>
+<li><a href="#popularity" class="nav-link" data-scroll-target="#popularity">popularity</a></li>
 </ul></li>
+<li><a href="#descripción-de-variables-listas-para-el-modelamiento" class="nav-link" data-scroll-target="#descripción-de-variables-listas-para-el-modelamiento">Descripción de variables listas para el modelamiento</a></li>
+</ul></li>
+<li><a href="#capítulo-iv-desarrollo-del-modelo" class="nav-link" data-scroll-target="#capítulo-iv-desarrollo-del-modelo">CAPÍTULO IV: DESARROLLO DEL MODELO</a>
+<ul class="collapse">
+<li><a href="#análisis-de-correlación-entre-variables" class="nav-link" data-scroll-target="#análisis-de-correlación-entre-variables">Análisis de correlación entre variables</a></li>
+<li><a href="#partición-en-datos-de-train-test-o-train-test-val" class="nav-link" data-scroll-target="#partición-en-datos-de-train-test-o-train-test-val">Partición en datos de train-test (o train-test-val)</a></li>
+<li><a href="#balanceo-de-datos-en-caso-aplique" class="nav-link" data-scroll-target="#balanceo-de-datos-en-caso-aplique">Balanceo de datos (en caso aplique)</a></li>
+<li><a href="#selección-de-parámetros-en-caso-aplique" class="nav-link" data-scroll-target="#selección-de-parámetros-en-caso-aplique">Selección de parámetros (en caso aplique)</a></li>
+<li><a href="#selección-del-mejor-modelo-evaluación-de-modelos-en-diferentes-escenarios-comparación-de-las-métricas-de-ajuste-de-los-modelos-al-realizar-predicciones-con-datos-del-test-yo-validación" class="nav-link" data-scroll-target="#selección-del-mejor-modelo-evaluación-de-modelos-en-diferentes-escenarios-comparación-de-las-métricas-de-ajuste-de-los-modelos-al-realizar-predicciones-con-datos-del-test-yo-validación">Selección del mejor modelo (Evaluación de modelos en diferentes escenarios, comparación de las métricas de ajuste de los modelos al realizar predicciones con datos del test y/o validación)</a></li>
+<li><a href="#descripción-de-la-estructura-del-modelo-seleccionado-tipo-de-modelo-y-parámetros-elegidos" class="nav-link" data-scroll-target="#descripción-de-la-estructura-del-modelo-seleccionado-tipo-de-modelo-y-parámetros-elegidos">Descripción de la estructura del modelo seleccionado (tipo de modelo y parámetros elegidos)</a></li>
+</ul></li>
+<li><a href="#capítulo-v-conclusiones" class="nav-link" data-scroll-target="#capítulo-v-conclusiones">CAPÍTULO V: CONCLUSIONES</a></li>
+<li><a href="#capítulo-vi-recomendaciones" class="nav-link" data-scroll-target="#capítulo-vi-recomendaciones">CAPÍTULO VI: RECOMENDACIONES</a></li>
 </ul>
 </nav>
 </div>
@@ -67,15 +165,21 @@
 <header id="title-block-header" class="quarto-title-block default">
 
 
-<div class="quarto-title"><h1 class="title display-7">Informe parcial</h1></div><div class="quarto-title-meta"><div><div class="quarto-title-meta-heading">Published</div><div class="quarto-title-meta-contents"><p class="date">June 10, 2022</p></div></div></div></header>
+<div class="quarto-title"><h1 class="title display-7">Informe final</h1></div><div class="quarto-title-meta"><div><div class="quarto-title-meta-heading">Published</div><div class="quarto-title-meta-contents"><p class="date">July 2, 2022</p></div></div></div></header>
 
+<style>
+  div.cell-output-stdout { display: none; }
+</style>
+<div class="cell">
+
+</div>
 <section id="carátula" class="level2">
 <h2 class="anchored" data-anchor-id="carátula">CARÁTULA</h2>
 <ul>
 <li><p><strong>Curso:</strong> Análisis de Datos</p></li>
 <li><p><strong>Profesor:</strong> Stefany Neciosup</p></li>
 <li><p><strong>Código del curso:</strong> 1INF03</p></li>
-<li><p><strong>Fecha de Entrega:</strong> 11/06/2022</p></li>
+<li><p><strong>Fecha de Entrega:</strong> 02/07/2022</p></li>
 <li><p><strong>Integrantes:</strong></p>
 <ul>
 <li>Richle Gianotti, Renzo Ernesto - 20180368</li>
@@ -87,40 +191,29 @@
 </section>
 <section id="introducción" class="level2">
 <h2 class="anchored" data-anchor-id="introducción">INTRODUCCIÓN</h2>
-<p>Para entender la dinámica de la industria musical, antes de nada, es necesario saber que no se trata de una sola, sino de varias, diferentes, estrechamente relacionadas entre sí, pero que parten de lógicas y estructuras distintas. La industria musical en su conjunto vive de la creación y la explotación de la propiedad intelectual musical. Compositores y letristas crean canciones, letras y arreglos que se interpretan en directo sobre el escenario, se graban y distribuyen a los consumidores. Esta estructura básica ha dado lugar a tres industrias musicales centrales: la discográfica, centrada en la grabación de música y su distribución a los consumidores; la de las licencias musicales, que sobre todo concede licencias a empresas para la explotación de composiciones y arreglos, y la música en vivo, centrada en producir y promocionar espectáculos en directo, como conciertos, giras, etcétera.</p>
-<p>En la actualidad se vienen realizando muchos estudios aplicando el campo de Data Analytics para poder obtener resultados en muchas industrias, y la musical no es ajena a esta moda. Es por esto que decidimos desarrollar el presente trabajo para así descubrir las características fuertemente asociadas a las canciones más populares en la aplicación de música Spotify y poder usar estos rasgos, que están conectados con los estados de ánimo, fechas de lanzamiento, nombre de las canciones, entre otros; para analizar el por qué de esta popularidad y poder simular que una empresa de la industria musical quiera emplear un modelo analítico que le permita saber el índice de popularidad de una canción antes de que esta sea soltada al mercado.</p>
-<p>Entre los puntos que queremos saber:</p>
+<p>Para comprender la dinámica de la industria musical, antes que nada, es necesario saber que no se trata de una sola, sino de varias, estrechamente relacionadas entre sí, pero que surgen a partir de lógicas y estructuras distintas. La industria musical en su conjunto vive de la creación y la explotación de la propiedad intelectual musical. Compositores y letristas crean canciones, letras y arreglos que se interpretan en directo sobre el escenario, se graban y distribuyen a los consumidores. Esta estructura básica ha dado lugar a tres industrias musicales centrales: la discográfica, centrada en la grabación de música y su distribución a los consumidores; la de las licencias musicales, que sobre todo concede licencias a empresas para la difusión de composiciones y arreglos; y, la música en vivo, centrada en producir y promocionar espectáculos en directo, como conciertos, giras, etc.</p>
+<p>El desarrollo de la Ciencia de Datos permite el uso de data para mejorar la toma de decisiones en el sector público y privado. La industria musical no es la excepción, pues también existe un interés por generar nuevas canciones populares, con el fin de recuperar los costos de produccion de una canción y maximizar márgenes de ganancia. En base a tal problemática, se desarrolla el presente trabajo con el objetivo de desarrollar un modelo que logre predecir la propularidad de las canciones futuras, como resultado de un análisis de las variables que influyan de manera positiva o negativa en la popularidad de las canciones. De esta forma, el modelo análitico podrá ser utilizado para predecir la popularidad de las canciones, lo cual ayudará a tomar decisiones de manera más efectiva.</p>
+<p>Estas son algunas de las interrogantes que se explorarán en este trabajo:</p>
 <ul>
-<li>¿Cuáles son los tracks más populares en Spotify?</li>
 <li>¿Qué características en común tienen las canciones más populares de Spotify?</li>
 <li>¿Existe una correlación entre la popularidad y alguna característica de las canciones?</li>
 <li>¿Cuánto debe durar un track según los estándares de la actualidad?</li>
-<li>¿Cuál es la correlación entre diferentes tracks que son populares?</li>
 </ul>
-<section id="dataset" class="level3">
-<h3 class="anchored" data-anchor-id="dataset">Dataset</h3>
-<p>El dataset elegido se obtuvo utilizando el servicio API de Spotify, el cual nos permite obtener la información de las canciones existentes en tal plataforma. El conjunto de datos que estamos empleando consta inicialmente de 20 columnas, las cuales representan variables como el nombre de la canción, su popularidad, duración, el artista, la fecha de lanzamiento, bailabilidad de la canción, su energía, volumen sonoro, etc.</p>
-</section>
 </section>
 <section id="capítulo-i-comprensión-del-negocio-estudio" class="level2">
 <h2 class="anchored" data-anchor-id="capítulo-i-comprensión-del-negocio-estudio">CAPÍTULO I: COMPRENSIÓN DEL NEGOCIO / ESTUDIO</h2>
 <section id="descripción-del-problema" class="level3">
 <h3 class="anchored" data-anchor-id="descripción-del-problema">Descripción del problema</h3>
-<p>En la actualidad se sabe qué canciones son las más populares en general observando la cantidad de reproducciones que tienen cada canción, sin embargo la industria de la música es un negocio y como tal una empresa discográfica siempre busca que su canción sea popular para que esta genere ingresos a la empresa. Si pudiéramos saber que características hacen popular a una canción entonces se podrían usar a favor para generar canciones que sean del agrado del público oyente y como consecuencia pueda otorgar un mayor beneficio económico.</p>
+<p>Se puede tener una percepción de las canciones más populares a nivel mundial observando la cantidad de reproducciones de cada canción en las plataformas musicales, lo cual se traduce en mayores ganancias para los artistas, empresas discográficas y todas las personas detrás del lanzamiento de una canción. En este contexto, la popularidad es la variable que determina los márgenes de ganancias de la industria musical, así un problema y preocupación recurrente, dentro de la industria musical, es generar canciones populares</p>
 </section>
 <section id="objetivo-del-negocioestudio" class="level3">
 <h3 class="anchored" data-anchor-id="objetivo-del-negocioestudio">Objetivo del negocio/estudio</h3>
-<p>Nuestro objetivo principal es el de indagar, descubrir y utilizar las características que definen la popularidad de las canciones presentes en nuestro dataset.</p>
+<p>Nuestro objetivo principal es desarrollar un modelo que logre predecir si una canción será popular o no antes de ser lanzada al mercado. Además, nuestro objetivo secundario, es conocer las características que hacen popular a una canción.</p>
 </section>
 <section id="variable-objetivo-para-el-negocio" class="level3">
 <h3 class="anchored" data-anchor-id="variable-objetivo-para-el-negocio">Variable objetivo para el negocio</h3>
 <ul>
-<li>Las variables que consideramos podrían ser más relevantes para el negocio son:
-<ul>
-<li>popularity (Popularidad)</li>
-<li>duration_ms (La duración del track en milisegundos)</li>
-<li>danceability (La capacidad de baile del track)</li>
-</ul></li>
+<li>“Popularity” es la variable objetivo.</li>
 </ul>
 </section>
 </section>
@@ -128,74 +221,217 @@
 <h2 class="anchored" data-anchor-id="capítulo-ii-fuentes-de-información">CAPÍTULO II: FUENTES DE INFORMACIÓN</h2>
 <section id="origen-de-los-datos-del-proyecto" class="level3">
 <h3 class="anchored" data-anchor-id="origen-de-los-datos-del-proyecto">Origen de los datos del proyecto</h3>
-<p>El dataset que empleamos en nuestro trabajo lo descargamos de <a href="https://www.kaggle.com/datasets/yamaerenay/spotify-dataset-19212020-600k-tracks?resource=download">este</a> sitio web … precisamente, el archivo <strong>tracks.csv</strong>.</p>
-<p>Como se describe en el sitio web del link previo, el dataset <strong>tracks.csv</strong> se obtuvo vía el API oficial de <strong>Spotify</strong>. Tal API permite descargar, para cualquier canción en Spotify, características sobre aquella canción, tales como su duración en milisegundos, volumen, qué tan bailable es, etc.</p>
-<p>Así, cada fila en <strong>tracks.csv</strong> representa a una canción diferente en Spotify, y, las columnas del dataset representan variables asociadas a cada canción.</p>
+<p>El dataset que empleamos lo descargamos de <a href="https://www.kaggle.com/datasets/yamaerenay/spotify-dataset-19212020-600k-tracks?resource=download">Kaggle</a> de donde usamos el archivo<strong>tracks.csv</strong>. Como se describe en el sitio web del link previo, el dataset <strong>tracks.csv</strong> se obtuvo vía el <a href="https://developer.spotify.com/documentation/web-api/">API oficial de <strong>Spotify</strong></a>. Esta permite descargar, características de las canciones disponibles en la plataforma tales como su duración en milisegundos, volumen, qué tan bailable es, etc.</p>
+<p>Así, cada fila en <strong>tracks.csv</strong> representa a una canción diferente en Spotify, y, las columnas del dataset representan características ─variables─ asociadas a cada canción.</p>
 </section>
 <section id="descripción-del-universo-y-muestra" class="level3">
 <h3 class="anchored" data-anchor-id="descripción-del-universo-y-muestra">Descripción del universo y muestra</h3>
-<p>En nuestro caso, el <strong>universo</strong> consistiría el el conjunto de canciones de Spotify disponibles en el instante de tiempo en que se descargó el dataset, vía la API oficial de Spotify.</p>
-<p>En la <a href="https://www.kaggle.com/datasets/yamaerenay/spotify-dataset-19212020-600k-tracks?resource=download">página</a> de donde descargamos la data, se menciona que las canciones extraídas fueron publicadas entre los años 1921 y 2020.</p>
-<p>Sin embargo, tras analizar la data descargada, notamos que hay canciones cuyo año de lanzamiento figura entre 1900 y 2021. Incluso, una canción del dataset figura que fue creada en el año 1900, pese a que, tras una búsqueda web, hallamos que la banda que creó tal canción aún sigue activa.</p>
-<p>Por ello, es posible que, eventualmente, se requiera que nosotros mismos empleemos el API oficial de Spotify para obtener la data de las canciones cuyo identificador ya poseemos, gracias al dataset descargado. Esto último con el fin de crear un nuevo dataset, ahora sin errores, con el cual trabajaríamos como base datos de este proyecto.</p>
-<p>También podríamos descartar a las filas donde encontremos errores como el mencionado previamente respecto a la fecha de publicación de la canción. Sin embargo, por ahora, seguiremos usando el dataset descargado.</p>
-<p>Entonces, el <strong>universo</strong> lo consideramos como el conjunto de canciones disponibles en Spotify, <strong>actualmente</strong>.</p>
-<p>En ese sentido, la <strong>muestra</strong> consiste del conjunto de canciones de Spotify de las cuales tenemos información en las filas del dataset descargado. Por ahora, es una muestra arbitraria (no se sabe como se realizó el muestreo), pero, más adelante, nosotros mismos realizaremos el muestreo, vía el API oficial de Spotify.</p>
+<p>El <strong>universo</strong> de datos está conformado por el conjunto de canciones de Spotify disponibles en el instante de tiempo en que se descargó el dataset, vía la API oficial de Spotify. En la <a href="https://www.kaggle.com/datasets/yamaerenay/spotify-dataset-19212020-600k-tracks?resource=download">página web</a>, fuente de descargamos la data, se menciona que las canciones extraídas fueron publicadas entre los años 1921 y 2020. Asimismo, la muestra tiene y 20 columnas.</p>
+<p>En ese sentido, la <strong>muestra</strong> consiste en el conjunto de canciones de Spotify de las cuales tenemos información en las filas del dataset descargado ─586672 observaciones ─ y 20 columnas. No obstante, esta muestra es arbitraria, ya que no se especifica la estrategia de muestreo. A nivel de grupo, discutimos la importancia del muestro y concluimos que, para realizar un análisis riguroso necesitaremos realizar una muestro multietápico diseñado por nosotros mismo, pero por la limitación de tiempo, seguiremos usando la data original.</p>
+<p>La arbitrariedad de la muestra se refleja en algunas fallas que detectamos en la etapa de exploración de los datos, pues tras analizar la data descargada, observamos que los años de lanzamiento de las canciones se encuentran en el rango de 1900 a 2021. Es decir, existen, observaciones que están fuera del rango de años especificados en la fuente secundaria ─Kaggle─. Específicamente encontramos que, el año de lanzamiento de una canción del dataset fue en 1990, sin embargo, tras realizar una pequeña una búsqueda web, hallamos que la banda que creó tal canción aún sigue activa. En otras palabras, es imposible que, en caso la banda lanzará la canción en 1990, siga activa.</p>
+<p>Es plausible afirmar que la data que disponemos tenga algunas fallas, lo cual debería subsanarse para obtener un mejor resultado. Durante las reuniones de equipo, evaluamos scrappear las canciones de Spotify empleando el API oficial de Spotify para obtener la data de las canciones cuyo identificador ya se posee, gracias al dataset descargado. Esto último con el fin de crear un nuevo dataset, ahora sin errores, con el cual trabajaríamos como base datos de este proyecto. También evaluamos descartar a las filas donde encontremos errores como el mencionado previamente respecto a la fecha de publicación de la canción. No obstante, por limitaciones de tiempo, llevamos al consenso de continuar el dataset original.</p>
+<p>Por otro lado, la muestra contiene las siguientes columnas:</p>
+<div class="cell">
+<div class="sourceCode" id="cb1"><pre class="sourceCode python cell-code code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data numérica previo a imputación</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>dfnum_pre_imp <span class="op">=</span> pd.read_csv(<span class="st">"../datos/dfnum_pre_imp.csv"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Data categórica previo a transformación de variables</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>dfcat_pre_trans <span class="op">=</span> pd.read_csv(<span class="st">"../datos/dfcat.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+
+</div>
+<div class="cell">
+<div class="sourceCode" id="cb2"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabla de descripción básica de las variables numéricas</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(py<span class="sc">$</span>temp_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="htmlwidget-d998c00e736ad10dd873" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d998c00e736ad10dd873">{"x":{"filter":"none","vertical":false,"data":[["count","mean","std","min","25%","50%","75%","max"],[586672,27.5700527722475,18.370642366209,0,13,27,41,100],[586672,5.32280698355454,0.183275404770882,3.52426639863971,5.24326878635855,5.33222227088196,5.42138508108894,6.74983042834497],[586672,0.563593818010745,0.166102654293322,0,0.453,0.577,0.686,0.991],[586672,0.542035991911664,0.251922940900002,0,0.343,0.549,0.748,1],[586672,-10.2060668090517,5.08932790166316,-60,-12.891,-9.243,-6.482,5.376],[586672,-1.21343004641569,0.367156684679978,-3,-1.45593195564972,-1.34390179798717,-1.11182050608168,-0.0123337350737254],[586672,0.44986272444746,0.348836700093673,0,0.0969,0.422,0.785,0.996],[586672,-2.34241848622654,1.04710186219699,-3,-3,-2.98948803726279,-1.97674754036629,0.0004340774793185],[586672,0.213935016874847,0.184325598134415,0,0.0983,0.139,0.278,1],[586672,0.552292473080529,0.257670937011182,0,0.346,0.564,0.769,1],[586672,118.464856626872,29.7641077013351,0,95.6,117.384,136.321,246.381]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>popularity<\/th>\n      <th>duration_ms<\/th>\n      <th>danceability<\/th>\n      <th>energy<\/th>\n      <th>loudness<\/th>\n      <th>speechiness<\/th>\n      <th>acousticness<\/th>\n      <th>instrumentalness<\/th>\n      <th>liveness<\/th>\n      <th>valence<\/th>\n      <th>tempo<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10,11]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div class="cell">
+
+</div>
+<p>A continuación, graficamos la densidad de las variables numéricas, además de rectas verticales para representar la media (rojo), mediana (verde), cuartiles 1 y 3 (negro); y los whiskers definidos, en amarillo.</p>
+<section id="loudness" class="level4">
+<h4 class="anchored" data-anchor-id="loudness">Loudness</h4>
+<p>Describe la sonoridad general de una pista en decibeles. Los valores de sonoridad se promedian en toda la pista y son útiles para comparar la sonoridad relativa de las pistas. La sonoridad es la cualidad de un sonido que es el principal correlato psicológico de la fuerza física (amplitud). Los valores suelen oscilar entre -60 y 0 db.</p>
+<div class="cell">
+<div class="cell-output-stdout">
+<pre><code>C:\Python39\lib\site-packages\seaborn\distributions.py:2619: FutureWarning: `distplot` is a deprecated function and will be removed in a future version. Please adapt your code to use either `displot` (a figure-level function with similar flexibility) or `histplot` (an axes-level function for histograms).
+  warnings.warn(msg, FutureWarning)</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="informe_01_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="instrumentalness" class="level4">
+<h4 class="anchored" data-anchor-id="instrumentalness">Instrumentalness</h4>
+<p>Predice si una pista no contiene voces. Los sonidos “Ooh” y “aah” se consideran instrumentales en este contexto. Las pistas de rap o de palabras habladas son claramente “vocales”. Cuanto más se acerque el valor de instrumentalización a 1,0, mayor será la probabilidad de que la pista no tenga contenido vocal. Los valores superiores a 0,5 representan pistas instrumentales, pero la confianza es mayor a medida que el valor se acerca a 1,0.</p>
+<div class="cell">
+<div class="cell-output-stdout">
+<pre><code>C:\Python39\lib\site-packages\seaborn\distributions.py:2619: FutureWarning: `distplot` is a deprecated function and will be removed in a future version. Please adapt your code to use either `displot` (a figure-level function with similar flexibility) or `histplot` (an axes-level function for histograms).
+  warnings.warn(msg, FutureWarning)</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="informe_01_files/figure-html/unnamed-chunk-12-3.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="liveness" class="level4">
+<h4 class="anchored" data-anchor-id="liveness">Liveness</h4>
+<p>Detecta la presencia de una audiencia en la grabación. Valores más altos de liveness representan una probabilidad incrementada de que la pista haya sido realizada en vivo. Un valor de 0.8 provee una probabilidad fuerte de que la pista sea en vivo.</p>
+<div class="cell">
+<div class="cell-output-stdout">
+<pre><code>C:\Python39\lib\site-packages\seaborn\distributions.py:2619: FutureWarning: `distplot` is a deprecated function and will be removed in a future version. Please adapt your code to use either `displot` (a figure-level function with similar flexibility) or `histplot` (an axes-level function for histograms).
+  warnings.warn(msg, FutureWarning)</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="informe_01_files/figure-html/unnamed-chunk-14-5.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="valence" class="level4">
+<h4 class="anchored" data-anchor-id="valence">Valence</h4>
+<p>Es medida desde 0.0 hasta 1.0 que describe la positividad musical expresada por la pista. Las pistas con un sonido de alta valence suenan más positivos (e.g., felices, alegres, eufóricos), mientras que las pistas con una baja valence suenan más negativas (e.g., tristes, deprimentes, enojadas).</p>
+<div class="cell">
+<div class="cell-output-stdout">
+<pre><code>C:\Python39\lib\site-packages\seaborn\distributions.py:2619: FutureWarning: `distplot` is a deprecated function and will be removed in a future version. Please adapt your code to use either `displot` (a figure-level function with similar flexibility) or `histplot` (an axes-level function for histograms).
+  warnings.warn(msg, FutureWarning)</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="informe_01_files/figure-html/unnamed-chunk-16-7.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="tempo" class="level4">
+<h4 class="anchored" data-anchor-id="tempo">Tempo</h4>
+<p>Es el tempo general estimado de una pista en beats por minutos (BPM, por sus siglas en inglés). En terminología musical, el tempo es la velocidad o ritmo de una pieza dada y se deriva directamente de una duración promedio de beat.</p>
+<div class="cell">
+<div class="cell-output-stdout">
+<pre><code>C:\Python39\lib\site-packages\seaborn\distributions.py:2619: FutureWarning: `distplot` is a deprecated function and will be removed in a future version. Please adapt your code to use either `displot` (a figure-level function with similar flexibility) or `histplot` (an axes-level function for histograms).
+  warnings.warn(msg, FutureWarning)</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="informe_01_files/figure-html/unnamed-chunk-18-9.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="duration_ms" class="level4">
+<h4 class="anchored" data-anchor-id="duration_ms">Duration_ms</h4>
+<p>Es la duración de una pieza en milisegundos. Respecto a la distribución de esta variable, se observa que la distribución de los datos es en principio aparentemente degenerada (los datos están virtual o totalmente reunidos en un punto). No obstante, tal aparente degeneración se explica por el hecho de que existe una serie de piezas cuya duración puede ser extremadamente larga.</p>
+<div class="cell">
+<div class="cell-output-stdout">
+<pre><code>C:\Python39\lib\site-packages\seaborn\distributions.py:2619: FutureWarning: `distplot` is a deprecated function and will be removed in a future version. Please adapt your code to use either `displot` (a figure-level function with similar flexibility) or `histplot` (an axes-level function for histograms).
+  warnings.warn(msg, FutureWarning)</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="informe_01_files/figure-html/unnamed-chunk-20-11.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="danceability" class="level4">
+<h4 class="anchored" data-anchor-id="danceability">Danceability</h4>
+<p>La danceability describe qué tan adecuada es una pista para bailar, basada en una combinación de elementos musicales incluyendo el tempo, la estabilidad rítmica (rhythm stability), la fuerza del beat (beat strength), y una regularidad general. Un valor de 0.0 es menos danceable 1.0 es máximamente danceable.</p>
+<div class="cell">
+<div class="cell-output-stdout">
+<pre><code>C:\Python39\lib\site-packages\seaborn\distributions.py:2619: FutureWarning: `distplot` is a deprecated function and will be removed in a future version. Please adapt your code to use either `displot` (a figure-level function with similar flexibility) or `histplot` (an axes-level function for histograms).
+  warnings.warn(msg, FutureWarning)</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="informe_01_files/figure-html/unnamed-chunk-22-13.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="energy" class="level4">
+<h4 class="anchored" data-anchor-id="energy">Energy</h4>
+<p>La energía es una medida desde 0.0 a 1.0 y representa una medida perceptiva de intensidad y actividad. Típicamente, las pistas energéticas se sienten rápidas, de volumen alto (loud), y ruidosas. Por ejemplo, el death metal tiene una alta energía, mientras que el preludio de Bach da un puntaje bajo en la escala. Características perceptivas contribuyen a este atributo incluyen rango dinámico, el volumen percibió, el timbre, el onset rate, y la entropía general.</p>
+<div class="cell">
+<div class="cell-output-stdout">
+<pre><code>C:\Python39\lib\site-packages\seaborn\distributions.py:2619: FutureWarning: `distplot` is a deprecated function and will be removed in a future version. Please adapt your code to use either `displot` (a figure-level function with similar flexibility) or `histplot` (an axes-level function for histograms).
+  warnings.warn(msg, FutureWarning)</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="informe_01_files/figure-html/unnamed-chunk-24-15.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="speechiness" class="level4">
+<h4 class="anchored" data-anchor-id="speechiness">Speechiness</h4>
+<p>Esta variableetecta la presencia de palabras habladas en una pieza. Mientras más contenido hablado presenta una grabación (e.g., talk show, audio book, poesía), más cercano a 1.0 será el valor del atributo. Los valores superiores a 0.66 describen piezas que probablemente estén hechas enteramente de palabras habladas. Valores entre 0.33 y 0.66 describen piezas que podrías contener tanto música como una parte oral, ya sea en secciones o en capas, incluyendo casos como el rap. Valores menores a 0.33 con mayor probabilidad representan múscia y otras piezas non-speech-like.</p>
+<div class="cell">
+<div class="cell-output-stdout">
+<pre><code>C:\Python39\lib\site-packages\seaborn\distributions.py:2619: FutureWarning: `distplot` is a deprecated function and will be removed in a future version. Please adapt your code to use either `displot` (a figure-level function with similar flexibility) or `histplot` (an axes-level function for histograms).
+  warnings.warn(msg, FutureWarning)</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="informe_01_files/figure-html/unnamed-chunk-26-17.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+<section id="acousticness" class="level4">
+<h4 class="anchored" data-anchor-id="acousticness">Acousticness</h4>
+<p>Una medida de confianza desde 0.0 hasta 1.0 sobre si la pieza es acústica. 1.0 representa alta confianza en que la pieza es acústica (&gt;=0 | &lt;= 1).</p>
+<div class="cell">
+<div class="cell-output-stdout">
+<pre><code>C:\Python39\lib\site-packages\seaborn\distributions.py:2619: FutureWarning: `distplot` is a deprecated function and will be removed in a future version. Please adapt your code to use either `displot` (a figure-level function with similar flexibility) or `histplot` (an axes-level function for histograms).
+  warnings.warn(msg, FutureWarning)</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="informe_01_files/figure-html/unnamed-chunk-28-19.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
 </section>
 <section id="descripción-y-entendimiento-de-variables" class="level3">
 <h3 class="anchored" data-anchor-id="descripción-y-entendimiento-de-variables">Descripción y entendimiento de variables</h3>
 <p>Esta sección del capítulo dos la hemos desarrollado en el <strong>Jupyter notebook</strong> presentado para este informe, así que no incluiremos aquella descripción en este archivo.</p>
-<p>En la siguiente sección de este dashboard, presentaremos gráficas descriptivas del dataset, tanto para la data preprocesada (justo antes de realizar las imputaciones), como para la data donde ya hemos realizado imputaciones.</p>
-<p>Los gráficos a continuación nos sirven para comprender cómo se relacionan las variables del dataset con la variable que nos interesa predecir, la <strong>popularidad</strong> de las canciones. También podremos observar si ciertos patrones que se espera sucedan (debido al avance de la tecnología) están presentes o no en la data descargada.</p>
-<p>Asimismo, los siguientes gráficos <strong>interactivos</strong> podrán ser una guía para comparar si las distribuciones analizadas cambian luego de realizar la imputación.</p>
+<p>La exploraricón de las variables ha sido realizada mediante <a href="https://lucio-cornejo.shinyapps.io/chapter-II-dashboard-INF03/">esta</a> aplicación web. Así, encontramos los siguientes patrones en la data:</p>
+<ul>
+<li>A partir de 1950, para décadas cada vez más recientes, existe una mayor proporción de canciones que presentan valores cada vez más grandes de popularidad.</li>
+<li>Para décadas más recientes, las canciones más populares tienden a ser aquellas cuya longitud del nombre está entre 3 y 10 caracteres.</li>
+</ul>
 </section>
 </section>
 <section id="capítulo-iii-preprocesamiento-de-datos" class="level2">
 <h2 class="anchored" data-anchor-id="capítulo-iii-preprocesamiento-de-datos">CAPÍTULO III: PREPROCESAMIENTO DE DATOS</h2>
-<p>En ese capitulo se detalla el proceso de preprocesamiento de los datos. Por otro lado, la variable popularity es la variable dependiente del estudio por lo cual esta variable no debe pasar por ningún tratamiento de outliers, vacíos y/o transformación</p>
+<p>En ese capitulo se detalla el proceso de preprocesamiento de los datos. Donde, la variable popularity es la variable dependiente del estudio por lo cual esta variable no debe pasar por ningún tratamiento de outliers y/o vacíos.</p>
 <section id="selección-de-registros-y-atributos" class="level3">
 <h3 class="anchored" data-anchor-id="selección-de-registros-y-atributos">Selección de registros y atributos</h3>
-<p>Excluimos la variables “artist”, pues esta no aporta información para la predicción de popularidad de canciones.</p>
+<p>Excluimos la variables “artist”, pues esta no aporta información para la predicción de popularidad de canciones. No excluimos registros.</p>
+</section>
+<section id="transformación-previa-a-la-imputación" class="level3">
+<h3 class="anchored" data-anchor-id="transformación-previa-a-la-imputación">Transformación previa a la imputación</h3>
+<p>Las variables <strong>duration_ms</strong>, <strong>speechiness</strong> e <strong>instrumentalness</strong> requirieron ser transformadas vía la función logaritmo, tras haber aumentado los valores en tales variables en 0.001, para evitar valores 0, lo cual nos permite aplicar logaritmo. Ese aumento de 0.001 se realizó porque aquellas tres variables poseen valores entre 0 y 100.</p>
 </section>
 <section id="tratamiento-de-datos-atípicos" class="level3">
 <h3 class="anchored" data-anchor-id="tratamiento-de-datos-atípicos">Tratamiento de datos atípicos</h3>
-<p>Si bien se ahorraría tiempo realizar el análisis de valores outliers de las variables numéricas de forma automática donde se usaría el límite superior e inferior teórico, para poder realizar un análisis minucioso, las variables numéricas se analizarán de forma particular. El proceso que seguimos fue cambiar el coeficiente que acompaña al rango intercuartil al momento de definir los limites superiores e inferiores.</p>
-<p><strong>Loudness</strong></p>
-<p>Describe la sonoridad general de una pista en decibeles. Los valores de sonoridad se promedian en toda la pista y son útiles para comparar la sonoridad relativa de las pistas. La sonoridad es la cualidad de un sonido que es el principal correlato psicológico de la fuerza física (amplitud). Los valores suelen oscilar entre -60 y 0 db. Se observa que la distribución de la variable se sesga hacia el lado derecho, en este caso usamos a 1.7 como coeficiente. El porcentaje de valores atípicos es 9% del total de los datos de esta columna. Por lo que es posible generar imputaciones.</p>
-<p><strong>Instrumentalness</strong></p>
-<p>Predice si una pista no contiene voces. Los sonidos “Ooh” y “aah” se consideran instrumentales en este contexto. Las pistas de rap o de palabras habladas son claramente “vocales”. Cuanto más se acerque el valor de instrumentalización a 1,0, mayor será la probabilidad de que la pista no tenga contenido vocal. Los valores superiores a 0,5 representan pistas instrumentales, pero la confianza es mayor a medida que el valor se acerca a 1,0. Se observa que la mayoría de los datos están concentrado alrededor de cero, es decir la distribución esta sesgada a la izquierda, en este caso usamos a 3 como coeficiente. El porcentaje de valores atípicos es mayor a 20% del total de los datos de esta columna. Por lo que es no posible generar imputaciones.</p>
-<p><strong>Liveness</strong></p>
-<p>Detecta la presencia de una audiencia en la grabación. Valores más altos de liveness representan una probabilidad incrementada de que la pista haya sido realizada en vivo. Un valor de 0.8 provee una probabilidad fuerte de que la pista sea en vivo. Se observa que los datos están concentrados alrededor de 0.1 aproximadamente; no obstante tales datos muestran un fuerte sesgo hacia la derecha, e incluso presentan un ligerada bimodalidad. Usamos un coeficiente de 1.3 para determinar a los valores outliers. El porcentaje de valores atípicos es de 9.51%.</p>
-<p><strong>Valence</strong></p>
-<p>Es medida desde 0.0 hasta 1.0 que describe la positividad musical expresada por la pista. Las pistas con un sonido de alta valence suenan más positivos (e.g., felices, alegres, eufóricos), mientras que las pistas con una baja valence suenan más negativas (e.g., tristes, deprimentes, enojadas). Se observa que al distribución se asemeja a uns distribución unirfore , donde parace que cada valor tomado por esta variable se acerca a un mismo nivel de densidad. Usamos un coeficiente de 1.4 para determinar a los valores outliers y el porcentaje de valores atípicos es de 9%.</p>
-<p><strong>Tempo</strong></p>
-<p>Es el tempo general estimado de una pista en beats por minutos (BPM, por sus siglas en inglés). En terminología musical, el tempo es la velocidad o ritmo de una pieza dada y se deriva directamente de una duración promedio de beat. Se observa que los datos presentan múltiples modas, aproximadamente alrededor de los valores 75, 100, 140, 175. Estos datos presentan un ligero sesgo hacia la derecha. El porcentaje de valores atípicos para esta variable es 8.90%.</p>
-<p><strong>Duration_ms</strong></p>
-<p>Es la duración de una pieza en milisegundos. Respecto a la distribución de esta variable, se observa que la distribución de los datos es en principio aparentemente degenerada (los datos están virtual o totalmente reunidos en un punto). No obstante, tal aparente degeneración se explica por el hecho de que existe una serie de piezas cuya duración puede ser extremadamente larga. En este caso, si bien los valores atípicos representan solo el 8.99% del total de la muestra de valores para esta variable, tal cantidad de valores atípicos, dados sus valores extremadamente altos, tienen un efecto visual altamente significativo sobre la interpretabilidad de la distribución de los datos.</p>
-<p><strong>Danceability</strong></p>
-<p>La danceability describe qué tan adecuada es una pista para bailar, basada en una combinación de elementos musicales incluyendo el tempo, la estabilidad rítmica (rhythm stability), la fuerza del beat (beat strength), y una regularidad general. Un valor de 0.0 es menos danceable 1.0 es máximamente danceable. Se observa que los datos se concentran alrededor de 0.65, y presentan un ligero sesgo hacia la izquierda. Los valores atípicos representan 8.216% de la muestra,para calcularlos se usó el coeficiente 1.6 que acompaña al rango intercuartil.</p>
-<p><strong>Energy</strong></p>
-<p>La energía es una medida desde 0.0 a 1.0 y representa una medida perceptiva de intensidad y actividad. Típicamente, las pistas energéticas se sienten rápidas, de volumen alto (loud), y ruidosas. Por ejemplo, el death metal tiene una alta energía, mientras que el preludio de Bach da un puntaje bajo en la escala. Características perceptivas contribuyen a este atributo incluyen rango dinámico, el volumen percibió, el timbre, el onset rate, y la entropía general. Se observa que los datos son ligeramente multimodales. con los datos ligeramente más concentrados alrededor de 0.35, 0.55, 7.00 y 0.85. Los valores atípicos para esta variable representan 9.32% de la muestar y para calcularlos se usó el coeficiente 1.4 que acompaña al rango intercuartil.</p>
-<p><strong>Speechiness</strong></p>
-<p>Esta variableetecta la presencia de palabras habladas en una pieza. Mientras más contenido hablado presenta una grabación (e.g., talk show, audio book, poesía), más cercano a 1.0 será el valor del atributo. Los valores superiores a 0.66 describen piezas que probablemente estén hechas enteramente de palabras habladas. Valores entre 0.33 y 0.66 describen piezas que podrías contener tanto música como una parte oral, ya sea en secciones o en capas, incluyendo casos como el rap. Valores menores a 0.33 con mayor probabilidad representan múscia y otras piezas non-speech-like. De manera similar al caso de la variable Duration_ms, aunque en medida mucho menor, esta variable, Speechiness, presenta en principio una aparente distribución degenerada, concentrada alrededor 0. No obstante, tal aparente naturaleza se debe al 10.39% de valores atípicos que presenta la muestra de datos para esta variable, cuyos niveles están concentrados alrededor de 1. En otra palabras, aproximadamente el 88% de los datos se concentra alrededor de 0.0, mientras que el 10.39% lo hace alrededor de 1.0.</p>
-<p><strong>Acousticness</strong></p>
-<p>Una medida de confianza desde 0.0 hasta 1.0 sobre si la pieza es acústica. 1.0 representa alta confianza en que la pieza es acústica (&gt;=0 | &lt;= 1). Se observa que los datos se concentran en su mayoría alrededor de ambos valores extremos. La distribución de los valores para esta variable es en tal sentido bimodal. Los valores atípicos representan un 8.76% del total de valores de la muestra para esta variable.</p>
+<p>Se realizaron <strong>Q-Q plots</strong> para las variables numéricas, y se observó que ninguna de aquellas variables seguía una distribución gaussiana. Por ello, en vez considerar los whiskers superior e inferior usuales, creamos una aplicación web con el fin de definir, de manera interactiva, tales whiskers superior e inferior, bajo la condición que los datos atípicos que producirían tales nuevos whiskers representen menos del 10% de la variable; así hicimos, variable por variable (numérica).</p>
+<p>Después de este paso, realizamos graficos de densidad para conocer las distribuciones e identificar los valores ouliers. Los graficos nos ayudaron a observar que, se hubiera perdido información importante en caso se hubiera usado los whisker usuales ─que se generan asumiendo una distribución normal─ debido a que estos cortaban en lugares que no representaban valores atípicos reales para las distribuciones que tienen las variables.</p>
+<p>El siguiente paso es realizar la imputación de variables, para esto, primero se intentó imputar la mediana a los valores atípicos, pero al analizar las variables descubrimos que, las distribuciones de las variables imputadas cambiaban notablemente; por lo tanto, este método inicial quedó descartado. Luego, se eligió imputar mediante el algoritmo de KNNimputer el cual se considera un método robusto para imputar valores faltantes debido a que usa inforación de los k-vecinos más cercanos para hallar el dato faltante.</p>
+<p>Como primer paso para usar este método se tuvo que reemplazar todos los valores atípicos con vacios, posteriormente se eligieron los parámetros de la función KNNimputer, estos fueron: - n_neighbors: 5, representa al número de muestras vecinas a utilizar para la imputación - weights: “uniform”, todos los pesos de cada vecino se ponderan por igual - metric: nan_euclidean, se utilizó la distancia euclidiana</p>
+<p>Se intentó usar el algoritmo para todas las columnas numéricas a la vez, pero este tomaba mucho tiempo en su ejecución debido a la cantidad de datos, por eso, decidimos imputar las valores atípicos agregando solo una columna con datos por imputar a la vez. Cuando finalizó todo este proceso comprobamos que nuestra data no contenía vacios, indicador de que funcionó correctamente el algoritmo.</p>
+<p>Para considerar que esta imputación fue la adecuada usamos dos métodos. Primero el test Kolmogorov-Smirnov que sirve para comparar la distribución de dos conjuntos de datos, comparamos entonces el conjunto de datos antes y después de imputar, pero el resultado no fue le esperado porque obtuvimos que las distribuciones no eran iguales. En ese momento nos planteamos cambiar nuevamente el método para imputar, pero, antes de esto realizamos gráficos de densidad superpuestos para ambas distribuciones y nos dimos cuenta que las distribuciones no tenían un gran cambio; por lo tanto aceptamos este método como adecuado y utilizamos la data imputada que obtuvimos en los siguientes pasos.</p>
 </section>
 <section id="tratamiento-de-datos-vacíos" class="level3">
 <h3 class="anchored" data-anchor-id="tratamiento-de-datos-vacíos">Tratamiento de datos vacíos</h3>
-<p>Los datos que disponemos no tienen valores vacíos, por lo que obviamos este análisis.</p>
+<p>Solamente en la variable <strong>names</strong> existen valores vacíos, 71, en particular. Sin embargo, como se comentó previamente, tal columna se descartará del dataset, pues existe otra columna que produce la misma información que la columna <strong>names</strong> y que no presenta vacíos.</p>
 </section>
 <section id="creación-y-transformación-de-variables" class="level3">
 <h3 class="anchored" data-anchor-id="creación-y-transformación-de-variables">Creación y transformación de variables</h3>
-<p>Inicialmente la base de datos con la que contábamos tenía una reducida cantidad de columnas, de las cuales algunas no aportaban con información relevante para el objetivo del negocio. En ese sentido, transformamos las variables name, time_signature y realice_data. De las cuales obtenemos información que podrán servir para la predicción.</p>
-<p><strong>Name</strong></p>
+<p>Debido a que inicialmente la base de datos con la que contábamos tenía una reducida cantidad de columnas, de las cuales algunas no aportaban con información relevante para el objetivo del negocio. En ese sentido, transformamos las variables name, time_signature y realice_data. De las cuales obtenemos información que podrán servir para la predicción.</p>
+<section id="name" class="level4">
+<h4 class="anchored" data-anchor-id="name">Name</h4>
 <p>Contiene el nombre de la canción, a partir de esta se generan dos variables:</p>
 <ul>
 <li>Name_lenght : contabiliza al cantidad de caracteres string del nombre de la canción omitiendo los espacios vacíos entre palabra y palabra.</li>
 <li>Words_name: contabiliza la cantidad de palabras que están presentes en el nombre de una canción.</li>
 </ul>
 <p>Es importante recordar, que luego de generar ambas variables, se tiene que eliminar la variable “name” para no caer en el problema de multicolinealidad.</p>
-<p><strong>Realise date</strong></p>
+</section>
+<section id="realease-date" class="level4">
+<h4 class="anchored" data-anchor-id="realease-date">Realease date</h4>
 <p>Indica la fecha del lanzamiento de la canción incluyendo el año, mes y día. Apartir de esat variable se crearon cuatro variables:</p>
 <ul>
 <li>Release_year: año en el que se publicó la canción</li>
@@ -204,17 +440,67 @@
 <li>Release_trim: trimestre en el que se publicó la canción</li>
 </ul>
 <p>Posteriormente, eliminamos la variable realise date.</p>
-<p><strong>Time_signature</strong></p>
-<p>Esta variable contiene información sobre el compás, este variable toma valores de 3 a 7, asi discretizamos esta variable para que tome el valor de 0 si los valores son mayores iguales a 0 y menores que 4; y tome el valor de 1si los valores toman valores mayores iguales a 4.</p>
+</section>
+<section id="time_signature" class="level4">
+<h4 class="anchored" data-anchor-id="time_signature">time_signature</h4>
+<p>Esta variable <strong>ordinal</strong> contiene la cantidad de pulsos en un compás, para cada canción. Esta variable toma valores de 3 a 7, así que la discretizamos para que tome el valor de 0 si los valores son mayores iguales a 0 y menores que 4; y tome el valor de 1 si los valores toman valores mayores iguales a 4.</p>
+<p>Esta recategorización se basa en el hecho que casi todas las canciones que existen actualmente en el mundo poseen un valor de 4 en <strong>time_signature</strong>.</p>
+</section>
+<section id="popularity" class="level4">
+<h4 class="anchored" data-anchor-id="popularity">popularity</h4>
+<p>Para clasificar a las canciones en las categorías <strong>popular</strong> y <strong>no popular</strong>, se escogió el valor 40 como punto de corte.</p>
+<p>Es decir, canciones con un valor de popularidad menor a 40 se asignaron a 0 (no populares); caso contrario, tales canciones se asignan a 1 (populares).</p>
+</section>
 </section>
 <section id="descripción-de-variables-listas-para-el-modelamiento" class="level3">
 <h3 class="anchored" data-anchor-id="descripción-de-variables-listas-para-el-modelamiento">Descripción de variables listas para el modelamiento</h3>
 </section>
-<section id="análisis-de-correlación" class="level3">
-<h3 class="anchored" data-anchor-id="análisis-de-correlación">Análisis de correlación</h3>
-<p>Se observa que los colores que adoptan las casillas de la matriz de correlación son rosados, lo cual indica que las variables tienen un coeficiente de correlación que se encuentra entre 0.2 y 0.4, es decir el nivel de correlación entre variables numéricas predictoras no es muy alta.</p>
-
 </section>
+<section id="capítulo-iv-desarrollo-del-modelo" class="level2">
+<h2 class="anchored" data-anchor-id="capítulo-iv-desarrollo-del-modelo">CAPÍTULO IV: DESARROLLO DEL MODELO</h2>
+<p>Escogemos la gama de modelos de clasificación para cumplir con el objetivo del proyecto. En el presente trabajo trabajamos con tres modelos teóricos:</p>
+<ul>
+<li>Árbol de clasificación CART</li>
+<li>Regresión logística</li>
+<li>Random Forest Classifier</li>
+</ul>
+<p>Sin emabargo, hacemos combinaciones de estos tres modelos con los tipos de balanceo (undersample y oversample)y grid search, de forma que finalmente evaluamos 10 modelos de clasificación.</p>
+<p>Por otro lado, luego de pre procesar los datos decidimos eliminar la variable “year_release, pues no es de utilidad como variable predictora porque el modelo se usará en el futuro para classificar canciones del 2022, en adelante. De esa forma, los nuevos años que se integren a la data podrían ser considerados como valores atípicos.</p>
+<section id="análisis-de-correlación-entre-variables" class="level3">
+<h3 class="anchored" data-anchor-id="análisis-de-correlación-entre-variables">Análisis de correlación entre variables</h3>
+<p>Se observa que los colores que adoptan las casillas de la matriz de correlación son rosados, lo cual indica que las variables tienen un coeficiente de correlación que se encuentra entre 0.2 y 0.4, es decir el nivel de correlación entre variables numéricas predictoras no es muy alta.</p>
+</section>
+<section id="partición-en-datos-de-train-test-o-train-test-val" class="level3">
+<h3 class="anchored" data-anchor-id="partición-en-datos-de-train-test-o-train-test-val">Partición en datos de train-test (o train-test-val)</h3>
+<p>Nuestro dataset, fue dividido en grupos aleatorios más pequeños para que estos puedan ser utilizados posteriormente por los conjuntos de entrenamiento(train), testeo(test) y validación(val).Para esta partición de datos utilizamos el algoritmo de train_test_split e indicamos que la partición se haga por la cuarta parte de la cantidad de registros original. De esta forma, el grupo de entrenamiento representó el 75% de la data y el conjunto de testeo representó el 25% de la data.</p>
+</section>
+<section id="balanceo-de-datos-en-caso-aplique" class="level3">
+<h3 class="anchored" data-anchor-id="balanceo-de-datos-en-caso-aplique">Balanceo de datos (en caso aplique)</h3>
+<p>Para el balanceo de datos, decidimos utilizar el agoritmo SMOTE el cual en este caso es un algoritmo para oversampling que busca puntos vecinos cercanos y agrega puntos “en linea recta” entre ellos. Al hacer un conteo de las canciones que eran consideradas populares(1) y la que no eran consideras “populares(0)”, obtuvimos que el 73% de las canciones en los registros eran “no populares” lo cual podría influenciar en los resultados que muestren nuestros modelos analíticos. Antes de realizar el balanceo verificamos también si los registros contaban con vacíos, al no ser el caso se procedió a crear dos nuevos conjuntos de datos “x_train_smote” y “y_train_smote” que serían utilizados posteriormente para probar modelos con estos conjuntos que tienen los datos balanceados.</p>
+</section>
+<section id="selección-de-parámetros-en-caso-aplique" class="level3">
+<h3 class="anchored" data-anchor-id="selección-de-parámetros-en-caso-aplique">Selección de parámetros (en caso aplique)</h3>
+</section>
+<section id="selección-del-mejor-modelo-evaluación-de-modelos-en-diferentes-escenarios-comparación-de-las-métricas-de-ajuste-de-los-modelos-al-realizar-predicciones-con-datos-del-test-yo-validación" class="level3">
+<h3 class="anchored" data-anchor-id="selección-del-mejor-modelo-evaluación-de-modelos-en-diferentes-escenarios-comparación-de-las-métricas-de-ajuste-de-los-modelos-al-realizar-predicciones-con-datos-del-test-yo-validación">Selección del mejor modelo (Evaluación de modelos en diferentes escenarios, comparación de las métricas de ajuste de los modelos al realizar predicciones con datos del test y/o validación)</h3>
+</section>
+<section id="descripción-de-la-estructura-del-modelo-seleccionado-tipo-de-modelo-y-parámetros-elegidos" class="level3">
+<h3 class="anchored" data-anchor-id="descripción-de-la-estructura-del-modelo-seleccionado-tipo-de-modelo-y-parámetros-elegidos">Descripción de la estructura del modelo seleccionado (tipo de modelo y parámetros elegidos)</h3>
+</section>
+</section>
+<section id="capítulo-v-conclusiones" class="level2">
+<h2 class="anchored" data-anchor-id="capítulo-v-conclusiones">CAPÍTULO V: CONCLUSIONES</h2>
+</section>
+<section id="capítulo-vi-recomendaciones" class="level2">
+<h2 class="anchored" data-anchor-id="capítulo-vi-recomendaciones">CAPÍTULO VI: RECOMENDACIONES</h2>
+<ul>
+<li>El dataset con el que trabajamos, que fue descargado de Kaggle, presentaba diversos problemas:
+<ul>
+<li>Esta consistía principalmente de canciones no populares, así que los modelos trabajados predecían <strong>no popularidad</strong>, en vez de popularidad.</li>
+<li>Esta contiene una fila con data errónea, pues a una banda chilena se le asignan valores incorrectos respecto a la fecha de publicación de las canciones. Por ello, recomendamos que se utilice el identificador Spotify de las canciones del dataset, para scrapear la información actualizada de tales canciones. Además, añadir canciones populares al dataset, para que los modelos a emplearse puedan predecir <strong>popularidad</strong>, a partir de una data mejor balanceada respecto a canciones populares y no populares.</li>
+</ul></li>
+</ul>
+
 </section>
 </main>
 <!-- /main column -->
