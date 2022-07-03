@@ -415,6 +415,21 @@ Para el balanceo de datos, decidimos usar dos tipos de balanceo: undersampling y
 
 ### Selección de parámetros (en caso aplique) 
 
+La elección de los parametros fue de dos formas, en primer lugar, en el primer y cuarto modelo de estableció lo parametros, pero en el caso de los demás modelos se utilizó **GridSearchCV**, el cual es un algortimo que ayuda a elegir los hiperparámetro óptimos para un modelo, en el caso de los árboles de clasificación y bosque aleatorio, este nos ayuda a poder las ramas de los árboles para que estos no sean tan profundos. A continuación, se incluye una tabla resumen de los parametros que finalmente se usaron en los modelos. Es importante notar, que el algoritmo de optimización de parametros recomienda usar el indicador de entropia para la partición de los nodos, en caso de que el modelo sea un árbol de clasificación.
+
+Modelos | Grid Search | Hiperparámetros |
+:---: | :---: | :---: |
+Árbol de clasificación CART| No| semilla aleatoria, índice de Gini |
+Árbol de clasificación CART | Si | semilla aleatoria, índice de Gini |
+Árbol de clasificación CART | Si | semilla aleatoria, índice de entropia, splitter: best |
+Regresión Logística| No | max_inter:200, semilla aleatoria |
+Regresión Logística | Si | max_inter:200, semilla aleatoria |
+Árbol de clasificación CART | Si | semilla aleatoria, índice de Gini |
+Árbol de clasificación CART | Si |'criterion': 'entropy', 'random_state': 0, 'splitter': 'best'|
+Regresión Logística| Si | 'max_iter': 200, 'random_state': 0 |
+Random Forest Classifier | Si | 'criterion': 'entropy', 'random_state': 0 |
+Random Forest Classifier | Si |'criterion': 'entropy', 'random_state': 0 |
+
 ### Selección del mejor modelo (Evaluación de modelos en diferentes escenarios, comparación de las métricas de ajuste de los modelos al realizar predicciones con datos del test y/o validación) 
 
 ### Descripción de la estructura del modelo seleccionado (tipo de modelo y parámetros elegidos) 
