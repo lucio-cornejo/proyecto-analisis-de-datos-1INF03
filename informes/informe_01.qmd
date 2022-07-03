@@ -167,47 +167,110 @@ cuartiles 1 y 3 (negro); y los whiskers definidos, en amarillo.
 Describe la sonoridad general de una pista en decibeles. Los valores de sonoridad se promedian en toda la pista y son útiles para comparar la sonoridad relativa de las pistas. La sonoridad es la cualidad de un sonido que es el principal correlato psicológico de la fuerza física (amplitud). Los valores suelen oscilar entre -60 y 0 db.
 
 ```{python}
+#| echo: false
 #| warning: false
 #| message: false
 grafica_custom_whiskers("loudness")
 ```
 
-
 #### Instrumentalness
 
 Predice si una pista no contiene voces. Los sonidos "Ooh" y "aah" se consideran instrumentales en este contexto. Las pistas de rap o de palabras habladas son claramente "vocales". Cuanto más se acerque el valor de instrumentalización a 1,0, mayor será la probabilidad de que la pista no tenga contenido vocal. Los valores superiores a 0,5 representan pistas instrumentales, pero la confianza es mayor a medida que el valor se acerca a 1,0.
+
+```{python}
+#| echo: false
+#| warning: false
+#| message: false
+grafica_custom_whiskers("instrumentalness")
+```
 
 #### Liveness
 
 Detecta la presencia de una audiencia en la grabación. Valores más altos de liveness representan una probabilidad incrementada de que la pista haya sido realizada en vivo. Un valor de 0.8 provee una probabilidad fuerte de que la pista sea en vivo.
 
+```{python}
+#| echo: false
+#| warning: false
+#| message: false
+grafica_custom_whiskers("liveness")
+```
+
 #### Valence
 
 Es medida desde 0.0 hasta 1.0 que describe la positividad musical expresada por la pista. Las pistas con un sonido de alta valence suenan más positivos (e.g., felices, alegres, eufóricos), mientras que las pistas con una baja valence suenan más negativas (e.g., tristes, deprimentes, enojadas). 
+
+```{python}
+#| echo: false
+#| warning: false
+#| message: false
+grafica_custom_whiskers("valence")
+```
 
 #### Tempo
 
 Es el tempo general estimado de una pista en beats por minutos (BPM, por sus siglas en inglés). En terminología musical, el tempo es la velocidad o ritmo de una pieza dada y se deriva directamente de una duración promedio de beat. 
 
+```{python}
+#| echo: false
+#| warning: false
+#| message: false
+grafica_custom_whiskers("tempo")
+```
+
 #### Duration_ms
 
 Es la duración de una pieza en milisegundos. Respecto a la distribución de esta variable, se observa que la distribución de los datos es en principio aparentemente degenerada (los datos están virtual o totalmente reunidos en un punto). No obstante, tal aparente degeneración se explica por el hecho de que existe una serie de piezas cuya duración puede ser extremadamente larga.
+
+```{python}
+#| echo: false
+#| warning: false
+#| message: false
+grafica_custom_whiskers("duration_ms")
+```
 
 #### Danceability
 
 La danceability describe qué tan adecuada es una pista para bailar, basada en una combinación de elementos musicales incluyendo el tempo, la estabilidad rítmica (rhythm stability), la fuerza del beat (beat strength), y una regularidad general. Un valor de 0.0 es menos danceable 1.0 es máximamente danceable.
 
+```{python}
+#| echo: false
+#| warning: false
+#| message: false
+grafica_custom_whiskers("danceability")
+```
+
 #### Energy
 
 La energía es una medida desde 0.0 a 1.0 y representa una medida perceptiva de intensidad y actividad. Típicamente, las pistas energéticas se sienten rápidas, de volumen alto (loud), y ruidosas. Por ejemplo, el death metal tiene una alta energía, mientras que el preludio de Bach da un puntaje bajo en la escala. Características perceptivas contribuyen a este atributo incluyen rango dinámico, el volumen percibió, el timbre, el onset rate, y la entropía general.
+
+```{python}
+#| echo: false
+#| warning: false
+#| message: false
+grafica_custom_whiskers("energy")
+```
 
 #### Speechiness
 
 Esta variableetecta la presencia de palabras habladas en una pieza. Mientras más contenido hablado presenta una grabación (e.g., talk show, audio book, poesía), más cercano a 1.0 será el valor del atributo. Los valores superiores a 0.66 describen piezas que probablemente estén hechas enteramente de palabras habladas. Valores entre 0.33 y 0.66 describen piezas que podrías contener tanto música como una parte oral, ya sea en secciones o en capas, incluyendo casos como el rap. Valores menores a 0.33 con mayor probabilidad representan múscia y otras piezas non-speech-like.
 
+```{python}
+#| echo: false
+#| warning: false
+#| message: false
+grafica_custom_whiskers("speechiness")
+```
+
 #### Acousticness
 
 Una medida de confianza desde 0.0 hasta 1.0 sobre si la pieza es acústica. 1.0 representa alta confianza en que la pieza es acústica (>=0 | <= 1).
+
+```{python}
+#| echo: false
+#| warning: false
+#| message: false
+grafica_custom_whiskers("acousticness")
+```
 
 ### Descripción y entendimiento de variables 
 
