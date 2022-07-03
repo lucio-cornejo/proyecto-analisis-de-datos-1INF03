@@ -9,7 +9,7 @@ format:
   #   number-section: true
   #   highlight-style: dracula
   html:
-    # self-contained: true
+    self-contained: true
     toc: true
     toc-depth: 4
     toc-title: Tabla de contenido
@@ -325,7 +325,7 @@ for columna in ["explicit", "key", "mode", "time_signature"]:
     title = f"Porcentajes respecto a {columna}", 
     rot = 0
   )
-plt.show()
+  plt.show()
 ```
 
 ### Transformación previa a la imputación
@@ -542,3 +542,22 @@ En conclusión, el modelo de regresión logítica es el modelo que presenta un m
 Por ello, recomendamos que se utilice el identificador Spotify de las
 canciones del dataset, para scrapear la información actualizada de tales canciones. Además, añadir canciones populares al dataset, para que los modelos a emplearse puedan predecir **popularidad**, a partir
 de una data mejor balanceada respecto a canciones populares y no populares.
+
+<script>
+  document.addEventListener(
+    'DOMContentLoaded',
+    function () {
+      let imgModelos = [...document.querySelectorAll(".cell-output-display img")];
+    
+      let modelos = imgModelos[15];
+      modelos.style.width = "99vw";
+      modelos.style.height = "75vh";
+      modelos.style.maxWidth = "100vw";
+    
+      let mejorModelo = imgModelos[16];
+      mejorModelo.style.width = "60vw";
+      mejorModelo.style.height = "150vh";
+      mejorModelo.style.maxWidth = "100vw";
+    }
+  )
+</script>
