@@ -2,18 +2,46 @@
 title: Informe final
 date: 2022-07-02
 format: 
-  pdf:
-    toc: true
-    toc-depth: 4
-    keep-tex: true
-    number-section: true
-    highlight-style: dracula
-  # html:
+  # pdf:
   #   toc: true
   #   toc-depth: 4
-  #   toc-title: Tabla de contenido
+  #   keep-tex: true
+  #   number-section: true
   #   highlight-style: dracula
+  html:
+    toc: true
+    toc-depth: 4
+    toc-title: Tabla de contenido
+    highlight-style: dracula
 ---
+
+<style>
+  div.cell-output-stdout { display: none; }
+</style>
+
+
+```{r, load-python}
+#| include: false
+
+library(reticulate)
+# Path de python executable a emplearse
+use_python("C:/Python39/python.exe")
+```
+
+```{python}
+#| echo: false
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+import seaborn as sns
+
+# Cambiar de directorio
+import os
+
+os.chdir("D:/proyecto-analisis-de-datos-1INF03/informes/")
+```
+
 
 ## CARÁTULA
 
@@ -63,7 +91,6 @@ Como se describe en el sitio web del link previo, el dataset **tracks.csv** se o
 
 Así, cada fila en **tracks.csv** representa a una canción diferente en Spotify, y, las columnas del dataset representan características ─variables─ asociadas a cada canción.
 
-
 ### Descripción del universo y muestra 
 
 El **universo** de datos está conformado por el conjunto de canciones de Spotify disponibles en el instante de tiempo en que se descargó el dataset, vía la API oficial de Spotify. En la [página web](https://www.kaggle.com/datasets/yamaerenay/spotify-dataset-19212020-600k-tracks?resource=download), fuente de descargamos la data, se menciona que las canciones extraídas fueron publicadas entre los años 1921 y 2020. Asimismo, la muestra tiene y 20 columnas.
@@ -76,9 +103,75 @@ Es plausible afirmar que la data que disponemos tenga algunas fallas, lo cual de
 
 Por otro lado, la muestra contiene las siguientes columnas: 
 
+```{python, describe-num-data-pre-imput}
+# Data numérica previo a imputación
+dfnum_pre_imp = pd.read_csv("../datos/dfnum_pre_imp.csv")
+
+# Data categórica previo a transformación de variables
+dfcat_pre_trans = pd.read_csv("../datos/dfcat.csv")
+```
+
+```{python}
+#| echo: false
+temp_df = dfnum_pre_imp.describe()
+```
+
+```{r}
+# Tabla de descripción básica de las variables numéricas
+DT::datatable(py$temp_df)
+```
+
+```{python}
+#| echo: false
+custom_whiskers = {
+  "duration_ms": [4.7, 5.9, 1.13],
+  "danceability": [0.04, 0.99, 0.06],
+  "energy": [0, 1, 0.01],
+  "loudness": [-30, 0, 0.44],
+  "speechiness": [-1.65, -0.185, 3.93],
+  "acousticness": [0, 1, 0.01],
+  "instrumentalness": [-3.15, -0.05, 4.1],
+  "liveness": [0, 0.7, 3.89],
+  "valence": [0, 1, 0.06],
+  "tempo": [50, 210, 0.26],
+}
+
+# Gráfico de las distribuciones, con los whiskers (en amarillos) obtenidos
+def grafica_custom_whiskers(columna):
+  sns.distplot(dfnum_pre_imp[columna])
+  # Rectas verticales para la media y mediana
+  plt.axvline(dfnum_pre_imp[columna].mean(), color = "red", linestyle = "--")
+  plt.axvline(dfnum_pre_imp[columna].median(), color = "green", linestyle = "--")
+  
+  # Cuartiles usuales
+  plt.axvline(dfnum_pre_imp[columna].quantile(0.25), color = "black", linestyle = "--")
+  plt.axvline(dfnum_pre_imp[columna].quantile(0.75), color = "black", linestyle = "--") 
+  
+  # Whiskers escogidos
+  whisker_superior = custom_whiskers[columna][0]
+  whisker_inferior = custom_whiskers[columna][1]
+  porcentaje_por_imputar = custom_whiskers[columna][2]
+  
+  plt.axvline(whisker_superior, color = "yellow", linestyle = "--") 
+  plt.axvline(whisker_inferior, color = "yellow", linestyle = "--") 
+  plt.title(f"Proporción aproximada por imputar: {porcentaje_por_imputar}%")
+  plt.show()
+```
+
+A continuación, graficamos la densidad de las variables numéricas, además
+de rectas verticales para representar la media (rojo), mediana (verde),
+cuartiles 1 y 3 (negro); y los whiskers definidos, en amarillo.
+
 #### Loudness
 
 Describe la sonoridad general de una pista en decibeles. Los valores de sonoridad se promedian en toda la pista y son útiles para comparar la sonoridad relativa de las pistas. La sonoridad es la cualidad de un sonido que es el principal correlato psicológico de la fuerza física (amplitud). Los valores suelen oscilar entre -60 y 0 db.
+
+```{python}
+#| warning: false
+#| message: false
+grafica_custom_whiskers("loudness")
+```
+
 
 #### Instrumentalness
 
@@ -95,9 +188,11 @@ Es medida desde 0.0 hasta 1.0 que describe la positividad musical expresada por 
 #### Tempo
 
 Es el tempo general estimado de una pista en beats por minutos (BPM, por sus siglas en inglés). En terminología musical, el tempo es la velocidad o ritmo de una pieza dada y se deriva directamente de una duración promedio de beat. 
+
 #### Duration_ms
 
 Es la duración de una pieza en milisegundos. Respecto a la distribución de esta variable, se observa que la distribución de los datos es en principio aparentemente degenerada (los datos están virtual o totalmente reunidos en un punto). No obstante, tal aparente degeneración se explica por el hecho de que existe una serie de piezas cuya duración puede ser extremadamente larga.
+
 #### Danceability
 
 La danceability describe qué tan adecuada es una pista para bailar, basada en una combinación de elementos musicales incluyendo el tempo, la estabilidad rítmica (rhythm stability), la fuerza del beat (beat strength), y una regularidad general. Un valor de 0.0 es menos danceable 1.0 es máximamente danceable.
@@ -155,9 +250,9 @@ Después de este paso, realizamos graficos de densidad para conocer las distribu
 El siguiente paso es realizar la imputación de variables, para esto, primero se intentó imputar la mediana a los valores atípicos, pero al analizar las variables descubrimos que, las distribuciones de las variables imputadas cambiaban notablemente; por lo tanto, este método inicial quedó descartado. Luego, se eligió imputar mediante el algoritmo de KNNimputer el cual se considera un método robusto para imputar valores faltantes debido a que usa inforación de los k-vecinos más cercanos para hallar el dato faltante.
 
 Como primer paso para usar este método se tuvo que reemplazar todos los valores atípicos con vacios, posteriormente se eligieron los parámetros de la función KNNimputer, estos fueron:
-  -n_neighbors: 5, representa al número de muestras vecinas a utilizar para la imputación
-  -weights: "uniform", todos los pesos de cada vecino se ponderan por igual
-  -metric: nan_euclidean, se utilizó la distancia euclidiana 
+  - n_neighbors: 5, representa al número de muestras vecinas a utilizar para la imputación
+  - weights: "uniform", todos los pesos de cada vecino se ponderan por igual
+  - metric: nan_euclidean, se utilizó la distancia euclidiana 
 
 Se intentó usar el algoritmo para todas las columnas numéricas a la vez, pero este tomaba mucho tiempo en su ejecución debido a la cantidad de datos, por eso, decidimos imputar las valores atípicos agregando solo una columna con datos por imputar a la vez. Cuando finalizó todo este proceso comprobamos que nuestra data no contenía vacios, indicador de que funcionó correctamente el algoritmo.
 
@@ -181,6 +276,8 @@ Contiene el nombre de la canción, a partir de esta se generan dos variables:
 - Words_name: contabiliza la cantidad de palabras que están presentes en el nombre de una canción. 
 
 Es importante recordar, que luego de generar ambas variables, se tiene que eliminar la variable "name" para no caer en el problema de multicolinealidad. 
+
+
 
 #### Realease date
 
