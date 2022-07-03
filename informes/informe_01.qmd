@@ -212,6 +212,15 @@ Es decir, canciones con un valor de popularidad menor a 40 se asignaron a 0
 ### Descripción de variables listas para el modelamiento
 
 ## CAPÍTULO IV: DESARROLLO DEL MODELO 
+Escogemos la gama de modelos de clasificación para cumplir con el objetivo del proyecto. En el presente trabajo trabajamos con tres modelos teóricos: 
+
+* Árbol de clasificación CART
+* Regresión logística
+* Random Forest Classifier
+
+Sin emabargo, hacemos combinaciones de estos tres modelos con los tipos de balanceo (undersample y oversample)y grid search, de forma que finalmente evaluamos 10 modelos de clasificación.
+
+Por otro lado, luego de pre procesar los datos decidimos eliminar la variable "year_release, pues no es de utilidad como variable predictora porque el modelo se usará en el futuro para classificar canciones del 2022, en adelante. De esa forma, los nuevos años que se integren a la data podrían ser considerados como valores atípicos. 
 
 ### Análisis de correlación entre variables
 
@@ -219,8 +228,7 @@ Se observa que los colores que adoptan las casillas de la matriz de correlación
 
 ### Partición en datos de train-test (o train-test-val) 
 
-Nuestro dataset, que cuenta con 586672 registros, será dividido en grupos aleatorios más pequeños para que estos puedan ser utilizados posteriormente por los conjuntos de entrenamiento(train), testeo(test) y validación(val). 
-Para esta partición de datos utilizamos el algoritmo de train_test_split e indicamos que la partición se haga por la cuarta parte de la cantidad de registros original. 
+Nuestro dataset, fue dividido en grupos aleatorios más pequeños para que estos puedan ser utilizados posteriormente por los conjuntos de entrenamiento(train), testeo(test) y validación(val).Para esta partición de datos utilizamos el algoritmo de train_test_split e indicamos que la partición se haga por la cuarta parte de la cantidad de registros original. De esta forma, el grupo de entrenamiento representó el 75% de la data y el conjunto de testeo representó el 25% de la data. 
 
 ### Balanceo de datos (en caso aplique)
 
