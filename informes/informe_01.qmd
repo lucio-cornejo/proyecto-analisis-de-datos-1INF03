@@ -509,21 +509,31 @@ Regresión Logística| Si | 'max_iter': 200, 'random_state': 0 |
 Random Forest Classifier | Si | 'criterion': 'entropy', 'random_state': 0 |
 Random Forest Classifier | Si |'criterion': 'entropy', 'random_state': 0 |
 
-### Selección del mejor modelo (Evaluación de modelos en diferentes escenarios, comparación de las métricas de ajuste de los modelos al realizar predicciones con datos del test y/o validación) 
+### Selección del mejor modelo 
+
+En indicador **accuracy** indica qué tan bien predice el modelo, el indicador de **sensibilidad** evalúa que tan bien se clasifica a las canciones populares y el indicador de **especificidad** evalúa que tan bien se clasifica a las canciones no populares.
+
+En la siguiente tabla, se observa el resultado de los modelos evaluados en el conjunto de testeo. Se observa que los modelos 4, 8 y 9 registran valores altos en el indicador especificicidad, esto indica que estos modelos clasifican bien en las canciones no pupulares en mas del 90% de casos. Po rlo cual descartamos estos modelos, ya que nuestro objetivo es clasificar canciones populares. De esta forma, consideramos que el modelo que presente un porcentaje más alto en el indicador de **sensibilidad** es el modelo que clasifica mejor las canciones populares. Como se observa, el modelo 5: modelo de regresión logística con balanceo de datos **SMOTE** y **GridSearchCV** es el modelo que presenta un mejor resultado en el indicador de **sensibilidad**, pues clasifica bien a las canciones populares en el 75% de casos.
 
 ```{r}
 #| echo: false
 knitr::include_graphics("comparacion-modelos.png")
 ```
 
+Por otro lado, a continuacion se observa una tabla de resumen de la regresión logistica evaluada sobre el conjunto de testeo. Se observa que existe significancia conjunta y significancia individual en todas las variables individuales. Asimismo, observamos que la variable **danceability** y **loudness** es la variable que impacta de forma altamente positiva sobre la variable dependiente, esto quiere decir que cuanto mas bailable sea la canción, mas popular será. Sin emabrgo, nos parece sospechoso que al variable cantidad de palabras tenga un coefiente muy alto y positivo, pues se esperaría que el cuanto menos palabras tenga la cancion sea mas popular.
+
 ```{r}
 #| echo: false
 knitr::include_graphics("mejor-modelo.jpg")
 ```
 
-### Descripción de la estructura del modelo seleccionado (tipo de modelo y parámetros elegidos) 
+### Descripción de la estructura del modelo seleccionado 
+
+El modelo escogido es entrenado con el algoritmo de regresión logística con el balanceo de datos **SMOTE**, con los siguientes parámetros: max_inter:200, semilla aleatoria, lo cuales fueron elegidos por **GridSearchCV**. Los modelos de regresión logistica tratan de predecir la clasificacion de las categorias de la variable dependiente, en este caso, la variable **popularity**. El cual esa el metodo de estimación de maxima verosimilitud para cacular sus resultados, asi mismo, al ser unre gresion lineal las variables independientes pueden ser intepretads en signos y probabildad. 
 
 ## CAPÍTULO V: CONCLUSIONES 
+
+En conclusion, el modelo de regresión logisitica es el modelo que presenta un mejor resultado en el indicador de **sensibilidad**, pues clasifica bien a las canciones populares en el 75% de casos. Donde se observa que la bailabilidad y **loudness** es la variable que impacta positivamente sobre la popularidad de una canción. No obstante, hay algunas variables que no tienen el signo esperado como la variable cantidad de palabras, pues se esperaría que el cuanto menos palabras tenga la cancion sea mas popular. Definitivamente, el analisis individial de las variables en el modelo e regresión debe ser supervisados por un experto del negocio
 
 ## CAPÍTULO VI: RECOMENDACIONES 
 
