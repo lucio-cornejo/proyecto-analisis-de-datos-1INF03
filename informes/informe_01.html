@@ -154,8 +154,8 @@
 <li><a href="#partición-en-datos-de-train-test-o-train-test-val" class="nav-link" data-scroll-target="#partición-en-datos-de-train-test-o-train-test-val">Partición en datos de train-test (o train-test-val)</a></li>
 <li><a href="#balanceo-de-datos-en-caso-aplique" class="nav-link" data-scroll-target="#balanceo-de-datos-en-caso-aplique">Balanceo de datos (en caso aplique)</a></li>
 <li><a href="#selección-de-parámetros-en-caso-aplique" class="nav-link" data-scroll-target="#selección-de-parámetros-en-caso-aplique">Selección de parámetros (en caso aplique)</a></li>
-<li><a href="#selección-del-mejor-modelo-evaluación-de-modelos-en-diferentes-escenarios-comparación-de-las-métricas-de-ajuste-de-los-modelos-al-realizar-predicciones-con-datos-del-test-yo-validación" class="nav-link" data-scroll-target="#selección-del-mejor-modelo-evaluación-de-modelos-en-diferentes-escenarios-comparación-de-las-métricas-de-ajuste-de-los-modelos-al-realizar-predicciones-con-datos-del-test-yo-validación">Selección del mejor modelo (Evaluación de modelos en diferentes escenarios, comparación de las métricas de ajuste de los modelos al realizar predicciones con datos del test y/o validación)</a></li>
-<li><a href="#descripción-de-la-estructura-del-modelo-seleccionado-tipo-de-modelo-y-parámetros-elegidos" class="nav-link" data-scroll-target="#descripción-de-la-estructura-del-modelo-seleccionado-tipo-de-modelo-y-parámetros-elegidos">Descripción de la estructura del modelo seleccionado (tipo de modelo y parámetros elegidos)</a></li>
+<li><a href="#selección-del-mejor-modelo" class="nav-link" data-scroll-target="#selección-del-mejor-modelo">Selección del mejor modelo</a></li>
+<li><a href="#descripción-de-la-estructura-del-modelo-seleccionado" class="nav-link" data-scroll-target="#descripción-de-la-estructura-del-modelo-seleccionado">Descripción de la estructura del modelo seleccionado</a></li>
 </ul></li>
 <li><a href="#capítulo-v-conclusiones" class="nav-link" data-scroll-target="#capítulo-v-conclusiones">CAPÍTULO V: CONCLUSIONES</a></li>
 <li><a href="#capítulo-vi-recomendaciones" class="nav-link" data-scroll-target="#capítulo-vi-recomendaciones">CAPÍTULO VI: RECOMENDACIONES</a></li>
@@ -260,8 +260,8 @@
 <div class="sourceCode" id="cb2"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabla de descripción básica de las variables numéricas</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(py<span class="sc">$</span>temp_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="htmlwidget-b7cd2e0d0a07a393a4fb" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-b7cd2e0d0a07a393a4fb">{"x":{"filter":"none","vertical":false,"data":[["count","mean","std","min","25%","50%","75%","max"],[586672,27.5700527722475,18.370642366209,0,13,27,41,100],[586672,5.32280698355454,0.183275404770882,3.52426639863971,5.24326878635855,5.33222227088196,5.42138508108894,6.74983042834497],[586672,0.563593818010745,0.166102654293322,0,0.453,0.577,0.686,0.991],[586672,0.542035991911664,0.251922940900002,0,0.343,0.549,0.748,1],[586672,-10.2060668090517,5.08932790166316,-60,-12.891,-9.243,-6.482,5.376],[586672,-1.21343004641569,0.367156684679978,-3,-1.45593195564972,-1.34390179798717,-1.11182050608168,-0.0123337350737254],[586672,0.44986272444746,0.348836700093673,0,0.0969,0.422,0.785,0.996],[586672,-2.34241848622654,1.04710186219699,-3,-3,-2.98948803726279,-1.97674754036629,0.0004340774793185],[586672,0.213935016874847,0.184325598134415,0,0.0983,0.139,0.278,1],[586672,0.552292473080529,0.257670937011182,0,0.346,0.564,0.769,1],[586672,118.464856626872,29.7641077013351,0,95.6,117.384,136.321,246.381]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>popularity<\/th>\n      <th>duration_ms<\/th>\n      <th>danceability<\/th>\n      <th>energy<\/th>\n      <th>loudness<\/th>\n      <th>speechiness<\/th>\n      <th>acousticness<\/th>\n      <th>instrumentalness<\/th>\n      <th>liveness<\/th>\n      <th>valence<\/th>\n      <th>tempo<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10,11]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-a1d9bc3823fc65e2bc39" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a1d9bc3823fc65e2bc39">{"x":{"filter":"none","vertical":false,"data":[["count","mean","std","min","25%","50%","75%","max"],[586672,27.5700527722475,18.370642366209,0,13,27,41,100],[586672,5.32280698355454,0.183275404770882,3.52426639863971,5.24326878635855,5.33222227088196,5.42138508108894,6.74983042834497],[586672,0.563593818010745,0.166102654293322,0,0.453,0.577,0.686,0.991],[586672,0.542035991911664,0.251922940900002,0,0.343,0.549,0.748,1],[586672,-10.2060668090517,5.08932790166316,-60,-12.891,-9.243,-6.482,5.376],[586672,-1.21343004641569,0.367156684679978,-3,-1.45593195564972,-1.34390179798717,-1.11182050608168,-0.0123337350737254],[586672,0.44986272444746,0.348836700093673,0,0.0969,0.422,0.785,0.996],[586672,-2.34241848622654,1.04710186219699,-3,-3,-2.98948803726279,-1.97674754036629,0.0004340774793185],[586672,0.213935016874847,0.184325598134415,0,0.0983,0.139,0.278,1],[586672,0.552292473080529,0.257670937011182,0,0.346,0.564,0.769,1],[586672,118.464856626872,29.7641077013351,0,95.6,117.384,136.321,246.381]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>popularity<\/th>\n      <th>duration_ms<\/th>\n      <th>danceability<\/th>\n      <th>energy<\/th>\n      <th>loudness<\/th>\n      <th>speechiness<\/th>\n      <th>acousticness<\/th>\n      <th>instrumentalness<\/th>\n      <th>liveness<\/th>\n      <th>valence<\/th>\n      <th>tempo<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10,11]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div class="cell">
@@ -414,7 +414,12 @@
 <p>En ese capitulo se detalla el proceso de preprocesamiento de los datos. Donde, la variable popularity es la variable dependiente del estudio por lo cual esta variable no debe pasar por ningún tratamiento de outliers y/o vacíos.</p>
 <section id="selección-de-registros-y-atributos" class="level3">
 <h3 class="anchored" data-anchor-id="selección-de-registros-y-atributos">Selección de registros y atributos</h3>
-<p>Excluimos la variables “artist”, pues esta no aporta información para la predicción de popularidad de canciones. No excluimos registros.</p>
+<p>Excluimos la variables “artist”, pues esta no aporta información para la predicción de popularidad de canciones. No excluimos registros. ### Descripción de las variables categóricas Hacemos una descripción grafica del comportamiento de las variables categóricas las cuales son: <strong>release_date</strong>, <strong>key</strong>, <strong>mode</strong> y <strong>time_signature</strong>.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="informe_01_files/figure-html/unnamed-chunk-30-21.png" class="img-fluid" width="672"></p>
+</div>
+</div>
 </section>
 <section id="transformación-previa-a-la-imputación" class="level3">
 <h3 class="anchored" data-anchor-id="transformación-previa-a-la-imputación">Transformación previa a la imputación</h3>
@@ -479,6 +484,119 @@
 </section>
 <section id="descripción-de-variables-listas-para-el-modelamiento" class="level3">
 <h3 class="anchored" data-anchor-id="descripción-de-variables-listas-para-el-modelamiento">Descripción de variables listas para el modelamiento</h3>
+<p>Variables utilizadas en el análisis estadístico:</p>
+<table class="table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">variable</th>
+<th style="text-align: center;">clasificación</th>
+<th style="text-align: center;">detalle</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">duration_ms</td>
+<td style="text-align: center;">numérica</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">explicit</td>
+<td style="text-align: center;">numérica</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">release_trim</td>
+<td style="text-align: center;">categórica</td>
+<td style="text-align: center;">Trimestre del año en que fue lanzada la canción.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">release_day</td>
+<td style="text-align: center;">categórica</td>
+<td style="text-align: center;">Día del año en que fue lanzada la canción.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">release_month</td>
+<td style="text-align: center;">categórica</td>
+<td style="text-align: center;">Mes del año en que fue lanzada la canción.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">words_name</td>
+<td style="text-align: center;">categórica</td>
+<td style="text-align: center;">Número de palabras que tiene el nombre de la canción.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Name_Length</td>
+<td style="text-align: center;">categórica</td>
+<td style="text-align: center;">Cantidad de carácteres que tiene el nombre de la canción.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">time_signature</td>
+<td style="text-align: center;">categórica</td>
+<td style="text-align: center;">0 si hay de 0 a 3 pulsos en cada compás y 1 cuando existe más de 3 pulsos.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">mode</td>
+<td style="text-align: center;">categórica</td>
+<td style="text-align: center;">Indica la modalidad (1) o menor (0) de una pista.</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">tempo</td>
+<td style="text-align: center;">numérica</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">danceability</td>
+<td style="text-align: center;">numérica</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">valence</td>
+<td style="text-align: center;">numérica</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">liveness</td>
+<td style="text-align: center;">numérica</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">instrumentalness</td>
+<td style="text-align: center;">numérica</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">acousticness</td>
+<td style="text-align: center;">numérica</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">speechiness</td>
+<td style="text-align: center;">numérica</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">loudness</td>
+<td style="text-align: center;">numérica</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">energy</td>
+<td style="text-align: center;">numérica</td>
+<td style="text-align: center;">-</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">list_key</td>
+<td style="text-align: center;">categórica</td>
+<td style="text-align: center;">List key agrupa los centros tonales de las canciones, donde 0 representa el centro tonal C(Do), 1 representa Re, 2 representa Mi y finalmente 3 representa Fa.</td>
+</tr>
+</tbody>
+</table>
+<p>Con las variables listas para modelar hacemos un análisis descriptivo de las variables numéricas.</p>
 <table class="table">
 <colgroup>
 <col style="width: 11%">
@@ -655,26 +773,98 @@
 </section>
 <section id="selección-de-parámetros-en-caso-aplique" class="level3">
 <h3 class="anchored" data-anchor-id="selección-de-parámetros-en-caso-aplique">Selección de parámetros (en caso aplique)</h3>
+<p>La elección de los parametros fue de dos formas, en primer lugar, en el primer y cuarto modelo de estableció lo parametros, pero en el caso de los demás modelos se utilizó <strong>GridSearchCV</strong>, el cual es un algortimo que ayuda a elegir los hiperparámetro óptimos para un modelo, en el caso de los árboles de clasificación y bosque aleatorio, este nos ayuda a poder las ramas de los árboles para que estos no sean tan profundos. A continuación, se incluye una tabla resumen de los parametros que finalmente se usaron en los modelos. Es importante notar, que el algoritmo de optimización de parametros recomienda usar el indicador de entropia para la partición de los nodos, en caso de que el modelo sea un árbol de clasificación.</p>
+<table class="table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Modelos</th>
+<th style="text-align: center;">Grid Search</th>
+<th style="text-align: center;">Hiperparámetros</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Árbol de clasificación CART</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">semilla aleatoria, índice de Gini</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Árbol de clasificación CART</td>
+<td style="text-align: center;">Si</td>
+<td style="text-align: center;">semilla aleatoria, índice de Gini</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Árbol de clasificación CART</td>
+<td style="text-align: center;">Si</td>
+<td style="text-align: center;">semilla aleatoria, índice de entropia, splitter: best</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Regresión Logística</td>
+<td style="text-align: center;">No</td>
+<td style="text-align: center;">max_inter:200, semilla aleatoria</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Regresión Logística</td>
+<td style="text-align: center;">Si</td>
+<td style="text-align: center;">max_inter:200, semilla aleatoria</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Árbol de clasificación CART</td>
+<td style="text-align: center;">Si</td>
+<td style="text-align: center;">semilla aleatoria, índice de Gini</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Árbol de clasificación CART</td>
+<td style="text-align: center;">Si</td>
+<td style="text-align: center;">‘criterion’: ‘entropy’, ‘random_state’: 0, ‘splitter’: ‘best’</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Regresión Logística</td>
+<td style="text-align: center;">Si</td>
+<td style="text-align: center;">‘max_iter’: 200, ‘random_state’: 0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Random Forest Classifier</td>
+<td style="text-align: center;">Si</td>
+<td style="text-align: center;">‘criterion’: ‘entropy’, ‘random_state’: 0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Random Forest Classifier</td>
+<td style="text-align: center;">Si</td>
+<td style="text-align: center;">‘criterion’: ‘entropy’, ‘random_state’: 0</td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="selección-del-mejor-modelo-evaluación-de-modelos-en-diferentes-escenarios-comparación-de-las-métricas-de-ajuste-de-los-modelos-al-realizar-predicciones-con-datos-del-test-yo-validación" class="level3">
-<h3 class="anchored" data-anchor-id="selección-del-mejor-modelo-evaluación-de-modelos-en-diferentes-escenarios-comparación-de-las-métricas-de-ajuste-de-los-modelos-al-realizar-predicciones-con-datos-del-test-yo-validación">Selección del mejor modelo (Evaluación de modelos en diferentes escenarios, comparación de las métricas de ajuste de los modelos al realizar predicciones con datos del test y/o validación)</h3>
+<section id="selección-del-mejor-modelo" class="level3">
+<h3 class="anchored" data-anchor-id="selección-del-mejor-modelo">Selección del mejor modelo</h3>
+<p>En indicador <strong>accuracy</strong> indica qué tan bien predice el modelo, el indicador de <strong>sensibilidad</strong> evalúa que tan bien se clasifica a las canciones populares y el indicador de <strong>especificidad</strong> evalúa que tan bien se clasifica a las canciones no populares.</p>
+<p>En la siguiente tabla, se observa el resultado de los modelos evaluados en el conjunto de testeo. Se observa que los modelos 4, 8 y 9 registran valores altos en el indicador especificicidad, esto indica que estos modelos clasifican bien en las canciones no pupulares en mas del 90% de casos. Po rlo cual descartamos estos modelos, ya que nuestro objetivo es clasificar canciones populares. De esta forma, consideramos que el modelo que presente un porcentaje más alto en el indicador de <strong>sensibilidad</strong> es el modelo que clasifica mejor las canciones populares. Como se observa, el modelo 5: modelo de regresión logística con balanceo de datos <strong>SMOTE</strong> y <strong>GridSearchCV</strong> es el modelo que presenta un mejor resultado en el indicador de <strong>sensibilidad</strong>, pues clasifica bien a las canciones populares en el 75% de casos.</p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="comparacion-modelos.png" class="img-fluid" width="632"></p>
 </div>
 </div>
+<p>Por otro lado, a continuacion se observa una tabla de resumen de la regresión logistica evaluada sobre el conjunto de testeo. Se observa que existe significancia conjunta y significancia individual en todas las variables individuales. Asimismo, observamos que la variable <strong>danceability</strong> y <strong>loudness</strong> es la variable que impacta de forma altamente positiva sobre la variable dependiente, esto quiere decir que cuanto mas bailable sea la canción, mas popular será. Sin emabrgo, nos parece sospechoso que al variable cantidad de palabras tenga un coefiente muy alto y positivo, pues se esperaría que el cuanto menos palabras tenga la cancion sea mas popular.</p>
 <div class="cell">
 <div class="cell-output-display">
 <p><img src="mejor-modelo.jpg" class="img-fluid"></p>
 </div>
 </div>
 </section>
-<section id="descripción-de-la-estructura-del-modelo-seleccionado-tipo-de-modelo-y-parámetros-elegidos" class="level3">
-<h3 class="anchored" data-anchor-id="descripción-de-la-estructura-del-modelo-seleccionado-tipo-de-modelo-y-parámetros-elegidos">Descripción de la estructura del modelo seleccionado (tipo de modelo y parámetros elegidos)</h3>
+<section id="descripción-de-la-estructura-del-modelo-seleccionado" class="level3">
+<h3 class="anchored" data-anchor-id="descripción-de-la-estructura-del-modelo-seleccionado">Descripción de la estructura del modelo seleccionado</h3>
+<p>El modelo escogido es entrenado con el algoritmo de regresión logística con el balanceo de datos <strong>SMOTE</strong>, con los siguientes parámetros: max_inter:200, semilla aleatoria, lo cuales fueron elegidos por <strong>GridSearchCV</strong>. Los modelos de regresión logistica tratan de predecir la clasificacion de las categorias de la variable dependiente, en este caso, la variable <strong>popularity</strong>. El cual esa el metodo de estimación de maxima verosimilitud para cacular sus resultados, asi mismo, al ser unre gresion lineal las variables independientes pueden ser intepretads en signos y probabildad.</p>
 </section>
 </section>
 <section id="capítulo-v-conclusiones" class="level2">
 <h2 class="anchored" data-anchor-id="capítulo-v-conclusiones">CAPÍTULO V: CONCLUSIONES</h2>
+<p>En conclusión, el modelo de regresión logítica es el modelo que presenta un mejor resultado en el indicador de <strong>sensibilidad</strong>, pues clasifica bien a las canciones populares en el 75% de casos, donde se observa que la bailabilidad y <strong>loudness</strong> es la variable que impacta positivamente sobre la popularidad de una canción. No obstante, hay algunas variables que no tienen el signo esperado, como la variable cantidad de palabras, pues se esperaría que el cuanto menos palabras tenga, la canción sea más popular. Definitivamente, el análisis individial de las variables en el modelo de regresión debe ser supervisado por un experto del negocio.</p>
 </section>
 <section id="capítulo-vi-recomendaciones" class="level2">
 <h2 class="anchored" data-anchor-id="capítulo-vi-recomendaciones">CAPÍTULO VI: RECOMENDACIONES</h2>

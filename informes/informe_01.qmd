@@ -9,6 +9,7 @@ format:
   #   number-section: true
   #   highlight-style: dracula
   html:
+    # self-contained: true
     toc: true
     toc-depth: 4
     toc-title: Tabla de contenido
@@ -316,18 +317,15 @@ Hacemos una descripción grafica del comportamiento de las variables categórica
 #| warning: false
 #| message: false
 
-import pandas as pd
 import matplotlib.pyplot as plt
 
-dfcat = pd.read_csv("E:\Documentos\Github\proyecto-analisis-de-datos-1INF03\datos\dfcat.csv")
-
 for columna in ["explicit", "key", "mode", "time_signature"]:
-  (100 * dfcat[columna].value_counts() / len(dfcat[columna])).plot(
+  (100 * dfcat_pre_trans[columna].value_counts() / len(dfcat_pre_trans[columna])).plot(
     kind = "bar",
     title = f"Porcentajes respecto a {columna}", 
     rot = 0
   )
-  plt.show()
+plt.show()
 ```
 
 ### Transformación previa a la imputación
@@ -533,7 +531,7 @@ El modelo escogido es entrenado con el algoritmo de regresión logística con el
 
 ## CAPÍTULO V: CONCLUSIONES 
 
-En conclusion, el modelo de regresión logisitica es el modelo que presenta un mejor resultado en el indicador de **sensibilidad**, pues clasifica bien a las canciones populares en el 75% de casos. Donde se observa que la bailabilidad y **loudness** es la variable que impacta positivamente sobre la popularidad de una canción. No obstante, hay algunas variables que no tienen el signo esperado como la variable cantidad de palabras, pues se esperaría que el cuanto menos palabras tenga la cancion sea mas popular. Definitivamente, el analisis individial de las variables en el modelo e regresión debe ser supervisados por un experto del negocio
+En conclusión, el modelo de regresión logítica es el modelo que presenta un mejor resultado en el indicador de **sensibilidad**, pues clasifica bien a las canciones populares en el 75% de casos, donde se observa que la bailabilidad y **loudness** es la variable que impacta positivamente sobre la popularidad de una canción. No obstante, hay algunas variables que no tienen el signo esperado, como la variable cantidad de palabras, pues se esperaría que el cuanto menos palabras tenga, la canción sea más popular. Definitivamente, el análisis individial de las variables en el modelo de regresión debe ser supervisado por un experto del negocio.
 
 ## CAPÍTULO VI: RECOMENDACIONES 
 

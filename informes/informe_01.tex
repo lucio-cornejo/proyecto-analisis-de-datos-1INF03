@@ -353,76 +353,21 @@ Por otro lado, la muestra contiene las siguientes columnas:
 \begin{Shaded}
 \begin{Highlighting}[]
 \CommentTok{\# Tabla de descripción básica de las variables numéricas}
-\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(py}\SpecialCharTok{$}\NormalTok{temp\_df)}
+\NormalTok{DT}\SpecialCharTok{::}\FunctionTok{datatable}\NormalTok{(py}\SpecialCharTok{$}\NormalTok{temp\_df)}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.0387}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.0839}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.0839}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.0839}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.0839}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.0903}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.0903}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.0839}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.1097}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.0839}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.0839}}
-  >{\raggedleft\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.0839}}@{}}
-\toprule
-\begin{minipage}[b]{\linewidth}\raggedright
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-popularity
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-duration\_ms
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-danceability
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-energy
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-loudness
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-speechiness
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-acousticness
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-instrumentalness
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-liveness
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-valence
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
-tempo
-\end{minipage} \\
-\midrule
-\endhead
-count & 586672.00000 & 5.866720e+05 & 5.866720e+05 & 5.866720e+05 &
-586672.000000 & 5.866720e+05 & 5.866720e+05 & 5.866720e+05 &
-5.866720e+05 & 5.866720e+05 & 586672.00000 \\
-mean & 27.57005 & 5.322807e+00 & 5.635938e-01 & 5.420360e-01 &
--10.206067 & -1.213430e+00 & 4.498627e-01 & -2.342418e+00 & 2.139350e-01
-& 5.522925e-01 & 118.46486 \\
-std & 18.37064 & 1.832754e-01 & 1.661027e-01 & 2.519229e-01 & 5.089328 &
-3.671567e-01 & 3.488367e-01 & 1.047102e+00 & 1.843256e-01 & 2.576709e-01
-& 29.76411 \\
-min & 0.00000 & 3.524266e+00 & 0.000000e+00 & 0.000000e+00 & -60.000000
-& -3.000000e+00 & 0.000000e+00 & -3.000000e+00 & 0.000000e+00 &
-0.000000e+00 & 0.00000 \\
-25\% & 13.00000 & 5.243269e+00 & 4.530000e-01 & 3.430000e-01 &
--12.891000 & -1.455932e+00 & 9.690000e-02 & -3.000000e+00 & 9.830000e-02
-& 3.460000e-01 & 95.60000 \\
-50\% & 27.00000 & 5.332222e+00 & 5.770000e-01 & 5.490000e-01 & -9.243000
-& -1.343902e+00 & 4.220000e-01 & -2.989488e+00 & 1.390000e-01 &
-5.640000e-01 & 117.38400 \\
-75\% & 41.00000 & 5.421385e+00 & 6.860000e-01 & 7.480000e-01 & -6.482000
-& -1.111821e+00 & 7.850000e-01 & -1.976748e+00 & 2.780000e-01 &
-7.690000e-01 & 136.32100 \\
-max & 100.00000 & 6.749830e+00 & 9.910000e-01 & 1.000000e+00 & 5.376000
-& -1.233370e-02 & 9.960000e-01 & 4.341000e-04 & 1.000000e+00 &
-1.000000e+00 & 246.38100 \\
-\bottomrule
-\end{longtable}
+\begin{figure}[H]
+
+{\centering \includegraphics{informe_01_files/figure-pdf/unnamed-chunk-6-1.pdf}
+
+}
+
+\end{figure}
+
+A continuación, graficamos la densidad de las variables numéricas,
+además de rectas verticales para representar la media (rojo), mediana
+(verde), cuartiles 1 y 3 (negro); y los whiskers definidos, en amarillo.
 
 \hypertarget{loudness}{%
 \paragraph{Loudness}\label{loudness}}
@@ -432,6 +377,13 @@ sonoridad se promedian en toda la pista y son útiles para comparar la
 sonoridad relativa de las pistas. La sonoridad es la cualidad de un
 sonido que es el principal correlato psicológico de la fuerza física
 (amplitud). Los valores suelen oscilar entre -60 y 0 db.
+
+\begin{verbatim}
+C:\Python39\lib\site-packages\seaborn\distributions.py:2619: FutureWarning: `distplot` is a deprecated function and will be removed in a future version. Please adapt your code to use either `displot` (a figure-level function with similar flexibility) or `histplot` (an axes-level function for histograms).
+  warnings.warn(msg, FutureWarning)
+\end{verbatim}
+
+\includegraphics{informe_01_files/figure-pdf/unnamed-chunk-10-1.pdf}
 
 \hypertarget{instrumentalness}{%
 \paragraph{Instrumentalness}\label{instrumentalness}}
@@ -444,6 +396,13 @@ pista no tenga contenido vocal. Los valores superiores a 0,5 representan
 pistas instrumentales, pero la confianza es mayor a medida que el valor
 se acerca a 1,0.
 
+\begin{verbatim}
+C:\Python39\lib\site-packages\seaborn\distributions.py:2619: FutureWarning: `distplot` is a deprecated function and will be removed in a future version. Please adapt your code to use either `displot` (a figure-level function with similar flexibility) or `histplot` (an axes-level function for histograms).
+  warnings.warn(msg, FutureWarning)
+\end{verbatim}
+
+\includegraphics{informe_01_files/figure-pdf/unnamed-chunk-12-3.pdf}
+
 \hypertarget{liveness}{%
 \paragraph{Liveness}\label{liveness}}
 
@@ -451,6 +410,13 @@ Detecta la presencia de una audiencia en la grabación. Valores más altos
 de liveness representan una probabilidad incrementada de que la pista
 haya sido realizada en vivo. Un valor de 0.8 provee una probabilidad
 fuerte de que la pista sea en vivo.
+
+\begin{verbatim}
+C:\Python39\lib\site-packages\seaborn\distributions.py:2619: FutureWarning: `distplot` is a deprecated function and will be removed in a future version. Please adapt your code to use either `displot` (a figure-level function with similar flexibility) or `histplot` (an axes-level function for histograms).
+  warnings.warn(msg, FutureWarning)
+\end{verbatim}
+
+\includegraphics{informe_01_files/figure-pdf/unnamed-chunk-14-5.pdf}
 
 \hypertarget{valence}{%
 \paragraph{Valence}\label{valence}}
@@ -461,6 +427,13 @@ más positivos (e.g., felices, alegres, eufóricos), mientras que las
 pistas con una baja valence suenan más negativas (e.g., tristes,
 deprimentes, enojadas).
 
+\begin{verbatim}
+C:\Python39\lib\site-packages\seaborn\distributions.py:2619: FutureWarning: `distplot` is a deprecated function and will be removed in a future version. Please adapt your code to use either `displot` (a figure-level function with similar flexibility) or `histplot` (an axes-level function for histograms).
+  warnings.warn(msg, FutureWarning)
+\end{verbatim}
+
+\includegraphics{informe_01_files/figure-pdf/unnamed-chunk-16-7.pdf}
+
 \hypertarget{tempo}{%
 \paragraph{Tempo}\label{tempo}}
 
@@ -468,6 +441,13 @@ Es el tempo general estimado de una pista en beats por minutos (BPM, por
 sus siglas en inglés). En terminología musical, el tempo es la velocidad
 o ritmo de una pieza dada y se deriva directamente de una duración
 promedio de beat.
+
+\begin{verbatim}
+C:\Python39\lib\site-packages\seaborn\distributions.py:2619: FutureWarning: `distplot` is a deprecated function and will be removed in a future version. Please adapt your code to use either `displot` (a figure-level function with similar flexibility) or `histplot` (an axes-level function for histograms).
+  warnings.warn(msg, FutureWarning)
+\end{verbatim}
+
+\includegraphics{informe_01_files/figure-pdf/unnamed-chunk-18-9.pdf}
 
 \hypertarget{duration_ms}{%
 \paragraph{Duration\_ms}\label{duration_ms}}
@@ -479,6 +459,13 @@ reunidos en un punto). No obstante, tal aparente degeneración se explica
 por el hecho de que existe una serie de piezas cuya duración puede ser
 extremadamente larga.
 
+\begin{verbatim}
+C:\Python39\lib\site-packages\seaborn\distributions.py:2619: FutureWarning: `distplot` is a deprecated function and will be removed in a future version. Please adapt your code to use either `displot` (a figure-level function with similar flexibility) or `histplot` (an axes-level function for histograms).
+  warnings.warn(msg, FutureWarning)
+\end{verbatim}
+
+\includegraphics{informe_01_files/figure-pdf/unnamed-chunk-20-11.pdf}
+
 \hypertarget{danceability}{%
 \paragraph{Danceability}\label{danceability}}
 
@@ -487,6 +474,13 @@ basada en una combinación de elementos musicales incluyendo el tempo, la
 estabilidad rítmica (rhythm stability), la fuerza del beat (beat
 strength), y una regularidad general. Un valor de 0.0 es menos danceable
 1.0 es máximamente danceable.
+
+\begin{verbatim}
+C:\Python39\lib\site-packages\seaborn\distributions.py:2619: FutureWarning: `distplot` is a deprecated function and will be removed in a future version. Please adapt your code to use either `displot` (a figure-level function with similar flexibility) or `histplot` (an axes-level function for histograms).
+  warnings.warn(msg, FutureWarning)
+\end{verbatim}
+
+\includegraphics{informe_01_files/figure-pdf/unnamed-chunk-22-13.pdf}
 
 \hypertarget{energy}{%
 \paragraph{Energy}\label{energy}}
@@ -498,6 +492,13 @@ ejemplo, el death metal tiene una alta energía, mientras que el preludio
 de Bach da un puntaje bajo en la escala. Características perceptivas
 contribuyen a este atributo incluyen rango dinámico, el volumen
 percibió, el timbre, el onset rate, y la entropía general.
+
+\begin{verbatim}
+C:\Python39\lib\site-packages\seaborn\distributions.py:2619: FutureWarning: `distplot` is a deprecated function and will be removed in a future version. Please adapt your code to use either `displot` (a figure-level function with similar flexibility) or `histplot` (an axes-level function for histograms).
+  warnings.warn(msg, FutureWarning)
+\end{verbatim}
+
+\includegraphics{informe_01_files/figure-pdf/unnamed-chunk-24-15.pdf}
 
 \hypertarget{speechiness}{%
 \paragraph{Speechiness}\label{speechiness}}
@@ -512,12 +513,26 @@ ya sea en secciones o en capas, incluyendo casos como el rap. Valores
 menores a 0.33 con mayor probabilidad representan múscia y otras piezas
 non-speech-like.
 
+\begin{verbatim}
+C:\Python39\lib\site-packages\seaborn\distributions.py:2619: FutureWarning: `distplot` is a deprecated function and will be removed in a future version. Please adapt your code to use either `displot` (a figure-level function with similar flexibility) or `histplot` (an axes-level function for histograms).
+  warnings.warn(msg, FutureWarning)
+\end{verbatim}
+
+\includegraphics{informe_01_files/figure-pdf/unnamed-chunk-26-17.pdf}
+
 \hypertarget{acousticness}{%
 \paragraph{Acousticness}\label{acousticness}}
 
 Una medida de confianza desde 0.0 hasta 1.0 sobre si la pieza es
 acústica. 1.0 representa alta confianza en que la pieza es acústica
 (\textgreater=0 \textbar{} \textless= 1).
+
+\begin{verbatim}
+C:\Python39\lib\site-packages\seaborn\distributions.py:2619: FutureWarning: `distplot` is a deprecated function and will be removed in a future version. Please adapt your code to use either `displot` (a figure-level function with similar flexibility) or `histplot` (an axes-level function for histograms).
+  warnings.warn(msg, FutureWarning)
+\end{verbatim}
+
+\includegraphics{informe_01_files/figure-pdf/unnamed-chunk-28-19.pdf}
 
 \hypertarget{descripciuxf3n-y-entendimiento-de-variables}{%
 \subsubsection{Descripción y entendimiento de
@@ -547,16 +562,22 @@ aplicación web. Así, encontramos los siguientes patrones en la data:
 DATOS}\label{capuxedtulo-iii-preprocesamiento-de-datos}}
 
 En ese capitulo se detalla el proceso de preprocesamiento de los datos.
-Por otro lado, la variable popularity es la variable dependiente del
-estudio por lo cual esta variable no debe pasar por ningún tratamiento
-de outliers y/o vacíos.
+Donde, la variable popularity es la variable dependiente del estudio por
+lo cual esta variable no debe pasar por ningún tratamiento de outliers
+y/o vacíos.
 
 \hypertarget{selecciuxf3n-de-registros-y-atributos}{%
 \subsubsection{Selección de registros y
 atributos}\label{selecciuxf3n-de-registros-y-atributos}}
 
 Excluimos la variables ``artist'', pues esta no aporta información para
-la predicción de popularidad de canciones.
+la predicción de popularidad de canciones. No excluimos registros.
+\#\#\# Descripción de las variables categóricas Hacemos una descripción
+grafica del comportamiento de las variables categóricas las cuales son:
+\textbf{release\_date}, \textbf{key}, \textbf{mode} y
+\textbf{time\_signature}.
+
+\includegraphics{informe_01_files/figure-pdf/unnamed-chunk-30-21.pdf}
 
 \hypertarget{transformaciuxf3n-previa-a-la-imputaciuxf3n}{%
 \subsubsection{Transformación previa a la
@@ -582,19 +603,22 @@ los datos atípicos que producirían tales nuevos whiskers representen
 menos del 10\% de la variable; así hicimos, variable por variable
 (numérica).
 
-Después de este paso realizamos graficos de densidad, con esto notamos
-que se hubiera perdido información importante en caso se hubiera usado
-los whisker usuales debido a que estos cortaban en lugares que no
-representaba valores atípicos reales para la distribución que se tiene
-de las variables.
+Después de este paso, realizamos graficos de densidad para conocer las
+distribuciones e identificar los valores ouliers. Los graficos nos
+ayudaron a observar que, se hubiera perdido información importante en
+caso se hubiera usado los whisker usuales ─que se generan asumiendo una
+distribución normal─ debido a que estos cortaban en lugares que no
+representaban valores atípicos reales para las distribuciones que tienen
+las variables.
 
-El siguiente paso es realizar la imputación de variables, para esto
-primero se intentó imputar la mediana a los valores atípicos pero al
-analizar las variables descubrimos que la distribución había cambiado;
-por lo tanto, quedó descartado este método. Luego, se eligió imputar
-mediante el algoritmo de KNNimputer el cual se considera un método
-robusto para imputar valores faltantes debido a que usa inforación de
-los k-vecinos más cercanos para hallar el dato faltante.
+El siguiente paso es realizar la imputación de variables, para esto,
+primero se intentó imputar la mediana a los valores atípicos, pero al
+analizar las variables descubrimos que, las distribuciones de las
+variables imputadas cambiaban notablemente; por lo tanto, este método
+inicial quedó descartado. Luego, se eligió imputar mediante el algoritmo
+de KNNimputer el cual se considera un método robusto para imputar
+valores faltantes debido a que usa inforación de los k-vecinos más
+cercanos para hallar el dato faltante.
 
 Como primer paso para usar este método se tuvo que reemplazar todos los
 valores atípicos con vacios, posteriormente se eligieron los parámetros
@@ -604,11 +628,11 @@ número de muestras vecinas a utilizar para la imputación - weights:
 metric: nan\_euclidean, se utilizó la distancia euclidiana
 
 Se intentó usar el algoritmo para todas las columnas numéricas a la vez,
-pero este demoraba demasiado en terminar la ejecución debido a la
-cantidad de datos, por eso, decidimos hacerlo agregando solo una columna
-con datos por imputar a la vez. Cuando finalizó todo este proceso
-comprobamos que nuestra data no contenía vacios, indicador de que
-funcionó correctamente el algoritmo.
+pero este tomaba mucho tiempo en su ejecución debido a la cantidad de
+datos, por eso, decidimos imputar las valores atípicos agregando solo
+una columna con datos por imputar a la vez. Cuando finalizó todo este
+proceso comprobamos que nuestra data no contenía vacios, indicador de
+que funcionó correctamente el algoritmo.
 
 Para considerar que esta imputación fue la adecuada usamos dos métodos.
 Primero el test Kolmogorov-Smirnov que sirve para comparar la
@@ -634,11 +658,11 @@ información que la columna \textbf{names} y que no presenta vacíos.
 \subsubsection{Creación y transformación de
 variables}\label{creaciuxf3n-y-transformaciuxf3n-de-variables}}
 
-Inicialmente la base de datos con la que contábamos tenía una reducida
-cantidad de columnas, de las cuales algunas no aportaban con información
-relevante para el objetivo del negocio. En ese sentido, transformamos
-las variables name, time\_signature y realice\_data. De las cuales
-obtenemos información que podrán servir para la predicción.
+Debido a que inicialmente la base de datos con la que contábamos tenía
+una reducida cantidad de columnas, de las cuales algunas no aportaban
+con información relevante para el objetivo del negocio. En ese sentido,
+transformamos las variables name, time\_signature y realice\_data. De
+las cuales obtenemos información que podrán servir para la predicción.
 
 \hypertarget{name}{%
 \paragraph{Name}\label{name}}
@@ -660,8 +684,8 @@ Es importante recordar, que luego de generar ambas variables, se tiene
 que eliminar la variable ``name'' para no caer en el problema de
 multicolinealidad.
 
-\hypertarget{realease-date}{%
-\paragraph{Realease date}\label{realease-date}}
+\hypertarget{release-date}{%
+\paragraph{Release date}\label{release-date}}
 
 Indica la fecha del lanzamiento de la canción incluyendo el año, mes y
 día. Apartir de esat variable se crearon cuatro variables:
@@ -680,8 +704,8 @@ día. Apartir de esat variable se crearon cuatro variables:
 
 Posteriormente, eliminamos la variable realise date.
 
-\hypertarget{time_signature}{%
-\paragraph{time\_signature}\label{time_signature}}
+\hypertarget{time-signature}{%
+\paragraph{Time signature}\label{time-signature}}
 
 Esta variable \textbf{ordinal} contiene la cantidad de pulsos en un
 compás, para cada canción. Esta variable toma valores de 3 a 7, así que
@@ -694,7 +718,7 @@ que existen actualmente en el mundo poseen un valor de 4 en
 \textbf{time\_signature}.
 
 \hypertarget{popularity}{%
-\paragraph{popularity}\label{popularity}}
+\paragraph{Popularity}\label{popularity}}
 
 Para clasificar a las canciones en las categorías \textbf{popular} y
 \textbf{no popular}, se escogió el valor 40 como punto de corte.
@@ -703,13 +727,165 @@ Es decir, canciones con un valor de popularidad menor a 40 se asignaron
 a 0 (no populares); caso contrario, tales canciones se asignan a 1
 (populares).
 
+\hypertarget{key}{%
+\paragraph{Key}\label{key}}
+
+La variable key representa el centro tonal de la canción, habiéndose así
+12 opciones para casi todas las canciones que existen actualmente: 0, 1,
+\ldots, 10, 11 .
+
+Como el \textbf{círculo de quintas} es un concepto musical empleado en
+casi todas las canciones existentes, agruparemos en 4 categorías, a los
+valores de key, agrupándolos de 7 en 7, ya que esto representa centros
+tonales lo más cercanos posibles en el círculo de quintas.
+
+Como el valor 0 de \textbf{key} representa al centro tonal C (Do), el
+caso más popular entre todas las canciones del planeta, agruparemos a
+los valores de \textbf{key} vía las siguientes categorías:
+
+{[}5, 0, 7{]} =\textgreater{} 0
+
+{[}8, 3, 10{]} =\textgreater{} 1
+
+{[}11, 6, 1{]} =\textgreater{} 2
+
+{[}2, 9, 4{]} =\textgreater{} 3
+
 \hypertarget{descripciuxf3n-de-variables-listas-para-el-modelamiento}{%
 \subsubsection{Descripción de variables listas para el
 modelamiento}\label{descripciuxf3n-de-variables-listas-para-el-modelamiento}}
 
+Variables utilizadas en el análisis estadístico:
+
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule
+\begin{minipage}[b]{\linewidth}\centering
+variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+clasificación
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+detalle
+\end{minipage} \\
+\midrule
+\endhead
+duration\_ms & numérica & - \\
+explicit & numérica & - \\
+release\_trim & categórica & Trimestre del año en que fue lanzada la
+canción. \\
+release\_day & categórica & Día del año en que fue lanzada la
+canción. \\
+release\_month & categórica & Mes del año en que fue lanzada la
+canción. \\
+words\_name & categórica & Número de palabras que tiene el nombre de la
+canción. \\
+Name\_Length & categórica & Cantidad de carácteres que tiene el nombre
+de la canción. \\
+time\_signature & categórica & 0 si hay de 0 a 3 pulsos en cada compás y
+1 cuando existe más de 3 pulsos. \\
+mode & categórica & Indica la modalidad (1) o menor (0) de una pista. \\
+tempo & numérica & - \\
+danceability & numérica & - \\
+valence & numérica & - \\
+liveness & numérica & - \\
+instrumentalness & numérica & - \\
+acousticness & numérica & - \\
+speechiness & numérica & - \\
+loudness & numérica & - \\
+energy & numérica & - \\
+list\_key & categórica & List key agrupa los centros tonales de las
+canciones, donde 0 representa el centro tonal C(Do), 1 representa Re, 2
+representa Mi y finalmente 3 representa Fa. \\
+\bottomrule
+\end{longtable}
+
+Con las variables listas para modelar hacemos un análisis descriptivo de
+las variables numéricas.
+
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.1111}}
+  >{\centering\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.1111}}
+  >{\centering\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.1111}}
+  >{\centering\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.1111}}
+  >{\centering\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.1111}}
+  >{\centering\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.1111}}
+  >{\centering\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.1111}}
+  >{\centering\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.1111}}
+  >{\centering\arraybackslash}p{(\columnwidth - 16\tabcolsep) * \real{0.1111}}@{}}
+\toprule
+\begin{minipage}[b]{\linewidth}\centering
+variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+count
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+mean
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+std
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+min
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0.25
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0.5
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+0.75
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+max
+\end{minipage} \\
+\midrule
+\endhead
+popularity & 586672 & 27.570053 & 18.370642 & 0 & 13 & 27 & 41 & 100 \\
+duration\_ms & 580069 & 5.323873 & 0.165679 & 4.700011 & 5.245019 &
+5.332467 & 5.420505 & 5.899967 \\
+danceability & 586343 & 0.563908 & 0.165612 & 0.0532 & 0.453 & 0.577 &
+0.686 & 0.988 \\
+energy & 586672 & 0.542036 & 0.251923 & 0 & 0.343 & 0.549 & 0.748 & 1 \\
+loudness & 584103 & -10.114038 & 4.855248 & -29.999 & -12.838 & -9.22 &
+-6.474 & -0.004 \\
+speechiness & 563644 & -1.259542 & 0.284709 & -1.645892 & -1.459671 &
+-1.354578 & -1.154282 & -0.185087 \\
+acousticness & 586672 & 0.449863 & 0.348837 & 0 & 0.0969 & 0.422 & 0.785
+& 0.996 \\
+instrumentalness & 562639 & -2.441072 & 0.951667 & -3 & -3 & -2.993235 &
+-2.295849 & -0.050122 \\
+liveness & 563897 & 0.188345 & 0.134634 & 0 & 0.0969 & 0.134 & 0.253 &
+0.7 \\
+valence & 586672 & 0.552292 & 0.257671 & 0 & 0.346 & 0.564 & 0.769 &
+1 \\
+tempo & 585134 & 118.585417 & 29.438423 & 50.002 & 95.757 & 117.4715 &
+136.33 & 210 \\
+\bottomrule
+\end{longtable}
+
 \hypertarget{capuxedtulo-iv-desarrollo-del-modelo}{%
 \subsection{CAPÍTULO IV: DESARROLLO DEL
 MODELO}\label{capuxedtulo-iv-desarrollo-del-modelo}}
+
+Escogemos la gama de modelos de clasificación para cumplir con el
+objetivo del proyecto. En el presente trabajo trabajamos con tres
+modelos teóricos:
+
+\begin{itemize}
+\tightlist
+\item
+  Árbol de clasificación CART
+\item
+  Regresión logística
+\item
+  Random Forest Classifier
+\end{itemize}
+
+Sin emabargo, hacemos combinaciones de estos tres modelos con los tipos
+de balanceo (undersample y oversample)y grid search, de forma que
+finalmente evaluamos 10 modelos de clasificación.
+
+Por otro lado, luego de pre procesar los datos decidimos eliminar la
+variable ``year\_release, pues no es de utilidad como variable
+predictora porque el modelo se usará en el futuro para classificar
+canciones del 2022, en adelante. De esa forma, los nuevos años que se
+integren a la data podrían ser considerados como valores atípicos.
 
 \hypertarget{anuxe1lisis-de-correlaciuxf3n-entre-variables}{%
 \subsubsection{Análisis de correlación entre
@@ -725,47 +901,156 @@ alta.
 \subsubsection{Partición en datos de train-test (o
 train-test-val)}\label{particiuxf3n-en-datos-de-train-test-o-train-test-val}}
 
-Nuestro dataset, que cuenta con 586672 registros, será dividido en
-grupos aleatorios más pequeños para que estos puedan ser utilizados
-posteriormente por los conjuntos de entrenamiento(train), testeo(test) y
-validación(val). Para esta partición de datos utilizamos el algoritmo de
-train\_test\_split e indicamos que la partición se haga por la cuarta
-parte de la cantidad de registros original.
+Nuestro dataset, fue dividido en grupos aleatorios más pequeños para que
+estos puedan ser utilizados posteriormente por los conjuntos de
+entrenamiento(train), testeo(test) y validación(val).Para esta partición
+de datos utilizamos el algoritmo de train\_test\_split e indicamos que
+la partición se haga por la cuarta parte de la cantidad de registros
+original. De esta forma, el grupo de entrenamiento representó el 75\% de
+la data y el conjunto de testeo representó el 25\% de la data.
 
 \hypertarget{balanceo-de-datos-en-caso-aplique}{%
 \subsubsection{Balanceo de datos (en caso
 aplique)}\label{balanceo-de-datos-en-caso-aplique}}
 
-Para el balanceo de datos, decidimos utilizar el agoritmo SMOTE el cual
-en este caso es un algoritmo para oversampling que busca puntos vecinos
-cercanos y agrega puntos ``en linea recta'' entre ellos. Al hacer un
-conteo de las canciones que eran consideradas populares(1) y la que no
-eran consideras ``populares(0)'', obtuvimos que el 73\% de las canciones
-en los registros eran ``no populares'' lo cual podría influenciar en los
-resultados que muestren nuestros modelos analíticos. Antes de realizar
-el balanceo verificamos también si los registros contaban con vacíos, al
-no ser el caso se procedió a crear dos nuevos conjuntos de datos
-``x\_train\_smote'' y ``y\_train\_smote'' que serían utilizados
-posteriormente para probar modelos con estos conjuntos que tienen los
-datos balanceados.
+Popularidad es la variable dependiente de nuestro interes, la cual,
+luego de una transformación de variable, adquirió solo dos valores: 0 y
+1. 0 en caso la canción no sea popular, y 1 en caso contrario.
+Observamos que el 73\% de los valores son 0 ─no populares─ y el 27\% de
+los valores son 1 ─populares─, lo cual podría influenciar en los
+resultados que muestren nuestros modelos analíticos. En este escenario,
+concluimos que era necesario realizar balanceo de datos.
+
+Para el balanceo de datos, decidimos usar dos tipos de balanceo:
+undersampling y oversampling. Por un lado en la estrategia
+undersampling, usamos el algoritmo \textbf{RandomUnderSampler} para
+eliminar los registros de canciones que no son populares, quedandonos
+con una cantidad de registros igual a la cantidad de registros que son
+populares. Por otro lado, en la estrategia oversampling, usamos el
+algoritmo \textbf{Smote} para agregar registros de canciones que son
+populares, quedandonos con una cantidad de registros igual a la cantidad
+de registros que no son populares. Antes de realizar el balanceo
+verificamos también si los registros contaban con vacíos, al no ser el
+caso se procedió a crear dos nuevos conjuntos de datos
+``x\_train\_smote'' y ``y\_train\_smote'' para el caso del balanceo de
+datos usando el algoritmo \textbf{Smote}, y se creó los conjuntos de
+datos ``x\_resampled'' y ``y\_resampled'' para el caso del balanceo de
+datos usando el algoritmo \textbf{RandomUnderSampler}, estos nuevos
+conjuntos balanceados fueron utilizados posteriormente para probar
+modelos.
 
 \hypertarget{selecciuxf3n-de-paruxe1metros-en-caso-aplique}{%
 \subsubsection{Selección de parámetros (en caso
 aplique)}\label{selecciuxf3n-de-paruxe1metros-en-caso-aplique}}
 
-\hypertarget{selecciuxf3n-del-mejor-modelo-evaluaciuxf3n-de-modelos-en-diferentes-escenarios-comparaciuxf3n-de-las-muxe9tricas-de-ajuste-de-los-modelos-al-realizar-predicciones-con-datos-del-test-yo-validaciuxf3n}{%
-\subsubsection{Selección del mejor modelo (Evaluación de modelos en
-diferentes escenarios, comparación de las métricas de ajuste de los
-modelos al realizar predicciones con datos del test y/o
-validación)}\label{selecciuxf3n-del-mejor-modelo-evaluaciuxf3n-de-modelos-en-diferentes-escenarios-comparaciuxf3n-de-las-muxe9tricas-de-ajuste-de-los-modelos-al-realizar-predicciones-con-datos-del-test-yo-validaciuxf3n}}
+La elección de los parametros fue de dos formas, en primer lugar, en el
+primer y cuarto modelo de estableció lo parametros, pero en el caso de
+los demás modelos se utilizó \textbf{GridSearchCV}, el cual es un
+algortimo que ayuda a elegir los hiperparámetro óptimos para un modelo,
+en el caso de los árboles de clasificación y bosque aleatorio, este nos
+ayuda a poder las ramas de los árboles para que estos no sean tan
+profundos. A continuación, se incluye una tabla resumen de los
+parametros que finalmente se usaron en los modelos. Es importante notar,
+que el algoritmo de optimización de parametros recomienda usar el
+indicador de entropia para la partición de los nodos, en caso de que el
+modelo sea un árbol de clasificación.
 
-\hypertarget{descripciuxf3n-de-la-estructura-del-modelo-seleccionado-tipo-de-modelo-y-paruxe1metros-elegidos}{%
-\subsubsection{Descripción de la estructura del modelo seleccionado
-(tipo de modelo y parámetros
-elegidos)}\label{descripciuxf3n-de-la-estructura-del-modelo-seleccionado-tipo-de-modelo-y-paruxe1metros-elegidos}}
+\begin{longtable}[]{@{}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\centering\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\toprule
+\begin{minipage}[b]{\linewidth}\centering
+Modelos
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Grid Search
+\end{minipage} & \begin{minipage}[b]{\linewidth}\centering
+Hiperparámetros
+\end{minipage} \\
+\midrule
+\endhead
+Árbol de clasificación CART & No & semilla aleatoria, índice de Gini \\
+Árbol de clasificación CART & Si & semilla aleatoria, índice de Gini \\
+Árbol de clasificación CART & Si & semilla aleatoria, índice de
+entropia, splitter: best \\
+Regresión Logística & No & max\_inter:200, semilla aleatoria \\
+Regresión Logística & Si & max\_inter:200, semilla aleatoria \\
+Árbol de clasificación CART & Si & semilla aleatoria, índice de Gini \\
+Árbol de clasificación CART & Si & `criterion': `entropy',
+`random\_state': 0, `splitter': `best' \\
+Regresión Logística & Si & `max\_iter': 200, `random\_state': 0 \\
+Random Forest Classifier & Si & `criterion': `entropy', `random\_state':
+0 \\
+Random Forest Classifier & Si & `criterion': `entropy', `random\_state':
+0 \\
+\bottomrule
+\end{longtable}
+
+\hypertarget{selecciuxf3n-del-mejor-modelo}{%
+\subsubsection{Selección del mejor
+modelo}\label{selecciuxf3n-del-mejor-modelo}}
+
+En indicador \textbf{accuracy} indica qué tan bien predice el modelo, el
+indicador de \textbf{sensibilidad} evalúa que tan bien se clasifica a
+las canciones populares y el indicador de \textbf{especificidad} evalúa
+que tan bien se clasifica a las canciones no populares.
+
+En la siguiente tabla, se observa el resultado de los modelos evaluados
+en el conjunto de testeo. Se observa que los modelos 4, 8 y 9 registran
+valores altos en el indicador especificicidad, esto indica que estos
+modelos clasifican bien en las canciones no pupulares en mas del 90\% de
+casos. Po rlo cual descartamos estos modelos, ya que nuestro objetivo es
+clasificar canciones populares. De esta forma, consideramos que el
+modelo que presente un porcentaje más alto en el indicador de
+\textbf{sensibilidad} es el modelo que clasifica mejor las canciones
+populares. Como se observa, el modelo 5: modelo de regresión logística
+con balanceo de datos \textbf{SMOTE} y \textbf{GridSearchCV} es el
+modelo que presenta un mejor resultado en el indicador de
+\textbf{sensibilidad}, pues clasifica bien a las canciones populares en
+el 75\% de casos.
+
+\includegraphics[width=4.21in,height=\textheight]{comparacion-modelos.png}
+
+Por otro lado, a continuacion se observa una tabla de resumen de la
+regresión logistica evaluada sobre el conjunto de testeo. Se observa que
+existe significancia conjunta y significancia individual en todas las
+variables individuales. Asimismo, observamos que la variable
+\textbf{danceability} y \textbf{loudness} es la variable que impacta de
+forma altamente positiva sobre la variable dependiente, esto quiere
+decir que cuanto mas bailable sea la canción, mas popular será. Sin
+emabrgo, nos parece sospechoso que al variable cantidad de palabras
+tenga un coefiente muy alto y positivo, pues se esperaría que el cuanto
+menos palabras tenga la cancion sea mas popular.
+
+\includegraphics{mejor-modelo.jpg}
+
+\hypertarget{descripciuxf3n-de-la-estructura-del-modelo-seleccionado}{%
+\subsubsection{Descripción de la estructura del modelo
+seleccionado}\label{descripciuxf3n-de-la-estructura-del-modelo-seleccionado}}
+
+El modelo escogido es entrenado con el algoritmo de regresión logística
+con el balanceo de datos \textbf{SMOTE}, con los siguientes parámetros:
+max\_inter:200, semilla aleatoria, lo cuales fueron elegidos por
+\textbf{GridSearchCV}. Los modelos de regresión logistica tratan de
+predecir la clasificacion de las categorias de la variable dependiente,
+en este caso, la variable \textbf{popularity}. El cual esa el metodo de
+estimación de maxima verosimilitud para cacular sus resultados, asi
+mismo, al ser unre gresion lineal las variables independientes pueden
+ser intepretads en signos y probabildad.
 
 \hypertarget{capuxedtulo-v-conclusiones}{%
 \subsection{CAPÍTULO V: CONCLUSIONES}\label{capuxedtulo-v-conclusiones}}
+
+En conclusión, el modelo de regresión logítica es el modelo que presenta
+un mejor resultado en el indicador de \textbf{sensibilidad}, pues
+clasifica bien a las canciones populares en el 75\% de casos, donde se
+observa que la bailabilidad y \textbf{loudness} es la variable que
+impacta positivamente sobre la popularidad de una canción. No obstante,
+hay algunas variables que no tienen el signo esperado, como la variable
+cantidad de palabras, pues se esperaría que el cuanto menos palabras
+tenga, la canción sea más popular. Definitivamente, el análisis
+individial de las variables en el modelo de regresión debe ser
+supervisado por un experto del negocio.
 
 \hypertarget{capuxedtulo-vi-recomendaciones}{%
 \subsection{CAPÍTULO VI:
