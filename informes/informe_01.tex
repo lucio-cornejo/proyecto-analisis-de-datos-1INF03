@@ -39,7 +39,7 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-  pdftitle={Informe parcial},
+  pdftitle={Informe final},
   colorlinks=true,
   linkcolor={blue},
   filecolor={Maroon},
@@ -47,6 +47,46 @@
   urlcolor={Blue},
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{40,42,54}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.33,0.33}{\textbf{#1}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{1.00,0.47,0.78}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{1.00,0.47,0.78}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.74,0.58,0.98}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.55,0.91,0.99}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.95,0.98,0.55}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.45,0.64}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.55,0.91,0.99}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.74,0.58,0.98}{\textbf{#1}}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{1.00,0.47,0.78}{#1}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.55,0.91,0.99}{\textit{#1}}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.74,0.58,0.98}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{1.00,0.72,0.42}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.33,0.33}{\underline{#1}}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.55,0.91,0.99}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.74,0.58,0.98}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.31,0.98,0.48}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{1.00,0.47,0.78}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.95,0.98,0.55}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{1.00,0.47,0.78}{#1}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.97,0.97,0.95}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.97,0.97,0.95}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.31,0.98,0.48}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{1.00,0.47,0.78}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.55,0.91,0.99}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{1.00,0.47,0.78}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.95,0.98,0.55}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.95,0.98,0.55}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.55,0.91,0.99}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.95,0.98,0.55}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{1.00,0.33,0.33}{#1}}
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -111,9 +151,9 @@
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
 
-\title{Informe parcial}
+\title{Informe final}
 \author{}
-\date{2022-06-10}
+\date{2022-07-02}
 
 \begin{document}
 \maketitle
@@ -135,7 +175,7 @@
 \item
   \textbf{Código del curso:} 1INF03
 \item
-  \textbf{Fecha de Entrega:} 11/06/2022
+  \textbf{Fecha de Entrega:} 02/07/2022
 \item
   \textbf{Integrantes:}
 
@@ -155,38 +195,38 @@
 \hypertarget{introducciuxf3n}{%
 \subsection{INTRODUCCIÓN}\label{introducciuxf3n}}
 
-Para entender la dinámica de la industria musical, antes de nada, es
-necesario saber que no se trata de una sola, sino de varias, diferentes,
-estrechamente relacionadas entre sí, pero que parten de lógicas y
-estructuras distintas. La industria musical en su conjunto vive de la
+Para comprender la dinámica de la industria musical, antes que nada, es
+necesario saber que no se trata de una sola, sino de varias,
+estrechamente relacionadas entre sí, pero que surgen a partir de lógicas
+y estructuras distintas. La industria musical en su conjunto vive de la
 creación y la explotación de la propiedad intelectual musical.
 Compositores y letristas crean canciones, letras y arreglos que se
 interpretan en directo sobre el escenario, se graban y distribuyen a los
 consumidores. Esta estructura básica ha dado lugar a tres industrias
 musicales centrales: la discográfica, centrada en la grabación de música
 y su distribución a los consumidores; la de las licencias musicales, que
-sobre todo concede licencias a empresas para la explotación de
-composiciones y arreglos, y la música en vivo, centrada en producir y
-promocionar espectáculos en directo, como conciertos, giras, etcétera.
+sobre todo concede licencias a empresas para la difusión de
+composiciones y arreglos; y, la música en vivo, centrada en producir y
+promocionar espectáculos en directo, como conciertos, giras, etc.
 
-En la actualidad se vienen realizando muchos estudios aplicando el campo
-de Data Analytics para poder obtener resultados en muchas industrias, y
-la musical no es ajena a esta moda. Es por esto que decidimos
-desarrollar el presente trabajo para así descubrir las características
-fuertemente asociadas a las canciones más populares en la aplicación de
-música Spotify y poder usar estos rasgos, que están conectados con los
-estados de ánimo, fechas de lanzamiento, nombre de las canciones, entre
-otros; para analizar el por qué de esta popularidad y poder simular que
-una empresa de la industria musical quiera emplear un modelo analítico
-que le permita saber el índice de popularidad de una canción antes de
-que esta sea soltada al mercado.
+El desarrollo de la Ciencia de Datos permite el uso de data para mejorar
+la toma de decisiones en el sector público y privado. La industria
+musical no es la excepción, pues también existe un interés por generar
+nuevas canciones populares, con el fin de recuperar los costos de
+produccion de una canción y maximizar márgenes de ganancia. En base a
+tal problemática, se desarrolla el presente trabajo con el objetivo de
+desarrollar un modelo que logre predecir la propularidad de las
+canciones futuras, como resultado de un análisis de las variables que
+influyan de manera positiva o negativa en la popularidad de las
+canciones. De esta forma, el modelo análitico podrá ser utilizado para
+predecir la popularidad de las canciones, lo cual ayudará a tomar
+decisiones de manera más efectiva.
 
-Entre los puntos que queremos saber:
+Estas son algunas de las interrogantes que se explorarán en este
+trabajo:
 
 \begin{itemize}
 \tightlist
-\item
-  ¿Cuáles son los tracks más populares en Spotify?
 \item
   ¿Qué características en común tienen las canciones más populares de
   Spotify?
@@ -195,20 +235,7 @@ Entre los puntos que queremos saber:
   de las canciones?
 \item
   ¿Cuánto debe durar un track según los estándares de la actualidad?
-\item
-  ¿Cuál es la correlación entre diferentes tracks que son populares?
 \end{itemize}
-
-\hypertarget{dataset}{%
-\subsubsection{Dataset}\label{dataset}}
-
-El dataset elegido se obtuvo utilizando el servicio API de Spotify, el
-cual nos permite obtener la información de las canciones existentes en
-tal plataforma. El conjunto de datos que estamos empleando consta
-inicialmente de 20 columnas, las cuales representan variables como el
-nombre de la canción, su popularidad, duración, el artista, la fecha de
-lanzamiento, bailabilidad de la canción, su energía, volumen sonoro,
-etc.
 
 \hypertarget{capuxedtulo-i-comprensiuxf3n-del-negocio-estudio}{%
 \subsection{CAPÍTULO I: COMPRENSIÓN DEL NEGOCIO /
@@ -218,22 +245,23 @@ ESTUDIO}\label{capuxedtulo-i-comprensiuxf3n-del-negocio-estudio}}
 \subsubsection{Descripción del
 problema}\label{descripciuxf3n-del-problema}}
 
-En la actualidad se sabe qué canciones son las más populares en general
-observando la cantidad de reproducciones que tienen cada canción, sin
-embargo la industria de la música es un negocio y como tal una empresa
-discográfica siempre busca que su canción sea popular para que esta
-genere ingresos a la empresa. Si pudiéramos saber que características
-hacen popular a una canción entonces se podrían usar a favor para
-generar canciones que sean del agrado del público oyente y como
-consecuencia pueda otorgar un mayor beneficio económico.
+Se puede tener una percepción de las canciones más populares a nivel
+mundial observando la cantidad de reproducciones de cada canción en las
+plataformas musicales, lo cual se traduce en mayores ganancias para los
+artistas, empresas discográficas y todas las personas detrás del
+lanzamiento de una canción. En este contexto, la popularidad es la
+variable que determina los márgenes de ganancias de la industria
+musical, así un problema y preocupación recurrente, dentro de la
+industria musical, es generar canciones populares
 
 \hypertarget{objetivo-del-negocioestudio}{%
 \subsubsection{Objetivo del
 negocio/estudio}\label{objetivo-del-negocioestudio}}
 
-Nuestro objetivo principal es el de indagar, descubrir y utilizar las
-características que definen la popularidad de las canciones presentes en
-nuestro dataset.
+Nuestro objetivo principal es desarrollar un modelo que logre predecir
+si una canción será popular o no antes de ser lanzada al mercado.
+Además, nuestro objetivo secundario, es conocer las características que
+hacen popular a una canción.
 
 \hypertarget{variable-objetivo-para-el-negocio}{%
 \subsubsection{Variable objetivo para el
@@ -242,18 +270,7 @@ negocio}\label{variable-objetivo-para-el-negocio}}
 \begin{itemize}
 \tightlist
 \item
-  Las variables que consideramos podrían ser más relevantes para el
-  negocio son:
-
-  \begin{itemize}
-  \tightlist
-  \item
-    popularity (Popularidad)
-  \item
-    duration\_ms (La duración del track en milisegundos)
-  \item
-    danceability (La capacidad de baile del track)
-  \end{itemize}
+  ``Popularity'' es la variable objetivo.
 \end{itemize}
 
 \hypertarget{capuxedtulo-ii-fuentes-de-informaciuxf3n}{%
@@ -264,111 +281,160 @@ INFORMACIÓN}\label{capuxedtulo-ii-fuentes-de-informaciuxf3n}}
 \subsubsection{Origen de los datos del
 proyecto}\label{origen-de-los-datos-del-proyecto}}
 
-El dataset que empleamos en nuestro trabajo lo descargamos de
-\href{https://www.kaggle.com/datasets/yamaerenay/spotify-dataset-19212020-600k-tracks?resource=download}{este}
-sitio web \ldots{} precisamente, el archivo \textbf{tracks.csv}.
-
-Como se describe en el sitio web del link previo, el dataset
-\textbf{tracks.csv} se obtuvo vía el API oficial de \textbf{Spotify}.
-Tal API permite descargar, para cualquier canción en Spotify,
-características sobre aquella canción, tales como su duración en
+El dataset que empleamos lo descargamos de
+\href{https://www.kaggle.com/datasets/yamaerenay/spotify-dataset-19212020-600k-tracks?resource=download}{Kaggle}
+de donde usamos el archivo\textbf{tracks.csv}. Como se describe en el
+sitio web del link previo, el dataset \textbf{tracks.csv} se obtuvo vía
+el \href{https://developer.spotify.com/documentation/web-api/}{API
+oficial de \textbf{Spotify}}. Esta permite descargar, características de
+las canciones disponibles en la plataforma tales como su duración en
 milisegundos, volumen, qué tan bailable es, etc.
 
 Así, cada fila en \textbf{tracks.csv} representa a una canción diferente
-en Spotify, y, las columnas del dataset representan variables asociadas
-a cada canción.
+en Spotify, y, las columnas del dataset representan características
+─variables─ asociadas a cada canción.
 
 \hypertarget{descripciuxf3n-del-universo-y-muestra}{%
 \subsubsection{Descripción del universo y
 muestra}\label{descripciuxf3n-del-universo-y-muestra}}
 
-En nuestro caso, el \textbf{universo} consistiría el el conjunto de
+El \textbf{universo} de datos está conformado por el conjunto de
 canciones de Spotify disponibles en el instante de tiempo en que se
-descargó el dataset, vía la API oficial de Spotify.
+descargó el dataset, vía la API oficial de Spotify. En la
+\href{https://www.kaggle.com/datasets/yamaerenay/spotify-dataset-19212020-600k-tracks?resource=download}{página
+web}, fuente de descargamos la data, se menciona que las canciones
+extraídas fueron publicadas entre los años 1921 y 2020. Asimismo, la
+muestra tiene y 20 columnas.
 
-En la
-\href{https://www.kaggle.com/datasets/yamaerenay/spotify-dataset-19212020-600k-tracks?resource=download}{página}
-de donde descargamos la data, se menciona que las canciones extraídas
-fueron publicadas entre los años 1921 y 2020.
-
-Sin embargo, tras analizar la data descargada, notamos que hay canciones
-cuyo año de lanzamiento figura entre 1900 y 2021. Incluso, una canción
-del dataset figura que fue creada en el año 1900, pese a que, tras una
-búsqueda web, hallamos que la banda que creó tal canción aún sigue
-activa.
-
-Por ello, es posible que, eventualmente, se requiera que nosotros mismos
-empleemos el API oficial de Spotify para obtener la data de las
-canciones cuyo identificador ya poseemos, gracias al dataset descargado.
-Esto último con el fin de crear un nuevo dataset, ahora sin errores, con
-el cual trabajaríamos como base datos de este proyecto.
-
-También podríamos descartar a las filas donde encontremos errores como
-el mencionado previamente respecto a la fecha de publicación de la
-canción. Sin embargo, por ahora, seguiremos usando el dataset
-descargado.
-
-Entonces, el \textbf{universo} lo consideramos como el conjunto de
-canciones disponibles en Spotify, \textbf{actualmente}.
-
-En ese sentido, la \textbf{muestra} consiste del conjunto de canciones
+En ese sentido, la \textbf{muestra} consiste en el conjunto de canciones
 de Spotify de las cuales tenemos información en las filas del dataset
-descargado. Por ahora, es una muestra arbitraria (no se sabe como se
-realizó el muestreo), pero, más adelante, nosotros mismos realizaremos
-el muestreo, vía el API oficial de Spotify.
+descargado ─586672 observaciones ─ y 20 columnas. No obstante, esta
+muestra es arbitraria, ya que no se especifica la estrategia de
+muestreo. A nivel de grupo, discutimos la importancia del muestro y
+concluimos que, para realizar un análisis riguroso necesitaremos
+realizar una muestro multietápico diseñado por nosotros mismo, pero por
+la limitación de tiempo, seguiremos usando la data original.
 
-\hypertarget{descripciuxf3n-y-entendimiento-de-variables}{%
-\subsubsection{Descripción y entendimiento de
-variables}\label{descripciuxf3n-y-entendimiento-de-variables}}
+La arbitrariedad de la muestra se refleja en algunas fallas que
+detectamos en la etapa de exploración de los datos, pues tras analizar
+la data descargada, observamos que los años de lanzamiento de las
+canciones se encuentran en el rango de 1900 a 2021. Es decir, existen,
+observaciones que están fuera del rango de años especificados en la
+fuente secundaria ─Kaggle─. Específicamente encontramos que, el año de
+lanzamiento de una canción del dataset fue en 1990, sin embargo, tras
+realizar una pequeña una búsqueda web, hallamos que la banda que creó
+tal canción aún sigue activa. En otras palabras, es imposible que, en
+caso la banda lanzará la canción en 1990, siga activa.
 
-Esta sección del capítulo dos la hemos desarrollado en el
-\textbf{Jupyter notebook} presentado para este informe, así que no
-incluiremos aquella descripción en este archivo.
+Es plausible afirmar que la data que disponemos tenga algunas fallas, lo
+cual debería subsanarse para obtener un mejor resultado. Durante las
+reuniones de equipo, evaluamos scrappear las canciones de Spotify
+empleando el API oficial de Spotify para obtener la data de las
+canciones cuyo identificador ya se posee, gracias al dataset descargado.
+Esto último con el fin de crear un nuevo dataset, ahora sin errores, con
+el cual trabajaríamos como base datos de este proyecto. También
+evaluamos descartar a las filas donde encontremos errores como el
+mencionado previamente respecto a la fecha de publicación de la canción.
+No obstante, por limitaciones de tiempo, llevamos al consenso de
+continuar el dataset original.
 
-El resto de este capítulo lo hemos incluido en un dashboard interactivo,
-al cual puede acceder vía este
-\href{https://lucio-cornejo.shinyapps.io/chapter-II-dashboard-INF03/}{link}.
+Por otro lado, la muestra contiene las siguientes columnas:
 
-\hypertarget{capuxedtulo-iii-preprocesamiento-de-datos}{%
-\subsection{CAPÍTULO III: PREPROCESAMIENTO DE
-DATOS}\label{capuxedtulo-iii-preprocesamiento-de-datos}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Data numérica previo a imputación}
+\NormalTok{dfnum\_pre\_imp }\OperatorTok{=}\NormalTok{ pd.read\_csv(}\StringTok{"../datos/dfnum\_pre\_imp.csv"}\NormalTok{)}
 
-En ese capitulo se detalla el proceso de preprocesamiento de los datos.
-Por otro lado, la variable popularity es la variable dependiente del
-estudio por lo cual esta variable no debe pasar por ningún tratamiento
-de outliers, vacíos y/o transformación
+\CommentTok{\# Data categórica previo a transformación de variables}
+\NormalTok{dfcat\_pre\_trans }\OperatorTok{=}\NormalTok{ pd.read\_csv(}\StringTok{"../datos/dfcat.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
-\hypertarget{selecciuxf3n-de-registros-y-atributos}{%
-\subsubsection{Selección de registros y
-atributos}\label{selecciuxf3n-de-registros-y-atributos}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Tabla de descripción básica de las variables numéricas}
+\NormalTok{knitr}\SpecialCharTok{::}\FunctionTok{kable}\NormalTok{(py}\SpecialCharTok{$}\NormalTok{temp\_df)}
+\end{Highlighting}
+\end{Shaded}
 
-Excluimos la variables ``artist'', pues esta no aporta información para
-la predicción de popularidad de canciones.
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.0387}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.0839}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.0839}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.0839}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.0839}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.0903}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.0903}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.0839}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.1097}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.0839}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.0839}}
+  >{\raggedleft\arraybackslash}p{(\columnwidth - 22\tabcolsep) * \real{0.0839}}@{}}
+\toprule
+\begin{minipage}[b]{\linewidth}\raggedright
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+popularity
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+duration\_ms
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+danceability
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+energy
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+loudness
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+speechiness
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+acousticness
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+instrumentalness
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+liveness
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+valence
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedleft
+tempo
+\end{minipage} \\
+\midrule
+\endhead
+count & 586672.00000 & 5.866720e+05 & 5.866720e+05 & 5.866720e+05 &
+586672.000000 & 5.866720e+05 & 5.866720e+05 & 5.866720e+05 &
+5.866720e+05 & 5.866720e+05 & 586672.00000 \\
+mean & 27.57005 & 5.322807e+00 & 5.635938e-01 & 5.420360e-01 &
+-10.206067 & -1.213430e+00 & 4.498627e-01 & -2.342418e+00 & 2.139350e-01
+& 5.522925e-01 & 118.46486 \\
+std & 18.37064 & 1.832754e-01 & 1.661027e-01 & 2.519229e-01 & 5.089328 &
+3.671567e-01 & 3.488367e-01 & 1.047102e+00 & 1.843256e-01 & 2.576709e-01
+& 29.76411 \\
+min & 0.00000 & 3.524266e+00 & 0.000000e+00 & 0.000000e+00 & -60.000000
+& -3.000000e+00 & 0.000000e+00 & -3.000000e+00 & 0.000000e+00 &
+0.000000e+00 & 0.00000 \\
+25\% & 13.00000 & 5.243269e+00 & 4.530000e-01 & 3.430000e-01 &
+-12.891000 & -1.455932e+00 & 9.690000e-02 & -3.000000e+00 & 9.830000e-02
+& 3.460000e-01 & 95.60000 \\
+50\% & 27.00000 & 5.332222e+00 & 5.770000e-01 & 5.490000e-01 & -9.243000
+& -1.343902e+00 & 4.220000e-01 & -2.989488e+00 & 1.390000e-01 &
+5.640000e-01 & 117.38400 \\
+75\% & 41.00000 & 5.421385e+00 & 6.860000e-01 & 7.480000e-01 & -6.482000
+& -1.111821e+00 & 7.850000e-01 & -1.976748e+00 & 2.780000e-01 &
+7.690000e-01 & 136.32100 \\
+max & 100.00000 & 6.749830e+00 & 9.910000e-01 & 1.000000e+00 & 5.376000
+& -1.233370e-02 & 9.960000e-01 & 4.341000e-04 & 1.000000e+00 &
+1.000000e+00 & 246.38100 \\
+\bottomrule
+\end{longtable}
 
-\hypertarget{tratamiento-de-datos-atuxedpicos}{%
-\subsubsection{Tratamiento de datos
-atípicos}\label{tratamiento-de-datos-atuxedpicos}}
-
-Si bien se ahorraría tiempo realizar el análisis de valores outliers de
-las variables numéricas de forma automática donde se usaría el límite
-superior e inferior teórico, para poder realizar un análisis minucioso,
-las variables numéricas se analizarán de forma particular. El proceso
-que seguimos fue cambiar el coeficiente que acompaña al rango
-intercuartil al momento de definir los limites superiores e inferiores.
-
-\textbf{Loudness}
+\hypertarget{loudness}{%
+\paragraph{Loudness}\label{loudness}}
 
 Describe la sonoridad general de una pista en decibeles. Los valores de
 sonoridad se promedian en toda la pista y son útiles para comparar la
 sonoridad relativa de las pistas. La sonoridad es la cualidad de un
 sonido que es el principal correlato psicológico de la fuerza física
-(amplitud). Los valores suelen oscilar entre -60 y 0 db. Se observa que
-la distribución de la variable se sesga hacia el lado derecho, en este
-caso usamos a 1.7 como coeficiente. El porcentaje de valores atípicos es
-9\% del total de los datos de esta columna. Por lo que es posible
-generar imputaciones.
+(amplitud). Los valores suelen oscilar entre -60 y 0 db.
 
-\textbf{Instrumentalness}
+\hypertarget{instrumentalness}{%
+\paragraph{Instrumentalness}\label{instrumentalness}}
 
 Predice si una pista no contiene voces. Los sonidos ``Ooh'' y ``aah'' se
 consideran instrumentales en este contexto. Las pistas de rap o de
@@ -376,70 +442,54 @@ palabras habladas son claramente ``vocales''. Cuanto más se acerque el
 valor de instrumentalización a 1,0, mayor será la probabilidad de que la
 pista no tenga contenido vocal. Los valores superiores a 0,5 representan
 pistas instrumentales, pero la confianza es mayor a medida que el valor
-se acerca a 1,0. Se observa que la mayoría de los datos están
-concentrado alrededor de cero, es decir la distribución esta sesgada a
-la izquierda, en este caso usamos a 3 como coeficiente. El porcentaje de
-valores atípicos es mayor a 20\% del total de los datos de esta columna.
-Por lo que es no posible generar imputaciones.
+se acerca a 1,0.
 
-\textbf{Liveness}
+\hypertarget{liveness}{%
+\paragraph{Liveness}\label{liveness}}
 
 Detecta la presencia de una audiencia en la grabación. Valores más altos
 de liveness representan una probabilidad incrementada de que la pista
 haya sido realizada en vivo. Un valor de 0.8 provee una probabilidad
-fuerte de que la pista sea en vivo. Se observa que los datos están
-concentrados alrededor de 0.1 aproximadamente; no obstante tales datos
-muestran un fuerte sesgo hacia la derecha, e incluso presentan un
-ligerada bimodalidad. Usamos un coeficiente de 1.3 para determinar a los
-valores outliers. El porcentaje de valores atípicos es de 9.51\%.
+fuerte de que la pista sea en vivo.
 
-\textbf{Valence}
+\hypertarget{valence}{%
+\paragraph{Valence}\label{valence}}
 
 Es medida desde 0.0 hasta 1.0 que describe la positividad musical
 expresada por la pista. Las pistas con un sonido de alta valence suenan
 más positivos (e.g., felices, alegres, eufóricos), mientras que las
 pistas con una baja valence suenan más negativas (e.g., tristes,
-deprimentes, enojadas). Se observa que al distribución se asemeja a uns
-distribución unirfore , donde parace que cada valor tomado por esta
-variable se acerca a un mismo nivel de densidad. Usamos un coeficiente
-de 1.4 para determinar a los valores outliers y el porcentaje de valores
-atípicos es de 9\%.
+deprimentes, enojadas).
 
-\textbf{Tempo}
+\hypertarget{tempo}{%
+\paragraph{Tempo}\label{tempo}}
 
 Es el tempo general estimado de una pista en beats por minutos (BPM, por
 sus siglas en inglés). En terminología musical, el tempo es la velocidad
 o ritmo de una pieza dada y se deriva directamente de una duración
-promedio de beat. Se observa que los datos presentan múltiples modas,
-aproximadamente alrededor de los valores 75, 100, 140, 175. Estos datos
-presentan un ligero sesgo hacia la derecha. El porcentaje de valores
-atípicos para esta variable es 8.90\%.
+promedio de beat.
 
-\textbf{Duration\_ms}
+\hypertarget{duration_ms}{%
+\paragraph{Duration\_ms}\label{duration_ms}}
 
 Es la duración de una pieza en milisegundos. Respecto a la distribución
 de esta variable, se observa que la distribución de los datos es en
 principio aparentemente degenerada (los datos están virtual o totalmente
 reunidos en un punto). No obstante, tal aparente degeneración se explica
 por el hecho de que existe una serie de piezas cuya duración puede ser
-extremadamente larga. En este caso, si bien los valores atípicos
-representan solo el 8.99\% del total de la muestra de valores para esta
-variable, tal cantidad de valores atípicos, dados sus valores
-extremadamente altos, tienen un efecto visual altamente significativo
-sobre la interpretabilidad de la distribución de los datos.
+extremadamente larga.
 
-\textbf{Danceability}
+\hypertarget{danceability}{%
+\paragraph{Danceability}\label{danceability}}
 
 La danceability describe qué tan adecuada es una pista para bailar,
 basada en una combinación de elementos musicales incluyendo el tempo, la
 estabilidad rítmica (rhythm stability), la fuerza del beat (beat
 strength), y una regularidad general. Un valor de 0.0 es menos danceable
-1.0 es máximamente danceable. Se observa que los datos se concentran
-alrededor de 0.65, y presentan un ligero sesgo hacia la izquierda. Los
-valores atípicos representan 8.216\% de la muestra,para calcularlos se
-usó el coeficiente 1.6 que acompaña al rango intercuartil.
+1.0 es máximamente danceable.
 
-\textbf{Energy}
+\hypertarget{energy}{%
+\paragraph{Energy}\label{energy}}
 
 La energía es una medida desde 0.0 a 1.0 y representa una medida
 perceptiva de intensidad y actividad. Típicamente, las pistas
@@ -447,14 +497,10 @@ energéticas se sienten rápidas, de volumen alto (loud), y ruidosas. Por
 ejemplo, el death metal tiene una alta energía, mientras que el preludio
 de Bach da un puntaje bajo en la escala. Características perceptivas
 contribuyen a este atributo incluyen rango dinámico, el volumen
-percibió, el timbre, el onset rate, y la entropía general. Se observa
-que los datos son ligeramente multimodales. con los datos ligeramente
-más concentrados alrededor de 0.35, 0.55, 7.00 y 0.85. Los valores
-atípicos para esta variable representan 9.32\% de la muestar y para
-calcularlos se usó el coeficiente 1.4 que acompaña al rango
-intercuartil.
+percibió, el timbre, el onset rate, y la entropía general.
 
-\textbf{Speechiness}
+\hypertarget{speechiness}{%
+\paragraph{Speechiness}\label{speechiness}}
 
 Esta variableetecta la presencia de palabras habladas en una pieza.
 Mientras más contenido hablado presenta una grabación (e.g., talk show,
@@ -464,31 +510,125 @@ hechas enteramente de palabras habladas. Valores entre 0.33 y 0.66
 describen piezas que podrías contener tanto música como una parte oral,
 ya sea en secciones o en capas, incluyendo casos como el rap. Valores
 menores a 0.33 con mayor probabilidad representan múscia y otras piezas
-non-speech-like. De manera similar al caso de la variable Duration\_ms,
-aunque en medida mucho menor, esta variable, Speechiness, presenta en
-principio una aparente distribución degenerada, concentrada alrededor 0.
-No obstante, tal aparente naturaleza se debe al 10.39\% de valores
-atípicos que presenta la muestra de datos para esta variable, cuyos
-niveles están concentrados alrededor de 1. En otra palabras,
-aproximadamente el 88\% de los datos se concentra alrededor de 0.0,
-mientras que el 10.39\% lo hace alrededor de 1.0.
+non-speech-like.
 
-\textbf{Acousticness}
+\hypertarget{acousticness}{%
+\paragraph{Acousticness}\label{acousticness}}
 
 Una medida de confianza desde 0.0 hasta 1.0 sobre si la pieza es
 acústica. 1.0 representa alta confianza en que la pieza es acústica
-(\textgreater=0 \textbar{} \textless= 1). Se observa que los datos se
-concentran en su mayoría alrededor de ambos valores extremos. La
-distribución de los valores para esta variable es en tal sentido
-bimodal. Los valores atípicos representan un 8.76\% del total de valores
-de la muestra para esta variable.
+(\textgreater=0 \textbar{} \textless= 1).
+
+\hypertarget{descripciuxf3n-y-entendimiento-de-variables}{%
+\subsubsection{Descripción y entendimiento de
+variables}\label{descripciuxf3n-y-entendimiento-de-variables}}
+
+Esta sección del capítulo dos la hemos desarrollado en el
+\textbf{Jupyter notebook} presentado para este informe, así que no
+incluiremos aquella descripción en este archivo.
+
+La exploraricón de las variables ha sido realizada mediante
+\href{https://lucio-cornejo.shinyapps.io/chapter-II-dashboard-INF03/}{esta}
+aplicación web. Así, encontramos los siguientes patrones en la data:
+
+\begin{itemize}
+\tightlist
+\item
+  A partir de 1950, para décadas cada vez más recientes, existe una
+  mayor proporción de canciones que presentan valores cada vez más
+  grandes de popularidad.
+\item
+  Para décadas más recientes, las canciones más populares tienden a ser
+  aquellas cuya longitud del nombre está entre 3 y 10 caracteres.
+\end{itemize}
+
+\hypertarget{capuxedtulo-iii-preprocesamiento-de-datos}{%
+\subsection{CAPÍTULO III: PREPROCESAMIENTO DE
+DATOS}\label{capuxedtulo-iii-preprocesamiento-de-datos}}
+
+En ese capitulo se detalla el proceso de preprocesamiento de los datos.
+Por otro lado, la variable popularity es la variable dependiente del
+estudio por lo cual esta variable no debe pasar por ningún tratamiento
+de outliers y/o vacíos.
+
+\hypertarget{selecciuxf3n-de-registros-y-atributos}{%
+\subsubsection{Selección de registros y
+atributos}\label{selecciuxf3n-de-registros-y-atributos}}
+
+Excluimos la variables ``artist'', pues esta no aporta información para
+la predicción de popularidad de canciones.
+
+\hypertarget{transformaciuxf3n-previa-a-la-imputaciuxf3n}{%
+\subsubsection{Transformación previa a la
+imputación}\label{transformaciuxf3n-previa-a-la-imputaciuxf3n}}
+
+Las variables \textbf{duration\_ms}, \textbf{speechiness} e
+\textbf{instrumentalness} requirieron ser transformadas vía la función
+logaritmo, tras haber aumentado los valores en tales variables en 0.001,
+para evitar valores 0, lo cual nos permite aplicar logaritmo. Ese
+aumento de 0.001 se realizó porque aquellas tres variables poseen
+valores entre 0 y 100.
+
+\hypertarget{tratamiento-de-datos-atuxedpicos}{%
+\subsubsection{Tratamiento de datos
+atípicos}\label{tratamiento-de-datos-atuxedpicos}}
+
+Se realizaron \textbf{Q-Q plots} para las variables numéricas, y se
+observó que ninguna de aquellas variables seguía una distribución
+gaussiana. Por ello, en vez considerar los whiskers superior e inferior
+usuales, creamos una aplicación web con el fin de definir, de manera
+interactiva, tales whiskers superior e inferior, bajo la condición que
+los datos atípicos que producirían tales nuevos whiskers representen
+menos del 10\% de la variable; así hicimos, variable por variable
+(numérica).
+
+Después de este paso realizamos graficos de densidad, con esto notamos
+que se hubiera perdido información importante en caso se hubiera usado
+los whisker usuales debido a que estos cortaban en lugares que no
+representaba valores atípicos reales para la distribución que se tiene
+de las variables.
+
+El siguiente paso es realizar la imputación de variables, para esto
+primero se intentó imputar la mediana a los valores atípicos pero al
+analizar las variables descubrimos que la distribución había cambiado;
+por lo tanto, quedó descartado este método. Luego, se eligió imputar
+mediante el algoritmo de KNNimputer el cual se considera un método
+robusto para imputar valores faltantes debido a que usa inforación de
+los k-vecinos más cercanos para hallar el dato faltante.
+
+Como primer paso para usar este método se tuvo que reemplazar todos los
+valores atípicos con vacios, posteriormente se eligieron los parámetros
+de la función KNNimputer, estos fueron: - n\_neighbors: 5, representa al
+número de muestras vecinas a utilizar para la imputación - weights:
+``uniform'', todos los pesos de cada vecino se ponderan por igual -
+metric: nan\_euclidean, se utilizó la distancia euclidiana
+
+Se intentó usar el algoritmo para todas las columnas numéricas a la vez,
+pero este demoraba demasiado en terminar la ejecución debido a la
+cantidad de datos, por eso, decidimos hacerlo agregando solo una columna
+con datos por imputar a la vez. Cuando finalizó todo este proceso
+comprobamos que nuestra data no contenía vacios, indicador de que
+funcionó correctamente el algoritmo.
+
+Para considerar que esta imputación fue la adecuada usamos dos métodos.
+Primero el test Kolmogorov-Smirnov que sirve para comparar la
+distribución de dos conjuntos de datos, comparamos entonces el conjunto
+de datos antes y después de imputar, pero el resultado no fue le
+esperado porque obtuvimos que las distribuciones no eran iguales. En ese
+momento nos planteamos cambiar nuevamente el método para imputar, pero,
+antes de esto realizamos gráficos de densidad superpuestos para ambas
+distribuciones y nos dimos cuenta que las distribuciones no tenían un
+gran cambio; por lo tanto aceptamos este método como adecuado y
+utilizamos la data imputada que obtuvimos en los siguientes pasos.
 
 \hypertarget{tratamiento-de-datos-vacuxedos}{%
 \subsubsection{Tratamiento de datos
 vacíos}\label{tratamiento-de-datos-vacuxedos}}
 
-Los datos que disponemos no tienen valores vacíos, por lo que obviamos
-este análisis.
+Solamente en la variable \textbf{names} existen valores vacíos, 71, en
+particular. Sin embargo, como se comentó previamente, tal columna se
+descartará del dataset, pues existe otra columna que produce la misma
+información que la columna \textbf{names} y que no presenta vacíos.
 
 \hypertarget{creaciuxf3n-y-transformaciuxf3n-de-variables}{%
 \subsubsection{Creación y transformación de
@@ -500,7 +640,8 @@ relevante para el objetivo del negocio. En ese sentido, transformamos
 las variables name, time\_signature y realice\_data. De las cuales
 obtenemos información que podrán servir para la predicción.
 
-\textbf{Name}
+\hypertarget{name}{%
+\paragraph{Name}\label{name}}
 
 Contiene el nombre de la canción, a partir de esta se generan dos
 variables:
@@ -519,7 +660,8 @@ Es importante recordar, que luego de generar ambas variables, se tiene
 que eliminar la variable ``name'' para no caer en el problema de
 multicolinealidad.
 
-\textbf{Realise date}
+\hypertarget{realease-date}{%
+\paragraph{Realease date}\label{realease-date}}
 
 Indica la fecha del lanzamiento de la canción incluyendo el año, mes y
 día. Apartir de esat variable se crearon cuatro variables:
@@ -538,25 +680,119 @@ día. Apartir de esat variable se crearon cuatro variables:
 
 Posteriormente, eliminamos la variable realise date.
 
-\textbf{Time\_signature}
+\hypertarget{time_signature}{%
+\paragraph{time\_signature}\label{time_signature}}
 
-Esta variable contiene información sobre el compás, este variable toma
-valores de 3 a 7, asi discretizamos esta variable para que tome el valor
-de 0 si los valores son mayores iguales a 0 y menores que 4; y tome el
-valor de 1si los valores toman valores mayores iguales a 4.
+Esta variable \textbf{ordinal} contiene la cantidad de pulsos en un
+compás, para cada canción. Esta variable toma valores de 3 a 7, así que
+la discretizamos para que tome el valor de 0 si los valores son mayores
+iguales a 0 y menores que 4; y tome el valor de 1 si los valores toman
+valores mayores iguales a 4.
+
+Esta recategorización se basa en el hecho que casi todas las canciones
+que existen actualmente en el mundo poseen un valor de 4 en
+\textbf{time\_signature}.
+
+\hypertarget{popularity}{%
+\paragraph{popularity}\label{popularity}}
+
+Para clasificar a las canciones en las categorías \textbf{popular} y
+\textbf{no popular}, se escogió el valor 40 como punto de corte.
+
+Es decir, canciones con un valor de popularidad menor a 40 se asignaron
+a 0 (no populares); caso contrario, tales canciones se asignan a 1
+(populares).
 
 \hypertarget{descripciuxf3n-de-variables-listas-para-el-modelamiento}{%
 \subsubsection{Descripción de variables listas para el
 modelamiento}\label{descripciuxf3n-de-variables-listas-para-el-modelamiento}}
 
-\hypertarget{anuxe1lisis-de-correlaciuxf3n}{%
-\subsubsection{Análisis de
-correlación}\label{anuxe1lisis-de-correlaciuxf3n}}
+\hypertarget{capuxedtulo-iv-desarrollo-del-modelo}{%
+\subsection{CAPÍTULO IV: DESARROLLO DEL
+MODELO}\label{capuxedtulo-iv-desarrollo-del-modelo}}
+
+\hypertarget{anuxe1lisis-de-correlaciuxf3n-entre-variables}{%
+\subsubsection{Análisis de correlación entre
+variables}\label{anuxe1lisis-de-correlaciuxf3n-entre-variables}}
 
 Se observa que los colores que adoptan las casillas de la matriz de
 correlación son rosados, lo cual indica que las variables tienen un
 coeficiente de correlación que se encuentra entre 0.2 y 0.4, es decir el
 nivel de correlación entre variables numéricas predictoras no es muy
 alta.
+
+\hypertarget{particiuxf3n-en-datos-de-train-test-o-train-test-val}{%
+\subsubsection{Partición en datos de train-test (o
+train-test-val)}\label{particiuxf3n-en-datos-de-train-test-o-train-test-val}}
+
+Nuestro dataset, que cuenta con 586672 registros, será dividido en
+grupos aleatorios más pequeños para que estos puedan ser utilizados
+posteriormente por los conjuntos de entrenamiento(train), testeo(test) y
+validación(val). Para esta partición de datos utilizamos el algoritmo de
+train\_test\_split e indicamos que la partición se haga por la cuarta
+parte de la cantidad de registros original.
+
+\hypertarget{balanceo-de-datos-en-caso-aplique}{%
+\subsubsection{Balanceo de datos (en caso
+aplique)}\label{balanceo-de-datos-en-caso-aplique}}
+
+Para el balanceo de datos, decidimos utilizar el agoritmo SMOTE el cual
+en este caso es un algoritmo para oversampling que busca puntos vecinos
+cercanos y agrega puntos ``en linea recta'' entre ellos. Al hacer un
+conteo de las canciones que eran consideradas populares(1) y la que no
+eran consideras ``populares(0)'', obtuvimos que el 73\% de las canciones
+en los registros eran ``no populares'' lo cual podría influenciar en los
+resultados que muestren nuestros modelos analíticos. Antes de realizar
+el balanceo verificamos también si los registros contaban con vacíos, al
+no ser el caso se procedió a crear dos nuevos conjuntos de datos
+``x\_train\_smote'' y ``y\_train\_smote'' que serían utilizados
+posteriormente para probar modelos con estos conjuntos que tienen los
+datos balanceados.
+
+\hypertarget{selecciuxf3n-de-paruxe1metros-en-caso-aplique}{%
+\subsubsection{Selección de parámetros (en caso
+aplique)}\label{selecciuxf3n-de-paruxe1metros-en-caso-aplique}}
+
+\hypertarget{selecciuxf3n-del-mejor-modelo-evaluaciuxf3n-de-modelos-en-diferentes-escenarios-comparaciuxf3n-de-las-muxe9tricas-de-ajuste-de-los-modelos-al-realizar-predicciones-con-datos-del-test-yo-validaciuxf3n}{%
+\subsubsection{Selección del mejor modelo (Evaluación de modelos en
+diferentes escenarios, comparación de las métricas de ajuste de los
+modelos al realizar predicciones con datos del test y/o
+validación)}\label{selecciuxf3n-del-mejor-modelo-evaluaciuxf3n-de-modelos-en-diferentes-escenarios-comparaciuxf3n-de-las-muxe9tricas-de-ajuste-de-los-modelos-al-realizar-predicciones-con-datos-del-test-yo-validaciuxf3n}}
+
+\hypertarget{descripciuxf3n-de-la-estructura-del-modelo-seleccionado-tipo-de-modelo-y-paruxe1metros-elegidos}{%
+\subsubsection{Descripción de la estructura del modelo seleccionado
+(tipo de modelo y parámetros
+elegidos)}\label{descripciuxf3n-de-la-estructura-del-modelo-seleccionado-tipo-de-modelo-y-paruxe1metros-elegidos}}
+
+\hypertarget{capuxedtulo-v-conclusiones}{%
+\subsection{CAPÍTULO V: CONCLUSIONES}\label{capuxedtulo-v-conclusiones}}
+
+\hypertarget{capuxedtulo-vi-recomendaciones}{%
+\subsection{CAPÍTULO VI:
+RECOMENDACIONES}\label{capuxedtulo-vi-recomendaciones}}
+
+\begin{itemize}
+\tightlist
+\item
+  El dataset con el que trabajamos, que fue descargado de Kaggle,
+  presentaba diversos problemas:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Esta consistía principalmente de canciones no populares, así que los
+    modelos trabajados predecían \textbf{no popularidad}, en vez de
+    popularidad.
+  \item
+    Esta contiene una fila con data errónea, pues a una banda chilena se
+    le asignan valores incorrectos respecto a la fecha de publicación de
+    las canciones. Por ello, recomendamos que se utilice el
+    identificador Spotify de las canciones del dataset, para scrapear la
+    información actualizada de tales canciones. Además, añadir canciones
+    populares al dataset, para que los modelos a emplearse puedan
+    predecir \textbf{popularidad}, a partir de una data mejor balanceada
+    respecto a canciones populares y no populares.
+  \end{itemize}
+\end{itemize}
 
 \end{document}

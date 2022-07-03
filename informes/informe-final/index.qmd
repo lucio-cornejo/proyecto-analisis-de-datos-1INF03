@@ -33,4 +33,3 @@ use_python("C:/Python39/python.exe")
 ```{r}
 #| child: "../../codes/paso-04.qmd"
 ```
-

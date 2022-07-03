@@ -133,7 +133,7 @@ custom_whiskers = {
   "instrumentalness": [-3.15, -0.05, 4.1],
   "liveness": [0, 0.7, 3.89],
   "valence": [0, 1, 0.06],
-  "tempo": [50, 210, 0.26],
+  "tempo": [50, 210, 0.26]
 }
 
 # Gráfico de las distribuciones, con los whiskers (en amarillos) obtenidos
