@@ -371,6 +371,8 @@ Es decir, canciones con un valor de popularidad menor a 40 se asignaron a 0
 
 ### Descripción de variables listas para el modelamiento
 
+Con las variables listas para modelar hacemos un análisis descriptivo de las variables numéricas.
+
 variable | count | mean | std | min | 0.25 | 0.5 | 0.75 | max
 :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---:
 popularity | 586672 | 27.570053 | 18.370642 | 0 | 13 | 27 | 41 | 100
