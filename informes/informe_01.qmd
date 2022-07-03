@@ -40,127 +40,80 @@ Estas son algunas de las interrogantes que se explorarán en este trabajo:
 - ¿Existe una correlación entre la popularidad y alguna característica de las canciones?
 - ¿Cuánto debe durar un track según los estándares de la actualidad?
 
-### Dataset 
-
-El dataset elegido se obtuvo utilizando el servicio API de Spotify, el cual nos permite obtener
-la información de las canciones existentes en tal plataforma. 
-
-El conjunto de datos que estamos empleando consta inicialmente de 20 columnas, las cuales representan variables como el nombre de la canción, su popularidad, duración, el artista, la fecha de lanzamiento, bailabilidad de la canción, su energía, volumen sonoro, etc.
-
 ## CAPÍTULO I: COMPRENSIÓN DEL NEGOCIO / ESTUDIO
 
 ### Descripción del problema
 
-En la actualidad se sabe qué canciones son las más populares en general observando la cantidad de reproducciones que tienen cada canción, sin embargo la industria de la música es un negocio y como tal una empresa discográfica siempre busca que su canción sea popular para que esta genere ingresos a la empresa. Si pudiéramos saber que características hacen popular a una canción entonces se podrían usar a favor para generar canciones que sean del agrado del público oyente y como consecuencia pueda otorgar un mayor beneficio económico.
+Se puede tener una percepción de las canciones más populares a nivel mundial observando la cantidad de reproducciones de cada canción en las plataformas musicales, lo cual se traduce en mayores ganancias para los artistas, empresas discográficas y todas las personas detrás del lanzamiento de una canción. En este contexto, la popularidad es la variable que determina los márgenes de ganancias de la industria musical, así un problema y preocupación recurrente, dentro de la industria musical, es generar canciones populares 
 
 ### Objetivo del negocio/estudio
 
-Nuestro objetivo principal es el de indagar, descubrir y utilizar las características que definen la popularidad de las canciones presentes en nuestro dataset. 
+Nuestro objetivo principal es desarrollar un modelo que logre predecir si una canción será popular o no antes de ser lanzada al mercado. Además, nuestro objetivo secundario, es conocer las características que hacen popular a una canción. 
 
 ### Variable objetivo para el negocio
 
-* Las variables que consideramos podrían ser más relevantes para el negocio son: 
-  + popularity (Popularidad)
-  + duration_ms (La duración del track en milisegundos)
-  + danceability (La capacidad de baile del track)
+* “Popularity” es la variable objetivo.
 
 ## CAPÍTULO II: FUENTES DE INFORMACIÓN
 
 ### Origen de los datos del proyecto
 
-El dataset que empleamos en nuestro trabajo lo descargamos de 
-[este](https://www.kaggle.com/datasets/yamaerenay/spotify-dataset-19212020-600k-tracks?resource=download)
-sitio web ... precisamente, el archivo **tracks.csv**.
+El dataset que empleamos lo descargamos de [Kaggle](https://www.kaggle.com/datasets/yamaerenay/spotify-dataset-19212020-600k-tracks?resource=download) de donde  usamos el archivo**tracks.csv**.
+Como se describe en el sitio web del link previo, el dataset **tracks.csv** se obtuvo vía el [API oficial de **Spotify**](https://developer.spotify.com/documentation/web-api/). Esta permite descargar, características de las canciones disponibles en la plataforma tales como su duración en milisegundos, volumen, qué tan bailable es, etc.
 
-Como se describe en el sitio web del link previo, el dataset **tracks.csv** 
-se obtuvo vía el API oficial de **Spotify**. Tal API permite descargar, 
-para cualquier canción en Spotify, características sobre aquella canción, 
-tales como su duración en milisegundos, volumen, qué tan bailable es, etc.
+Así, cada fila en **tracks.csv** representa a una canción diferente en Spotify, y, las columnas del dataset representan características ─variables─ asociadas a cada canción.
 
-Así, cada fila en **tracks.csv** representa a una canción diferente en Spotify,
-y, las columnas del dataset representan variables asociadas a cada canción.
 
 ### Descripción del universo y muestra 
 
-En nuestro caso, el **universo** consistiría el el conjunto de canciones de Spotify
-disponibles en el instante de tiempo en que se descargó el dataset, vía
-la API oficial de Spotify.
+El **universo** de datos está conformado por el conjunto de canciones de Spotify disponibles en el instante de tiempo en que se descargó el dataset, vía la API oficial de Spotify. En la [página web](https://www.kaggle.com/datasets/yamaerenay/spotify-dataset-19212020-600k-tracks?resource=download), fuente de descargamos la data, se menciona que las canciones extraídas fueron publicadas entre los años 1921 y 2020. Asimismo, la muestra tiene y 20 columnas.
 
-En la [página](https://www.kaggle.com/datasets/yamaerenay/spotify-dataset-19212020-600k-tracks?resource=download) de donde descargamos la data, se menciona que las canciones
-extraídas fueron publicadas entre los años 1921 y 2020. 
+En ese sentido, la **muestra** consiste en el conjunto de canciones de Spotify de las cuales tenemos información en las filas del dataset descargado ─586672 observaciones ─ y 20 columnas. No obstante, esta muestra es arbitraria, ya que no se especifica la estrategia de muestreo. A nivel de grupo, discutimos la importancia del muestro y concluimos que, para realizar un análisis riguroso necesitaremos realizar una muestro multietápico diseñado por nosotros mismo, pero por la limitación de tiempo, seguiremos usando la data original.
 
-Sin embargo, tras analizar la data descargada, notamos que hay canciones cuyo año
-de lanzamiento figura entre 1900 y 2021. Incluso, una canción del dataset figura
-que fue creada en el año 1900, pese a que, tras una búsqueda web, hallamos que la
-banda que creó tal canción aún sigue activa.
+La arbitrariedad de la muestra se refleja en algunas fallas que detectamos en la etapa de exploración de los datos, pues tras analizar la data descargada, observamos que los años de lanzamiento de las canciones se encuentran en el rango de 1900 a 2021. Es decir, existen, observaciones que están fuera del rango de años especificados en la fuente secundaria ─Kaggle─. Específicamente encontramos que, el año de lanzamiento de una canción del dataset fue en 1990, sin embargo, tras realizar una pequeña una búsqueda web, hallamos que la banda que creó tal canción aún sigue activa. En otras palabras, es imposible que, en caso la banda lanzará la canción en 1990, siga activa.
 
-Por ello, es posible que, eventualmente, se requiera que nosotros mismos empleemos
-el API oficial de Spotify para obtener la data de las canciones cuyo identificador
-ya poseemos, gracias al dataset descargado.
-Esto último con el fin de crear un nuevo dataset, ahora sin errores, con el cual 
-trabajaríamos como base datos de este proyecto.
+Es plausible afirmar que la data que disponemos tenga algunas fallas, lo cual debería subsanarse para obtener un mejor resultado. Durante las reuniones de equipo, evaluamos scrappear las canciones de Spotify empleando el API oficial de Spotify para obtener la data de las canciones cuyo identificador ya se posee, gracias al dataset descargado. Esto último con el fin de crear un nuevo dataset, ahora sin errores, con el cual trabajaríamos como base datos de este proyecto. También evaluamos descartar a las filas donde encontremos errores como el mencionado previamente respecto a la fecha de publicación de la canción. No obstante, por limitaciones de tiempo, llevamos al consenso de continuar el dataset original.
 
-También podríamos descartar a las filas donde encontremos errores como el mencionado
-previamente respecto a la fecha de publicación de la canción. 
-Sin embargo, por ahora, seguiremos usando el dataset descargado.
+Por otro lado, la muestra contiene las siguientes columnas: 
 
-Entonces, el **universo** lo consideramos como el conjunto de canciones disponibles
-en Spotify, **actualmente**.
-
-En ese sentido, la **muestra** consiste del conjunto de canciones de Spotify 
-de las cuales tenemos información en las filas del dataset descargado.
-Por ahora, es una muestra arbitraria (no se sabe como se realizó el muestreo),
-pero, más adelante, nosotros mismos realizaremos el muestreo, vía el API oficial de Spotify.
-
-La muestra consiste de las siguientes columnas: 
 
 #### Loudness
 
 Describe la sonoridad general de una pista en decibeles. Los valores de sonoridad se promedian en toda la pista y son útiles para comparar la sonoridad relativa de las pistas. La sonoridad es la cualidad de un sonido que es el principal correlato psicológico de la fuerza física (amplitud). Los valores suelen oscilar entre -60 y 0 db.
-Se observa que la distribución de la variable se sesga hacia el lado derecho, en este caso usamos a 1.7 como coeficiente. El porcentaje de valores atípicos es 9% del total de los datos de esta columna. Por lo que es posible generar imputaciones. 
 
 #### Instrumentalness
 
 Predice si una pista no contiene voces. Los sonidos "Ooh" y "aah" se consideran instrumentales en este contexto. Las pistas de rap o de palabras habladas son claramente "vocales". Cuanto más se acerque el valor de instrumentalización a 1,0, mayor será la probabilidad de que la pista no tenga contenido vocal. Los valores superiores a 0,5 representan pistas instrumentales, pero la confianza es mayor a medida que el valor se acerca a 1,0.
-Se observa que la mayoría de los datos están concentrado alrededor de cero, es decir la distribución esta sesgada a la izquierda, en este caso usamos a 3 como coeficiente. El porcentaje de valores atípicos es mayor a 20% del total de los datos de esta columna. Por lo que es no posible generar imputaciones.
 
 #### Liveness
 
 Detecta la presencia de una audiencia en la grabación. Valores más altos de liveness representan una probabilidad incrementada de que la pista haya sido realizada en vivo. Un valor de 0.8 provee una probabilidad fuerte de que la pista sea en vivo.
-Se observa que los datos están concentrados alrededor de 0.1 aproximadamente; no obstante tales datos muestran un fuerte sesgo hacia la derecha, e incluso presentan un ligerada bimodalidad. Usamos un coeficiente de 1.3 para determinar a los valores outliers. El porcentaje de valores atípicos es de 9.51%. 
 
 #### Valence
 
-Es medida desde 0.0 hasta 1.0 que describe la positividad musical expresada por la pista. Las pistas con un sonido de alta valence suenan más positivos (e.g., felices, alegres, eufóricos), mientras que las pistas con una baja valence suenan más negativas (e.g., tristes, deprimentes, enojadas). Se observa que al distribución se asemeja a uns distribución unirfore , donde parace que cada valor tomado por esta variable se acerca a un mismo nivel de densidad. Usamos un coeficiente de 1.4 para determinar a los valores outliers y el porcentaje de valores atípicos es de 9%.
+Es medida desde 0.0 hasta 1.0 que describe la positividad musical expresada por la pista. Las pistas con un sonido de alta valence suenan más positivos (e.g., felices, alegres, eufóricos), mientras que las pistas con una baja valence suenan más negativas (e.g., tristes, deprimentes, enojadas). 
 
 #### Tempo
 
 Es el tempo general estimado de una pista en beats por minutos (BPM, por sus siglas en inglés). En terminología musical, el tempo es la velocidad o ritmo de una pieza dada y se deriva directamente de una duración promedio de beat. 
-Se observa que los datos presentan múltiples modas, aproximadamente alrededor de los valores 75, 100, 140, 175. Estos datos presentan un ligero sesgo hacia la derecha. El porcentaje de valores atípicos para esta variable es 8.90%.
-
 #### Duration_ms
 
-Es la duración de una pieza en milisegundos. Respecto a la distribución de esta variable, se observa que la distribución de los datos es en principio aparentemente degenerada (los datos están virtual o totalmente reunidos en un punto). No obstante, tal aparente degeneración se explica por el hecho de que existe una serie de piezas cuya duración puede ser extremadamente larga. En este caso, si bien los valores atípicos representan solo el 8.99% del total de la muestra de valores para esta variable, tal cantidad de valores atípicos, dados sus valores extremadamente altos, tienen un efecto visual altamente significativo sobre la interpretabilidad de la distribución de los datos.
-
+Es la duración de una pieza en milisegundos. Respecto a la distribución de esta variable, se observa que la distribución de los datos es en principio aparentemente degenerada (los datos están virtual o totalmente reunidos en un punto). No obstante, tal aparente degeneración se explica por el hecho de que existe una serie de piezas cuya duración puede ser extremadamente larga.
 #### Danceability
 
 La danceability describe qué tan adecuada es una pista para bailar, basada en una combinación de elementos musicales incluyendo el tempo, la estabilidad rítmica (rhythm stability), la fuerza del beat (beat strength), y una regularidad general. Un valor de 0.0 es menos danceable 1.0 es máximamente danceable.
-Se observa que los datos se concentran alrededor de 0.65, y presentan un ligero sesgo hacia la izquierda. Los valores atípicos representan 8.216% de la muestra,para calcularlos se usó el coeficiente 1.6 que acompaña al rango intercuartil. 
 
 #### Energy
 
 La energía es una medida desde 0.0 a 1.0 y representa una medida perceptiva de intensidad y actividad. Típicamente, las pistas energéticas se sienten rápidas, de volumen alto (loud), y ruidosas. Por ejemplo, el death metal tiene una alta energía, mientras que el preludio de Bach da un puntaje bajo en la escala. Características perceptivas contribuyen a este atributo incluyen rango dinámico, el volumen percibió, el timbre, el onset rate, y la entropía general.
-Se observa que los datos son ligeramente multimodales. con los datos ligeramente más concentrados alrededor de 0.35, 0.55, 7.00 y 0.85. Los valores atípicos para esta variable representan 9.32% de la muestar y para calcularlos se usó el coeficiente 1.4 que acompaña al rango intercuartil. 
 
 #### Speechiness
 
 Esta variableetecta la presencia de palabras habladas en una pieza. Mientras más contenido hablado presenta una grabación (e.g., talk show, audio book, poesía), más cercano a 1.0 será el valor del atributo. Los valores superiores a 0.66 describen piezas que probablemente estén hechas enteramente de palabras habladas. Valores entre 0.33 y 0.66 describen piezas que podrías contener tanto música como una parte oral, ya sea en secciones o en capas, incluyendo casos como el rap. Valores menores a 0.33 con mayor probabilidad representan múscia y otras piezas non-speech-like.
-De manera similar al caso de la variable Duration_ms, aunque en medida mucho menor, esta variable, Speechiness, presenta en principio una aparente distribución degenerada, concentrada alrededor 0. No obstante, tal aparente naturaleza se debe al 10.39% de valores atípicos que presenta la muestra de datos para esta variable, cuyos niveles están concentrados alrededor de 1. En otra palabras, aproximadamente el 88% de los datos se concentra alrededor de 0.0, mientras que el 10.39% lo hace alrededor de 1.0. 
 
 #### Acousticness
 
 Una medida de confianza desde 0.0 hasta 1.0 sobre si la pieza es acústica. 1.0 representa alta confianza en que la pieza es acústica (>=0 | <= 1).
-Se observa que los datos se concentran en su mayoría alrededor de ambos valores extremos. La distribución de los valores para esta variable es en tal sentido bimodal. Los valores atípicos representan un 8.76% del total de valores de la muestra para esta variable.
 
 ### Descripción y entendimiento de variables 
 
