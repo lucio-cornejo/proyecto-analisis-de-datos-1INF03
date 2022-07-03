@@ -32,17 +32,13 @@ format:
 
 Para entender la dinámica de la industria musical, antes que nada, es necesario saber que no se trata de una sola, sino de varias, diferentes, estrechamente relacionadas entre sí, pero que parten de lógicas y estructuras distintas. La industria musical en su conjunto vive de la creación y la explotación de la propiedad intelectual musical. Compositores y letristas crean canciones, letras y arreglos que se interpretan en directo sobre el escenario, se graban y distribuyen a los consumidores. Esta estructura básica ha dado lugar a tres industrias musicales centrales: la discográfica, centrada en la grabación de música y su distribución a los consumidores; la de las licencias musicales, que sobre todo concede licencias a empresas para la explotación de composiciones y arreglos, y la música en vivo, centrada en producir y promocionar espectáculos en directo, como conciertos, giras, etcétera.
 
-En la actualidad se vienen realizando muchos estudios aplicando el campo de Data Analytics para poder obtener resultados en muchas industrias, y la musical
-no es ajena a esta moda. Es por esto que decidimos desarrollar el presente trabajo para así descubrir las características fuertemente asociadas a las canciones más populares en la aplicación de música Spotify y poder usar estos rasgos, que están conectados con los estados de ánimo, fechas de lanzamiento, nombre de las canciones, entre otros; para analizar el por qué de esta popularidad y poder simular que una empresa de la industria musical quiera emplear un modelo analítico
-que le permita saber el índice de popularidad de una canción antes de que esta sea soltada al mercado.
+El desarrollo de la Ciencia de Datos esta explotando el uso de los datos para mejorar la toma de decisiones en el sector público y privado. La industria musical no es al excepción, la cual mantiene su interés en generar nuevas canciones populares, para, de esta forma, recuperar los costos de produccion de una canción y maximizar margenes de ganancia. Bajo esta preocupación, se desarrolla el presente trabajo con el objetivo de desarrollar un modelo que logre predecir la propularidad de las canciones futuras, asimismo nos planteamos hacer un análisis de las variables que influyan de manera positiva o negativa en la popularidad de las canciones. De esta forma, el modelo análitico podrá ser utilizado para predecir la popularidad de las canciones futuras, lo cual ayudará a tomar decisiones de manera más efectiva.
 
 Estas son algunas de las interrogantes que se explorarán en este trabajo:
 
-- ¿Cuáles son los tracks más populares en Spotify? 
 - ¿Qué características en común tienen las canciones más populares de Spotify?
 - ¿Existe una correlación entre la popularidad y alguna característica de las canciones?
 - ¿Cuánto debe durar un track según los estándares de la actualidad?
-- ¿Cuál es la correlación entre diferentes tracks que son populares?
 
 ### Dataset 
 
