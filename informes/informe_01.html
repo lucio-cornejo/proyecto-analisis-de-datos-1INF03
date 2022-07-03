@@ -141,9 +141,10 @@
 <li><a href="#creación-y-transformación-de-variables" class="nav-link" data-scroll-target="#creación-y-transformación-de-variables">Creación y transformación de variables</a>
 <ul class="collapse">
 <li><a href="#name" class="nav-link" data-scroll-target="#name">Name</a></li>
-<li><a href="#realease-date" class="nav-link" data-scroll-target="#realease-date">Realease date</a></li>
-<li><a href="#time_signature" class="nav-link" data-scroll-target="#time_signature">time_signature</a></li>
-<li><a href="#popularity" class="nav-link" data-scroll-target="#popularity">popularity</a></li>
+<li><a href="#release-date" class="nav-link" data-scroll-target="#release-date">Release date</a></li>
+<li><a href="#time-signature" class="nav-link" data-scroll-target="#time-signature">Time signature</a></li>
+<li><a href="#popularity" class="nav-link" data-scroll-target="#popularity">Popularity</a></li>
+<li><a href="#key" class="nav-link" data-scroll-target="#key">Key</a></li>
 </ul></li>
 <li><a href="#descripción-de-variables-listas-para-el-modelamiento" class="nav-link" data-scroll-target="#descripción-de-variables-listas-para-el-modelamiento">Descripción de variables listas para el modelamiento</a></li>
 </ul></li>
@@ -169,6 +170,20 @@
 
 <style>
   div.cell-output-stdout { display: none; }
+  img[src="comparacion-modelos.png"] {
+    height: 75vh;
+    width: 99vw;
+  }
+  img[src="comparacion-modelos.png"].img-fluid {
+    max-width: 100vw !important; 
+  }
+  img[src="mejor-modelo.jpg"] {
+    height: 150vh;
+    width: 60vw;
+  }
+  img[src="mejor-modelo.jpg"].img-fluid {
+    max-width: 100vw !important; 
+  }
 </style>
 <div class="cell">
 
@@ -245,8 +260,8 @@
 <div class="sourceCode" id="cb2"><pre class="sourceCode r cell-code code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabla de descripción básica de las variables numéricas</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(py<span class="sc">$</span>temp_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<div id="htmlwidget-d998c00e736ad10dd873" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-d998c00e736ad10dd873">{"x":{"filter":"none","vertical":false,"data":[["count","mean","std","min","25%","50%","75%","max"],[586672,27.5700527722475,18.370642366209,0,13,27,41,100],[586672,5.32280698355454,0.183275404770882,3.52426639863971,5.24326878635855,5.33222227088196,5.42138508108894,6.74983042834497],[586672,0.563593818010745,0.166102654293322,0,0.453,0.577,0.686,0.991],[586672,0.542035991911664,0.251922940900002,0,0.343,0.549,0.748,1],[586672,-10.2060668090517,5.08932790166316,-60,-12.891,-9.243,-6.482,5.376],[586672,-1.21343004641569,0.367156684679978,-3,-1.45593195564972,-1.34390179798717,-1.11182050608168,-0.0123337350737254],[586672,0.44986272444746,0.348836700093673,0,0.0969,0.422,0.785,0.996],[586672,-2.34241848622654,1.04710186219699,-3,-3,-2.98948803726279,-1.97674754036629,0.0004340774793185],[586672,0.213935016874847,0.184325598134415,0,0.0983,0.139,0.278,1],[586672,0.552292473080529,0.257670937011182,0,0.346,0.564,0.769,1],[586672,118.464856626872,29.7641077013351,0,95.6,117.384,136.321,246.381]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>popularity<\/th>\n      <th>duration_ms<\/th>\n      <th>danceability<\/th>\n      <th>energy<\/th>\n      <th>loudness<\/th>\n      <th>speechiness<\/th>\n      <th>acousticness<\/th>\n      <th>instrumentalness<\/th>\n      <th>liveness<\/th>\n      <th>valence<\/th>\n      <th>tempo<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10,11]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-b7cd2e0d0a07a393a4fb" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b7cd2e0d0a07a393a4fb">{"x":{"filter":"none","vertical":false,"data":[["count","mean","std","min","25%","50%","75%","max"],[586672,27.5700527722475,18.370642366209,0,13,27,41,100],[586672,5.32280698355454,0.183275404770882,3.52426639863971,5.24326878635855,5.33222227088196,5.42138508108894,6.74983042834497],[586672,0.563593818010745,0.166102654293322,0,0.453,0.577,0.686,0.991],[586672,0.542035991911664,0.251922940900002,0,0.343,0.549,0.748,1],[586672,-10.2060668090517,5.08932790166316,-60,-12.891,-9.243,-6.482,5.376],[586672,-1.21343004641569,0.367156684679978,-3,-1.45593195564972,-1.34390179798717,-1.11182050608168,-0.0123337350737254],[586672,0.44986272444746,0.348836700093673,0,0.0969,0.422,0.785,0.996],[586672,-2.34241848622654,1.04710186219699,-3,-3,-2.98948803726279,-1.97674754036629,0.0004340774793185],[586672,0.213935016874847,0.184325598134415,0,0.0983,0.139,0.278,1],[586672,0.552292473080529,0.257670937011182,0,0.346,0.564,0.769,1],[586672,118.464856626872,29.7641077013351,0,95.6,117.384,136.321,246.381]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>popularity<\/th>\n      <th>duration_ms<\/th>\n      <th>danceability<\/th>\n      <th>energy<\/th>\n      <th>loudness<\/th>\n      <th>speechiness<\/th>\n      <th>acousticness<\/th>\n      <th>instrumentalness<\/th>\n      <th>liveness<\/th>\n      <th>valence<\/th>\n      <th>tempo<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[1,2,3,4,5,6,7,8,9,10,11]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div class="cell">
@@ -430,8 +445,8 @@
 </ul>
 <p>Es importante recordar, que luego de generar ambas variables, se tiene que eliminar la variable “name” para no caer en el problema de multicolinealidad.</p>
 </section>
-<section id="realease-date" class="level4">
-<h4 class="anchored" data-anchor-id="realease-date">Realease date</h4>
+<section id="release-date" class="level4">
+<h4 class="anchored" data-anchor-id="release-date">Release date</h4>
 <p>Indica la fecha del lanzamiento de la canción incluyendo el año, mes y día. Apartir de esat variable se crearon cuatro variables:</p>
 <ul>
 <li>Release_year: año en el que se publicó la canción</li>
@@ -441,19 +456,178 @@
 </ul>
 <p>Posteriormente, eliminamos la variable realise date.</p>
 </section>
-<section id="time_signature" class="level4">
-<h4 class="anchored" data-anchor-id="time_signature">time_signature</h4>
+<section id="time-signature" class="level4">
+<h4 class="anchored" data-anchor-id="time-signature">Time signature</h4>
 <p>Esta variable <strong>ordinal</strong> contiene la cantidad de pulsos en un compás, para cada canción. Esta variable toma valores de 3 a 7, así que la discretizamos para que tome el valor de 0 si los valores son mayores iguales a 0 y menores que 4; y tome el valor de 1 si los valores toman valores mayores iguales a 4.</p>
 <p>Esta recategorización se basa en el hecho que casi todas las canciones que existen actualmente en el mundo poseen un valor de 4 en <strong>time_signature</strong>.</p>
 </section>
 <section id="popularity" class="level4">
-<h4 class="anchored" data-anchor-id="popularity">popularity</h4>
+<h4 class="anchored" data-anchor-id="popularity">Popularity</h4>
 <p>Para clasificar a las canciones en las categorías <strong>popular</strong> y <strong>no popular</strong>, se escogió el valor 40 como punto de corte.</p>
 <p>Es decir, canciones con un valor de popularidad menor a 40 se asignaron a 0 (no populares); caso contrario, tales canciones se asignan a 1 (populares).</p>
+</section>
+<section id="key" class="level4">
+<h4 class="anchored" data-anchor-id="key">Key</h4>
+<p>La variable key representa el centro tonal de la canción, habiéndose así 12 opciones para casi todas las canciones que existen actualmente: 0, 1, …, 10, 11 .</p>
+<p>Como el <strong>círculo de quintas</strong> es un concepto musical empleado en casi todas las canciones existentes, agruparemos en 4 categorías, a los valores de key, agrupándolos de 7 en 7, ya que esto representa centros tonales lo más cercanos posibles en el círculo de quintas.</p>
+<p>Como el valor 0 de <strong>key</strong> representa al centro tonal C (Do), el caso más popular entre todas las canciones del planeta, agruparemos a los valores de <strong>key</strong> vía las siguientes categorías:</p>
+<p>[5, 0, 7] =&gt; 0</p>
+<p>[8, 3, 10] =&gt; 1</p>
+<p>[11, 6, 1] =&gt; 2</p>
+<p>[2, 9, 4] =&gt; 3</p>
 </section>
 </section>
 <section id="descripción-de-variables-listas-para-el-modelamiento" class="level3">
 <h3 class="anchored" data-anchor-id="descripción-de-variables-listas-para-el-modelamiento">Descripción de variables listas para el modelamiento</h3>
+<table class="table">
+<colgroup>
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">variable</th>
+<th style="text-align: center;">count</th>
+<th style="text-align: center;">mean</th>
+<th style="text-align: center;">std</th>
+<th style="text-align: center;">min</th>
+<th style="text-align: center;">0.25</th>
+<th style="text-align: center;">0.5</th>
+<th style="text-align: center;">0.75</th>
+<th style="text-align: center;">max</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">popularity</td>
+<td style="text-align: center;">586672</td>
+<td style="text-align: center;">27.570053</td>
+<td style="text-align: center;">18.370642</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">13</td>
+<td style="text-align: center;">27</td>
+<td style="text-align: center;">41</td>
+<td style="text-align: center;">100</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">duration_ms</td>
+<td style="text-align: center;">580069</td>
+<td style="text-align: center;">5.323873</td>
+<td style="text-align: center;">0.165679</td>
+<td style="text-align: center;">4.700011</td>
+<td style="text-align: center;">5.245019</td>
+<td style="text-align: center;">5.332467</td>
+<td style="text-align: center;">5.420505</td>
+<td style="text-align: center;">5.899967</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">danceability</td>
+<td style="text-align: center;">586343</td>
+<td style="text-align: center;">0.563908</td>
+<td style="text-align: center;">0.165612</td>
+<td style="text-align: center;">0.0532</td>
+<td style="text-align: center;">0.453</td>
+<td style="text-align: center;">0.577</td>
+<td style="text-align: center;">0.686</td>
+<td style="text-align: center;">0.988</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">energy</td>
+<td style="text-align: center;">586672</td>
+<td style="text-align: center;">0.542036</td>
+<td style="text-align: center;">0.251923</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0.343</td>
+<td style="text-align: center;">0.549</td>
+<td style="text-align: center;">0.748</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">loudness</td>
+<td style="text-align: center;">584103</td>
+<td style="text-align: center;">-10.114038</td>
+<td style="text-align: center;">4.855248</td>
+<td style="text-align: center;">-29.999</td>
+<td style="text-align: center;">-12.838</td>
+<td style="text-align: center;">-9.22</td>
+<td style="text-align: center;">-6.474</td>
+<td style="text-align: center;">-0.004</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">speechiness</td>
+<td style="text-align: center;">563644</td>
+<td style="text-align: center;">-1.259542</td>
+<td style="text-align: center;">0.284709</td>
+<td style="text-align: center;">-1.645892</td>
+<td style="text-align: center;">-1.459671</td>
+<td style="text-align: center;">-1.354578</td>
+<td style="text-align: center;">-1.154282</td>
+<td style="text-align: center;">-0.185087</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">acousticness</td>
+<td style="text-align: center;">586672</td>
+<td style="text-align: center;">0.449863</td>
+<td style="text-align: center;">0.348837</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0.0969</td>
+<td style="text-align: center;">0.422</td>
+<td style="text-align: center;">0.785</td>
+<td style="text-align: center;">0.996</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">instrumentalness</td>
+<td style="text-align: center;">562639</td>
+<td style="text-align: center;">-2.441072</td>
+<td style="text-align: center;">0.951667</td>
+<td style="text-align: center;">-3</td>
+<td style="text-align: center;">-3</td>
+<td style="text-align: center;">-2.993235</td>
+<td style="text-align: center;">-2.295849</td>
+<td style="text-align: center;">-0.050122</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">liveness</td>
+<td style="text-align: center;">563897</td>
+<td style="text-align: center;">0.188345</td>
+<td style="text-align: center;">0.134634</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0.0969</td>
+<td style="text-align: center;">0.134</td>
+<td style="text-align: center;">0.253</td>
+<td style="text-align: center;">0.7</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">valence</td>
+<td style="text-align: center;">586672</td>
+<td style="text-align: center;">0.552292</td>
+<td style="text-align: center;">0.257671</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0.346</td>
+<td style="text-align: center;">0.564</td>
+<td style="text-align: center;">0.769</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">tempo</td>
+<td style="text-align: center;">585134</td>
+<td style="text-align: center;">118.585417</td>
+<td style="text-align: center;">29.438423</td>
+<td style="text-align: center;">50.002</td>
+<td style="text-align: center;">95.757</td>
+<td style="text-align: center;">117.4715</td>
+<td style="text-align: center;">136.33</td>
+<td style="text-align: center;">210</td>
+</tr>
+</tbody>
+</table>
 </section>
 </section>
 <section id="capítulo-iv-desarrollo-del-modelo" class="level2">
@@ -476,13 +650,24 @@
 </section>
 <section id="balanceo-de-datos-en-caso-aplique" class="level3">
 <h3 class="anchored" data-anchor-id="balanceo-de-datos-en-caso-aplique">Balanceo de datos (en caso aplique)</h3>
-<p>Para el balanceo de datos, decidimos utilizar el agoritmo SMOTE el cual en este caso es un algoritmo para oversampling que busca puntos vecinos cercanos y agrega puntos “en linea recta” entre ellos. Al hacer un conteo de las canciones que eran consideradas populares(1) y la que no eran consideras “populares(0)”, obtuvimos que el 73% de las canciones en los registros eran “no populares” lo cual podría influenciar en los resultados que muestren nuestros modelos analíticos. Antes de realizar el balanceo verificamos también si los registros contaban con vacíos, al no ser el caso se procedió a crear dos nuevos conjuntos de datos “x_train_smote” y “y_train_smote” que serían utilizados posteriormente para probar modelos con estos conjuntos que tienen los datos balanceados.</p>
+<p>Popularidad es la variable dependiente de nuestro interes, la cual, luego de una transformación de variable, adquirió solo dos valores: 0 y 1. 0 en caso la canción no sea popular, y 1 en caso contrario. Observamos que el 73% de los valores son 0 ─no populares─ y el 27% de los valores son 1 ─populares─, lo cual podría influenciar en los resultados que muestren nuestros modelos analíticos. En este escenario, concluimos que era necesario realizar balanceo de datos.</p>
+<p>Para el balanceo de datos, decidimos usar dos tipos de balanceo: undersampling y oversampling. Por un lado en la estrategia undersampling, usamos el algoritmo <strong>RandomUnderSampler</strong> para eliminar los registros de canciones que no son populares, quedandonos con una cantidad de registros igual a la cantidad de registros que son populares. Por otro lado, en la estrategia oversampling, usamos el algoritmo <strong>Smote</strong> para agregar registros de canciones que son populares, quedandonos con una cantidad de registros igual a la cantidad de registros que no son populares. Antes de realizar el balanceo verificamos también si los registros contaban con vacíos, al no ser el caso se procedió a crear dos nuevos conjuntos de datos “x_train_smote” y “y_train_smote” para el caso del balanceo de datos usando el algoritmo <strong>Smote</strong>, y se creó los conjuntos de datos “x_resampled” y “y_resampled” para el caso del balanceo de datos usando el algoritmo <strong>RandomUnderSampler</strong>, estos nuevos conjuntos balanceados fueron utilizados posteriormente para probar modelos.</p>
 </section>
 <section id="selección-de-parámetros-en-caso-aplique" class="level3">
 <h3 class="anchored" data-anchor-id="selección-de-parámetros-en-caso-aplique">Selección de parámetros (en caso aplique)</h3>
 </section>
 <section id="selección-del-mejor-modelo-evaluación-de-modelos-en-diferentes-escenarios-comparación-de-las-métricas-de-ajuste-de-los-modelos-al-realizar-predicciones-con-datos-del-test-yo-validación" class="level3">
 <h3 class="anchored" data-anchor-id="selección-del-mejor-modelo-evaluación-de-modelos-en-diferentes-escenarios-comparación-de-las-métricas-de-ajuste-de-los-modelos-al-realizar-predicciones-con-datos-del-test-yo-validación">Selección del mejor modelo (Evaluación de modelos en diferentes escenarios, comparación de las métricas de ajuste de los modelos al realizar predicciones con datos del test y/o validación)</h3>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="comparacion-modelos.png" class="img-fluid" width="632"></p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="mejor-modelo.jpg" class="img-fluid"></p>
+</div>
+</div>
 </section>
 <section id="descripción-de-la-estructura-del-modelo-seleccionado-tipo-de-modelo-y-parámetros-elegidos" class="level3">
 <h3 class="anchored" data-anchor-id="descripción-de-la-estructura-del-modelo-seleccionado-tipo-de-modelo-y-parámetros-elegidos">Descripción de la estructura del modelo seleccionado (tipo de modelo y parámetros elegidos)</h3>

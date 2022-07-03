@@ -17,6 +17,20 @@ format:
 
 <style>
   div.cell-output-stdout { display: none; }
+  img[src="comparacion-modelos.png"] {
+    height: 75vh;
+    width: 99vw;
+  }
+  img[src="comparacion-modelos.png"].img-fluid {
+    max-width: 100vw !important; 
+  }
+  img[src="mejor-modelo.jpg"] {
+    height: 150vh;
+    width: 60vw;
+  }
+  img[src="mejor-modelo.jpg"].img-fluid {
+    max-width: 100vw !important; 
+  }
 </style>
 
 
@@ -41,7 +55,6 @@ import os
 
 os.chdir("D:/proyecto-analisis-de-datos-1INF03/informes/")
 ```
-
 
 ## CARÁTULA
 
@@ -363,9 +376,7 @@ Contiene el nombre de la canción, a partir de esta se generan dos variables:
 
 Es importante recordar, que luego de generar ambas variables, se tiene que eliminar la variable "name" para no caer en el problema de multicolinealidad. 
 
-
-
-#### Realease date
+#### Release date
 
 Indica la fecha del lanzamiento de la canción incluyendo el año, mes y día. Apartir de esat variable se crearon cuatro variables: 
 
@@ -376,14 +387,14 @@ Indica la fecha del lanzamiento de la canción incluyendo el año, mes y día. A
 
 Posteriormente, eliminamos la variable realise date. 
 
-#### time_signature
+#### Time signature
 
 Esta variable **ordinal** contiene la cantidad de pulsos en un compás, para cada canción. Esta variable toma valores de 3 a 7, así que la discretizamos para que tome el valor de 0 si los valores son mayores iguales a 0 y menores que 4; y tome el valor de 1 si los valores toman valores mayores iguales a 4. 
 
 Esta recategorización se basa en el hecho que casi todas las canciones que existen actualmente en el mundo poseen un valor
 de 4 en **time_signature**.
 
-#### popularity
+#### Popularity
 
 Para clasificar a las canciones en las categorías **popular** 
 y **no popular**, se escogió el valor 40 como punto de corte.
@@ -391,6 +402,26 @@ y **no popular**, se escogió el valor 40 como punto de corte.
 Es decir, canciones con un valor de popularidad menor a 40 se asignaron a 0 
 (no populares); caso contrario, tales canciones se asignan a 1
 (populares).
+
+#### Key
+
+La variable key representa el centro tonal de la canción, habiéndose así 12 opciones para casi
+todas las canciones que existen actualmente: 0, 1, ..., 10, 11 .
+
+Como el **círculo de quintas** es un concepto musical empleado en casi todas las canciones existentes,
+agruparemos en 4 categorías, a los valores de key, agrupándolos de 7 en 7, ya que esto representa
+centros tonales lo más cercanos posibles en el círculo de quintas.
+
+Como el valor 0 de **key** representa al centro tonal C (Do), el caso más popular entre todas las canciones
+del planeta, agruparemos a los valores de **key** vía las siguientes categorías:
+
+[5, 0, 7]  => 0
+
+[8, 3, 10] => 1
+
+[11, 6, 1] => 2
+
+[2, 9, 4]  => 3
 
 ### Descripción de variables listas para el modelamiento
 
@@ -436,6 +467,7 @@ tempo | 585134 | 118.585417 | 29.438423 | 50.002 | 95.757 | 117.4715 | 136.33 | 
 
 
 ## CAPÍTULO IV: DESARROLLO DEL MODELO 
+
 Escogemos la gama de modelos de clasificación para cumplir con el objetivo del proyecto. En el presente trabajo trabajamos con tres modelos teóricos: 
 
 * Árbol de clasificación CART
@@ -478,6 +510,16 @@ Random Forest Classifier | Si | 'criterion': 'entropy', 'random_state': 0 |
 Random Forest Classifier | Si |'criterion': 'entropy', 'random_state': 0 |
 
 ### Selección del mejor modelo (Evaluación de modelos en diferentes escenarios, comparación de las métricas de ajuste de los modelos al realizar predicciones con datos del test y/o validación) 
+
+```{r}
+#| echo: false
+knitr::include_graphics("comparacion-modelos.png")
+```
+
+```{r}
+#| echo: false
+knitr::include_graphics("mejor-modelo.jpg")
+```
 
 ### Descripción de la estructura del modelo seleccionado (tipo de modelo y parámetros elegidos) 
 
